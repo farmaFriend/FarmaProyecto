@@ -5,20 +5,17 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MyActivity extends ActionBarActivity
@@ -57,29 +54,28 @@ public class MyActivity extends ActionBarActivity
 
         switch (position){
             case 0:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container,PlaceholderFragment.newInstance(position+1))
-                        .commit();
+                fragmento = new Agenda();
+
                 break;
 
             case 1:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container,PlaceholderFragment.newInstance(position+1))
-                        .commit();
+                fragmento = new Agenda();
+
                 break;
 
             case 2:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, Agenda1.newInstance(3) )
-                        .commit();
+                fragmento = new Agenda();
                 break;
 
             case 3:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container,PlaceholderFragment.newInstance(position+1))
-                        .commit();
+                fragmento = new Agenda();
+
                 break;
         }
+
+        fragmentManager.beginTransaction()
+                .replace(R.id.container,fragmento )
+                .commit();
 
 
     }
@@ -168,43 +164,4 @@ public class MyActivity extends ActionBarActivity
         }
     }
 
-    public static class Agenda1 extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static Agenda1 newInstance(int sectionNumber) {
-            Agenda1 fragment = new Agenda1();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public Agenda1() {
-
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.lay_agenda, container, false);
-            return rootView;
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((MyActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
-        }
-    }
-
-
-}
+   }
