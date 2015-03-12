@@ -1,7 +1,7 @@
 package com.example.ixtilion.proyecto;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +26,7 @@ public class Agenda extends Fragment {
         Contacto c1 = new Contacto("Pepe", "23424");
         Contacto c2 = new Contacto( "Juan", "3356");
 
-        ArrayList<Contacto> contacts = new ArrayList<Contacto>();
+       final ArrayList<Contacto> contacts = new ArrayList<Contacto>();
         contacts.add(c1);
         contacts.add(c2);
 
@@ -35,6 +35,26 @@ public class Agenda extends Fragment {
 
         final CustomArrayAdapter adapter = new CustomArrayAdapter(view.getContext(),contacts);
         list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view,
+                                    int position, long id) {
+                final Contacto item = (Contacto) parent.getItemAtPosition(position);
+                view.animate().setDuration(2000).alpha(0)
+                        .withEndAction(new Runnable() {
+                            @Override
+                            public void run() {
+                                contacts.remove(item);
+                                adapter.notifyDataSetChanged();
+                                view.setAlpha(1);
+                            }
+                        });
+            }
+
+        });
+
 
 
     return view;
