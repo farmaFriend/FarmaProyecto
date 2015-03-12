@@ -1,5 +1,7 @@
 package com.example.ixtilion.proyecto;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -24,7 +26,7 @@ public class Agenda extends Fragment {
 
         //Aqui se haria una query a la base de datos, se recorreria el puntero e iriamos construyendo y añadiendo contactos al array
         Contacto c1 = new Contacto("Pepe", "23424");
-        Contacto c2 = new Contacto( "Juan", "3356");
+        Contacto c2 = new Contacto( "Juan", "4565");
 
        final ArrayList<Contacto> contacts = new ArrayList<Contacto>();
         contacts.add(c1);
@@ -42,15 +44,19 @@ public class Agenda extends Fragment {
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
                 final Contacto item = (Contacto) parent.getItemAtPosition(position);
-                view.animate().setDuration(2000).alpha(0)
-                        .withEndAction(new Runnable() {
-                            @Override
-                            public void run() {
-                                contacts.remove(item);
-                                adapter.notifyDataSetChanged();
-                                view.setAlpha(1);
-                            }
-                        });
+                String tfno = item.getPhone();
+                String url = "tel:"+ tfno;
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
+                getActivity().startActivity(intent);
+
+                //view.animate().setDuration(2000).alpha(0)
+                   //     .withEndAction(new Runnable() {
+                   ////          public void run() {
+                   //             contacts.remove(item);
+                     //           adapter.notifyDataSetChanged();
+                       //         view.setAlpha(1);
+                         //   }
+                        //});
             }
 
         });
