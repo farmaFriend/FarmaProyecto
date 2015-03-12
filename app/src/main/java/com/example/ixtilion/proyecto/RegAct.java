@@ -2,6 +2,7 @@ package com.example.ixtilion.proyecto;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ public class RegAct extends Fragment {
     EditText ID, NOMBRE, TELF;
     String id, nombre, telf;
     Button anadir;
+    Context c;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -24,19 +26,24 @@ public class RegAct extends Fragment {
 
 
 
-        anadir = (Button) getView().findViewById(R.id.buttonAñadir);
+        anadir = (Button) view.findViewById(R.id.buttonAñadir);
+
+        NOMBRE = (EditText) view.findViewById(R.id.editTextNombre);
+        TELF = (EditText) view.findViewById(R.id.editTextTelf);
+        ID = (EditText) view.findViewById(R.id.editTextId);
 
         
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                NOMBRE = (EditText) getView().findViewById(R.id.editTextNombre);
-                TELF = (EditText) getView().findViewById(R.id.editTextTelf);
-                ID = (EditText) getView().findViewById(R.id.editTextId);
+            public void onClick(View view) {
+
 
                 id = ID.getText().toString();
                 nombre = NOMBRE.getText().toString();
                 telf = TELF.getText().toString();
+
+                DatabaseOperations db = new DatabaseOperations(c);
+                db.putInformation(db, "1", "cris","9854265");
             }
         });
 

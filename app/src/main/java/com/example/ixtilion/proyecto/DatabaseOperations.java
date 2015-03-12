@@ -24,7 +24,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
                     TableData.TableInfo._ID + " INTEGER PRIMARY KEY," +
                     TableData.TableInfo.COLUMN_NAME_ID + TEXT_TYPE + COMMA_SEP +
                     TableData.TableInfo.COLUMN_NAME_NOMBRE + TEXT_TYPE + COMMA_SEP +
-                    TableData.TableInfo.COLUMN_NAME_TELEFEONO + INT_TYPE + " )";
+                    TableData.TableInfo.COLUMN_NAME_TELEFEONO + TEXT_TYPE + " )";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TableData.TableInfo.TABLE_NAME_AGENDA;
@@ -53,14 +53,17 @@ public class DatabaseOperations extends SQLiteOpenHelper{
 
 
     public void putInformation(DatabaseOperations dbo, String id, String nombre, String telf){
-        SQLiteDatabase sq = dbo.getWritableDatabase();
+
         ContentValues cv = new ContentValues();
 
         cv.put(TableData.TableInfo.COLUMN_NAME_ID, id);
         cv.put(TableData.TableInfo.COLUMN_NAME_NOMBRE, nombre);
         cv.put(TableData.TableInfo.COLUMN_NAME_TELEFEONO, telf);
 
-        long k = sq.insert(TableData.TableInfo.TABLE_NAME_AGENDA, null, cv);
+
+
+        SQLiteDatabase sq = dbo.getWritableDatabase();
+        long k = sq.insert(TableData.TableInfo.TABLE_NAME_AGENDA, "", cv);
 
         Log.d("Operaciones bases de datos","Insertada una fila");
 
