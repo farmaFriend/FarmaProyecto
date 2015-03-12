@@ -5,8 +5,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.example.ixtilion.proyecto.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Ixtilion on 3/9/2015.
@@ -14,11 +20,25 @@ import com.example.ixtilion.proyecto.R;
 public class Agenda extends Fragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        //Aqui se haria una query a la base de datos, se recorreria el puntero e iriamos construyendo y añadiendo contactos al array
+        Contacto c1 = new Contacto("Pepe", "23424");
+        Contacto c2 = new Contacto( "Juan", "3356");
+
+        ArrayList<Contacto> contacts = new ArrayList<Contacto>();
+        contacts.add(c1);
+        contacts.add(c2);
+
+        View view = inflater.inflate(R.layout.lay_agenda, container, false);
+        ListView list = (ListView)view.findViewById(R.id.listView);
+
+        final CustomArrayAdapter adapter = new CustomArrayAdapter(view.getContext(),contacts);
+        list.setAdapter(adapter);
 
 
-        View rootView = inflater.inflate(R.layout.lay_agenda, container, false);
-        return rootView;
+    return view;
     }
+
+
 }
