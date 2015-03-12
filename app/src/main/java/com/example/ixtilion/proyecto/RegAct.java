@@ -24,15 +24,15 @@ public class RegAct extends Fragment {
 
 
 
-        anadir = (Button) getView().findViewById(R.id.buttonAñadir);
+        anadir = (Button) view.findViewById(R.id.buttonAñadir);
 
-        
+        NOMBRE = (EditText)view.findViewById(R.id.editTextNombre);
+        TELF = (EditText) view.findViewById(R.id.editTextTelf);
+        ID = (EditText) view.findViewById(R.id.editTextId);
+
         anadir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NOMBRE = (EditText) getView().findViewById(R.id.editTextNombre);
-                TELF = (EditText) getView().findViewById(R.id.editTextTelf);
-                ID = (EditText) getView().findViewById(R.id.editTextId);
+
+            public void onClick(View view) {
 
                 id = ID.getText().toString();
                 nombre = NOMBRE.getText().toString();
