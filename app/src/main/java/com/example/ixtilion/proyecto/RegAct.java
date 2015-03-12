@@ -1,29 +1,32 @@
 package com.example.ixtilion.proyecto;
 
 import android.app.Activity;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
 /**
  * Created by USUARIO on 12/03/2015.
  */
-public class RegAct extends Activity {
+public class RegAct extends Fragment {
     EditText ID, NOMBRE, TELF;
     String id, nombre, telf;
     Button anadir;
 
 
-    protected void onCreate (Bundle b){
-        super.onCreate(b);
-        setContentView(R.layout.agregar_contacto);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        NOMBRE = (EditText) findViewById(R.id.editTextNombre);
-        TELF = (EditText) findViewById(R.id.editTextTelf);
-        ID = (EditText) findViewById(R.id.editTextId);
+        View view = inflater.inflate(R.layout.agregar_contacto, container, false);
 
-        anadir = (Button) findViewById(R.id.buttonAñadir);
+        NOMBRE = (EditText) getView().findViewById(R.id.editTextNombre);
+        TELF = (EditText) getView().findViewById(R.id.editTextTelf);
+        ID = (EditText) getView().findViewById(R.id.editTextId);
+
+        anadir = (Button) getView().findViewById(R.id.buttonAñadir);
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,6 +35,8 @@ public class RegAct extends Activity {
                 telf = TELF.getText().toString();
             }
         });
+
+        return view;
 
     }
 }

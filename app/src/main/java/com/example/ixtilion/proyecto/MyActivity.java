@@ -71,7 +71,7 @@ public class MyActivity extends ActionBarActivity
 
             case 3:
 
-                fragmento = new Agenda();
+                fragmento = new RegAct();
 
                 break;
         }
