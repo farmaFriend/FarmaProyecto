@@ -28,23 +28,14 @@ public class RegAct extends Fragment {
 
         anadir = (Button) view.findViewById(R.id.buttonAñadir);
 
-<<<<<<< HEAD
         NOMBRE = (EditText) view.findViewById(R.id.editTextNombre);
-=======
-        NOMBRE = (EditText)view.findViewById(R.id.editTextNombre);
->>>>>>> origin/master
         TELF = (EditText) view.findViewById(R.id.editTextTelf);
         ID = (EditText) view.findViewById(R.id.editTextId);
 
+
         anadir.setOnClickListener(new View.OnClickListener() {
-<<<<<<< HEAD
             @Override
-            public void onClick(View view) {
-
-=======
-
-            public void onClick(View view) {
->>>>>>> origin/master
+            public void onClick(View v) {
 
                 id = ID.getText().toString();
                 nombre = NOMBRE.getText().toString();
@@ -54,8 +45,4 @@ public class RegAct extends Fragment {
                 db.putInformation(db, "1", "cris","9854265");
             }
         });
-
-        return view;
-
-    }
 }
