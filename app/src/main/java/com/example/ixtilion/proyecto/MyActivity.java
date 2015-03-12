@@ -31,6 +31,7 @@ public class MyActivity extends ActionBarActivity
      */
     private CharSequence mTitle;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +70,7 @@ public class MyActivity extends ActionBarActivity
                 break;
 
             case 3:
+
                 fragmento = new Agenda();
 
                 break;
