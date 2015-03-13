@@ -34,9 +34,4 @@
         android:text="Añadir contacto"
         android:id="@+id/buttonAñadir" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextId" />
-
 </LinearLayout>

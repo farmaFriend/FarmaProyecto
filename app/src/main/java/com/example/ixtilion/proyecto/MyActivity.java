@@ -14,9 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class MyActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks{
