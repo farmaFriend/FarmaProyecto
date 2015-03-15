@@ -33,7 +33,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
     private static final String SQL_CREATE_ENTRIES_MEDICAMENTO =
             "CREATE TABLE " + TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO + " (" +
                     TableData.TableInfoMedic.COLUMN_NAME_NOMBRE + TEXT_TYPE+ " primary key " + COMMA_SEP +
-                    TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD + INT_TYPE + " )";
+                    TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD + REAL_TYPE + " )";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TableData.TableInfo.TABLE_NAME_AGENDA;

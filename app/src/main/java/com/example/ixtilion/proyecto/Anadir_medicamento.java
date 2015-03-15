@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by rok on 14/03/2015.
@@ -18,7 +19,7 @@ import android.widget.EditText;
 public class Anadir_medicamento extends Fragment {
     EditText NOMBRE, CANTIDAD;
     String nombre;
-    int cantidad;
+    float cantidad;
     Button anadir;
     Context c;
 
@@ -34,7 +35,7 @@ public class Anadir_medicamento extends Fragment {
             @Override
             public void onClick(View v) {
                 nombre = NOMBRE.getText().toString();
-                cantidad = Integer.parseInt(CANTIDAD.getText().toString());
+                cantidad = Float.parseFloat(CANTIDAD.getText().toString());
 
                 if(c!=null) {
                     Log.d("NO error", "if");
@@ -51,12 +52,15 @@ public class Anadir_medicamento extends Fragment {
                         Log.d("Operaciones bases de datos", "Insertada una fila");
 
                         db.close();
+
+                        Toast.makeText(c,"Medicamento añadido correctamente", Toast.LENGTH_LONG).show();
                     }
                 }
                 else{
                     Log.d("error","else");
                 }
-
+                NOMBRE.setText("");
+                CANTIDAD.setText("");
             }
         });
 

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 /**
@@ -68,12 +69,15 @@ public class RegAct extends Fragment {
                         Log.d("Operaciones bases de datos", "Insertada una fila");
 
                         db.close();
+
+                        Toast.makeText(c, "Contacto añadido correctamente", Toast.LENGTH_LONG).show();
                     }
                 }
                 else{
                     Log.d("error","else");
                 }
-
+                NOMBRE.setText("");
+                TELF.setText("");
             }
         });
 

@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class Lista_medicamento extends Fragment {
     private DatabaseOperations dbOp;
     Cursor cursor;
-    SimpleCursorAdapter adap;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         dbOp = new DatabaseOperations(container.getContext());
@@ -30,7 +29,7 @@ public class Lista_medicamento extends Fragment {
         if (cursor.moveToFirst()) {
             do {
                 String nombre = cursor.getString(0);
-                int cantidad = cursor.getInt(1);
+                float cantidad = cursor.getFloat(1);
 
                 medicamentos.add(new Medicamento(nombre, cantidad));
 
