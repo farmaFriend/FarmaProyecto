@@ -23,6 +23,11 @@ public final class TableData {
         public static final String COLUMN_NAME_NOMBRE = "nombre";
         public static final String COLUMN_NAME_TELEFEONO = "telefono";
     }
+    public static abstract class TableInfoMedic implements BaseColumns {
+        public static final String TABLE_NAME_MEDICAMENTO = "medicamento";
+        public static final String COLUMN_NAME_NOMBRE = "nombre";
+        public static final String COLUMN_NAME_CANTIDAD = "cantidad";
+    }
 
 
 

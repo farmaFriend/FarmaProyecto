@@ -58,12 +58,12 @@ public class MyActivity extends ActionBarActivity
                 break;
 
             case 1:
-                fragmento = new Agenda();
+                fragmento = new Lista_medicamento();
 
                 break;
 
             case 2:
-                fragmento = new Agenda();
+                fragmento = new Anadir_medicamento();
                 break;
 
             case 3:

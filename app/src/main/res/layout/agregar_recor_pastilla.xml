@@ -48,20 +48,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="De cuantas pastillas dispones"
-        android:id="@+id/LcuantasPastillas"
-        android:textSize="40px" />
-
-    <EditText
-        android:layout_width="102dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/TbcuantasPastillas" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Cantidad por toma"
         android:id="@+id/LCantidad"
         android:textSize="40px" />
@@ -71,5 +57,32 @@
         android:layout_height="wrap_content"
         android:id="@+id/numberPicker"
         android:orientation="horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cada cuanto tiempo (horas)"
+        android:id="@+id/LTiempo"
+        android:textSize="40px" />
+
+    <EditText
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/tbTiempo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Configuración avanzada"
+        android:id="@+id/textView4"
+        android:textSize="40px" />
+
+    <ImageView
+        android:layout_width="78dp"
+        android:layout_height="57dp"
+        android:id="@+id/Config"
+        android:src="@drawable/config" />
 
 </LinearLayout>

@@ -22,6 +22,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
     public static final String INT_TYPE = " integer";
+    public static final String REAL_TYPE = " real";
 
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + TableData.TableInfo.TABLE_NAME_AGENDA + " (" +
@@ -29,10 +30,16 @@ public class DatabaseOperations extends SQLiteOpenHelper{
                     TableData.TableInfo.COLUMN_NAME_NOMBRE + TEXT_TYPE + COMMA_SEP +
                     TableData.TableInfo.COLUMN_NAME_TELEFEONO + TEXT_TYPE + " )";
 
+    private static final String SQL_CREATE_ENTRIES_MEDICAMENTO =
+            "CREATE TABLE " + TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO + " (" +
+                    TableData.TableInfoMedic.COLUMN_NAME_NOMBRE + TEXT_TYPE+ " primary key " + COMMA_SEP +
+                    TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD + INT_TYPE + " )";
+
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TableData.TableInfo.TABLE_NAME_AGENDA;
 
-
+    private static final String SQL_DELETE_ENTRIES_MEDICAMENTO =
+            "DROP TABLE IF EXISTS " + TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO;
 
 
     public DatabaseOperations(Context context) {
@@ -47,6 +54,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
 
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES);
+        db.execSQL(SQL_CREATE_ENTRIES_MEDICAMENTO);
         Log.d("Operaciones bases de datos","Tabla creada");
     }
 
@@ -55,54 +63,26 @@ public class DatabaseOperations extends SQLiteOpenHelper{
         // This database is only a cache for online data, so its upgrade policy is
         // to simply to discard the data and start over
         db.execSQL(SQL_DELETE_ENTRIES);
+        db.execSQL(SQL_DELETE_ENTRIES_MEDICAMENTO);
         onCreate(db);
     }
 
-
-    public void putInformation(DatabaseOperations dbo, String id, String nombre, String telf){
-
-        Log.d("id",id);
-        Log.d("nombre", nombre);
-        Log.d("telefono",telf);
-
-
-
-/*
-        DatabaseOperations dbHelper = new DatabaseOperations(this.c());
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-
-
-        if(db!=null){
-            ContentValues cv = new ContentValues();
-
-            cv.put(TableData.TableInfo.COLUMN_NAME_ID, id);
-            cv.put(TableData.TableInfo.COLUMN_NAME_NOMBRE, nombre);
-            cv.put(TableData.TableInfo.COLUMN_NAME_TELEFEONO, telf);
-
-            db.insert(TableData.TableInfo.TABLE_NAME_AGENDA, null, cv);
-            Log.d("Operaciones bases de datos","Insertada una fila");
-
-            db.close();
-        }
-        Log.d("Operaciones bases de datos","No Insertada una fila");
-
-*/
-    }
-
-
     public Cursor cargarCursorContactos(){
-
         SQLiteDatabase db = this.getWritableDatabase();
 
         String s = "select " + TableData.TableInfo.COLUMN_NAME_NOMBRE + " , " + TableData.TableInfo.COLUMN_NAME_TELEFEONO + " FROM " + TableData.TableInfo.TABLE_NAME_AGENDA;
         //String[] columnas = new String[]{TableData.TableInfo.COLUMN_NAME_ID, TableData.TableInfo.COLUMN_NAME_NOMBRE, TableData.TableInfo.COLUMN_NAME_TELEFEONO};
 
         return db.rawQuery( s, null);
-
     }
 
+    public Cursor cargarCursorMedicamentos(){
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        String s = "select " + TableData.TableInfoMedic.COLUMN_NAME_NOMBRE + " , " + TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD + " FROM " + TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO;
+
+        return db.rawQuery( s, null);
+    }
 
 
 }
