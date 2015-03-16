@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginRight="6dip"
         android:contentDescription="TODO"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/pill" />
 
     <TextView
         android:id="@+id/sLMed"
@@ -38,5 +38,23 @@
         android:gravity="center_vertical"
         android:text="Example application"
         android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/ImQuitar"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="0dip"
+        android:contentDescription="Quitar"
+        android:src="@drawable/elimina" />
+
+    <ImageView
+        android:id="@+id/ImModificar"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_toLeftOf="@id/ImQuitar"
+        android:layout_marginRight="6dip"
+        android:contentDescription="Modificar"
+        android:src="@drawable/modif" />
 
 </RelativeLayout>

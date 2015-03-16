@@ -34,30 +34,36 @@ public class Anadir_medicamento extends Fragment {
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nombre = NOMBRE.getText().toString();
-                cantidad = Float.parseFloat(CANTIDAD.getText().toString());
 
-                if(c!=null) {
-                    Log.d("NO error", "if");
-                    DatabaseOperations dbHelper = new DatabaseOperations(c);
-                    SQLiteDatabase db = dbHelper.getWritableDatabase();
+                if((NOMBRE.getText().length()!=0) && (CANTIDAD.getText().length()!=0)){
+                    nombre = NOMBRE.getText().toString();
+                    cantidad = Float.parseFloat(CANTIDAD.getText().toString());
 
-                    if (db != null) {
-                        ContentValues cv = new ContentValues();
+                    if(c!=null) {
+                        Log.d("NO error", "if");
+                        DatabaseOperations dbHelper = new DatabaseOperations(c);
+                        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-                        cv.put(TableData.TableInfoMedic.COLUMN_NAME_NOMBRE, nombre);
-                        cv.put(TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD, cantidad);
+                        if (db != null) {
+                            ContentValues cv = new ContentValues();
 
-                        db.insert(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO, null, cv);
-                        Log.d("Operaciones bases de datos", "Insertada una fila");
+                            cv.put(TableData.TableInfoMedic.COLUMN_NAME_NOMBRE, nombre);
+                            cv.put(TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD, cantidad);
 
-                        db.close();
+                            db.insert(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO, null, cv);
+                            Log.d("Operaciones bases de datos", "Insertada una fila");
 
-                        Toast.makeText(c,"Medicamento añadido correctamente", Toast.LENGTH_LONG).show();
+                            db.close();
+
+                            Toast.makeText(c,"Medicamento añadido correctamente", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    else{
+                        Log.d("error","else");
                     }
                 }
                 else{
-                    Log.d("error","else");
+                    Toast.makeText(c,"Error: Algún campo vacío", Toast.LENGTH_LONG).show();
                 }
                 NOMBRE.setText("");
                 CANTIDAD.setText("");
