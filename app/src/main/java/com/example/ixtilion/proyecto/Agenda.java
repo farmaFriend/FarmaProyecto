@@ -11,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -45,19 +47,8 @@ public class Agenda extends Fragment{
             }while (cursor.moveToNext());
         }
 
-        String tam = String.valueOf(contacts.size());
-        Log.d("tamaño",tam);
-
-
-
-
-        //Aqui se haria una query a la base de datos, se recorreria el puntero e iriamos construyendo y añadiendo contactos al array
-
-
-
         View view = inflater.inflate(R.layout.lay_agenda, container, false);
         ListView list = (ListView)view.findViewById(R.id.listView);
-
         final CustomArrayAdapter adapter = new CustomArrayAdapter(view.getContext(),contacts);
         list.setAdapter(adapter);
 
@@ -71,18 +62,18 @@ public class Agenda extends Fragment{
                 String url = "tel:"+ tfno;
                 Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
                 getActivity().startActivity(intent);
-
-                //view.animate().setDuration(2000).alpha(0)
-                //     .withEndAction(new Runnable() {
-                ////          public void run() {
-                //             contacts.remove(item);
-                //           adapter.notifyDataSetChanged();
-                //         view.setAlpha(1);
-                //   }
-                //});
             }
-
         });
+
+       ImageView deleteImg = (ImageView) list.findViewById(R.id.imageView2);
+
+       //deleteImg.setOnClickListener(new View.OnClickListener() {
+            //@Override
+           // public void onClick(View v) {
+            //    Toast.makeText(v.getContext(), "borrar", Toast.LENGTH_SHORT).show();
+         //   }
+       // });
+
 
 
 
