@@ -49,6 +49,14 @@ public class Agenda extends Fragment {
                 Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
                 getActivity().startActivity(intent);
 
+                //view.animate().setDuration(2000).alpha(0)
+                   //     .withEndAction(new Runnable() {
+                   ////          public void run() {
+                   //             contacts.remove(item);
+                     //           adapter.notifyDataSetChanged();
+                       //         view.setAlpha(1);
+                         //   }
+                        //});
             }
 
         });
