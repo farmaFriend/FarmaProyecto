@@ -14,9 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class MyActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks{
@@ -61,12 +58,12 @@ public class MyActivity extends ActionBarActivity
                 break;
 
             case 1:
-                fragmento = new Agenda();
+                fragmento = new Lista_medicamento();
 
                 break;
 
             case 2:
-                fragmento = new Agenda();
+                fragmento = new Anadir_medicamento();
                 break;
 
             case 3:

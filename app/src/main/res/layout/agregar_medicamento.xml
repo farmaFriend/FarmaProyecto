@@ -8,30 +8,30 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Nombre"
-        android:id="@+id/textViewNombre" />
+        android:id="@+id/LNomMedic" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextNombre"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/tbNomMedic" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Teléfono"
-        android:id="@+id/textViewTelf" />
+        android:text="Cuántas pastillas te quedan"
+        android:id="@+id/LNumPasti" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextTelf" />
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/tbNumPasti" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Añadir contacto"
-        android:id="@+id/buttonAñadir" />
-
+        android:text="Añadir medicamento"
+        android:id="@+id/btAnadirMed" />
 </LinearLayout>
