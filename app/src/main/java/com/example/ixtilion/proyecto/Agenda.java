@@ -30,22 +30,28 @@ public class Agenda extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
-        dbOp = new DatabaseOperations(container.getContext());
-        cursor = dbOp.cargarCursorContactos();
-        Contacto c;
+        //dbOp = new DatabaseOperations(container.getContext());
+        //cursor = dbOp.cargarCursorContactos();
+
+        //Aqui se haria una query a la base de datos, se recorreria el puntero e iriamos construyendo y añadiendo contactos al array
+        Contacto c1 = new Contacto("Pepe", "23424");
+        Contacto c2 = new Contacto( "Juan", "3356");
 
         final ArrayList<Contacto> contacts = new ArrayList<Contacto>();
 
-        if(cursor.moveToFirst()){
-            do{
-                String nombre = cursor.getString(0);
-                String telefono = cursor.getString(1);
+        contacts.add(c1);
+        contacts.add(c2);
+
+        //if(cursor.moveToFirst()){
+          //  do{
+            //    String nombre = cursor.getString(0);
+              //  String telefono = cursor.getString(1);
 
 
-                contacts.add(new Contacto(nombre, telefono));
+                //contacts.add(new Contacto(nombre, telefono));
 
-            }while (cursor.moveToNext());
-        }
+            //}while (cursor.moveToNext());
+        //}
 
         View view = inflater.inflate(R.layout.lay_agenda, container, false);
         ListView list = (ListView)view.findViewById(R.id.listView);
@@ -64,18 +70,6 @@ public class Agenda extends Fragment{
                 getActivity().startActivity(intent);
             }
         });
-
-       ImageView deleteImg = (ImageView) list.findViewById(R.id.imageView2);
-
-       //deleteImg.setOnClickListener(new View.OnClickListener() {
-            //@Override
-           // public void onClick(View v) {
-            //    Toast.makeText(v.getContext(), "borrar", Toast.LENGTH_SHORT).show();
-         //   }
-       // });
-
-
-
 
         return view;
     }
