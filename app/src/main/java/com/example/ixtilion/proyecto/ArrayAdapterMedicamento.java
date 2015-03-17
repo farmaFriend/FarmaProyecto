@@ -52,6 +52,7 @@ public class ArrayAdapterMedicamento extends ArrayAdapter<Medicamento> {
                     db.close();
 
                     Toast.makeText(context, "Medicamento eliminado correctamente", Toast.LENGTH_LONG).show();
+                    medicamentos.remove(pos);
                 }
             }
         });
