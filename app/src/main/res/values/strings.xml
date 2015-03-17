@@ -2,22 +2,25 @@
 <resources>
     <string-array name="sections">
         <item>FarmaFriend</item>
-        <item>Citas médicas</item>
         <item>Agenda</item>
         <item>Medicamentos</item>
+        <item>Añadir medicamento</item>
+        <item>Añadir contacto</item>
     </string-array>
     <string-array name="section_titles">
         <item>Inicio</item>
-        <item>Citas médicas</item>
         <item>Agenda</item>
         <item>Medicamentos</item>
+        <item>Añadir medicamento</item>
+        <item>Añadir contacto</item>
     </string-array>
 
     <string-array name="sections_icons">
-        <item>@drawable/images</item>
-        <item>@android:drawable/ic_dialog_alert</item>
+        <item>@drawable/pill</item>
         <item>@drawable/agenda</item>
-        <item>@android:drawable/ic_btn_speak_now</item>
+        <item>@drawable/pill</item>
+        <item>@drawable/pill</item>
+        <item>@drawable/agenda</item>
 
     </string-array>
 
