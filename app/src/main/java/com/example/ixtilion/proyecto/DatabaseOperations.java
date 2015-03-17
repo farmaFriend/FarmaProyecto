@@ -70,7 +70,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
     public Cursor cargarCursorContactos(){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String s = "select " + TableData.TableInfo.COLUMN_NAME_NOMBRE + " , " + TableData.TableInfo.COLUMN_NAME_TELEFEONO + " FROM " + TableData.TableInfo.TABLE_NAME_AGENDA;
+        String s = "select " + TableData.TableInfo.COLUMN_NAME_ID + " , " + TableData.TableInfo.COLUMN_NAME_NOMBRE + " , " + TableData.TableInfo.COLUMN_NAME_TELEFEONO + " FROM " + TableData.TableInfo.TABLE_NAME_AGENDA;
         //String[] columnas = new String[]{TableData.TableInfo.COLUMN_NAME_ID, TableData.TableInfo.COLUMN_NAME_NOMBRE, TableData.TableInfo.COLUMN_NAME_TELEFEONO};
 
         return db.rawQuery( s, null);

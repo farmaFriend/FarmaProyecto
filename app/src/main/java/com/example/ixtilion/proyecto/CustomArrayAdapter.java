@@ -1,6 +1,8 @@
 package com.example.ixtilion.proyecto;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ public class CustomArrayAdapter extends ArrayAdapter<Contacto> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        final int pos = position;
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.linea, parent, false);
@@ -35,16 +38,30 @@ public class CustomArrayAdapter extends ArrayAdapter<Contacto> {
         linea1.setText(contactos.get(position).getName());
         linea2.setText(contactos.get(position).getPhone());
         imageView.setImageResource(R.drawable.agenda);
-        imageView2.setImageResource(R.drawable.delete1);
+       // imageView2.setImageResource(R.drawable.delete1);
 
         imageView2.setOnClickListener(new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {
-         Toast.makeText(v.getContext(), "borrar", Toast.LENGTH_SHORT).show();
+            DatabaseOperations dbHelper = new DatabaseOperations(context);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+            if (db != null) {
+                String col=TableData.TableInfo.COLUMN_NAME_ID;
+                String val=contactos.get(pos).getId();
+                String aux=col+"='"+val+"'";
+                db.delete(TableData.TableInfo.TABLE_NAME_AGENDA,aux,null);
+                Log.d("Operaciones bases de datos", "Eliminada una fila");
+                db.close();
+
+            }
+
             contactos.remove(rowItem);
-            // here we refresh the adapter
             CustomArrayAdapter.this.notifyDataSetChanged();
+            Toast.makeText(v.getContext(), "Se ha eliminado correctamente", Toast.LENGTH_SHORT).show();
+
+
         }
         });
 

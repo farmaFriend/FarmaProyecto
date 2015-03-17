@@ -68,11 +68,15 @@ public class MyActivity extends ActionBarActivity
 
             case 3:
 
+<<<<<<< HEAD
                 fragmento = new Anadir_medicamento();
                 break;
             case 4:
 
                 fragmento = new RegAct();
+=======
+                fragmento = new Anadir_contacto();
+>>>>>>> origin/master
                 break;
         }
 

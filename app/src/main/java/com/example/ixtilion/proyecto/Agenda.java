@@ -44,11 +44,12 @@ public class Agenda extends Fragment{
 
         if(cursor.moveToFirst()){
             do{
-                String nombre = cursor.getString(0);
-                String telefono = cursor.getString(1);
+                String id = cursor.getString(0);
+                String nombre = cursor.getString(1);
+                String telefono = cursor.getString(2);
 
 
-                contacts.add(new Contacto(nombre, telefono));
+                contacts.add(new Contacto(id,nombre, telefono));
 
             }while (cursor.moveToNext());
         }
