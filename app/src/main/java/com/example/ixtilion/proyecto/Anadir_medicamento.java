@@ -61,12 +61,12 @@ public class Anadir_medicamento extends Fragment {
                     else{
                         Log.d("error","else");
                     }
+                    NOMBRE.setText("");
+                    CANTIDAD.setText("");
                 }
                 else{
                     Toast.makeText(c,"Error: Algún campo vacío", Toast.LENGTH_LONG).show();
                 }
-                NOMBRE.setText("");
-                CANTIDAD.setText("");
             }
         });
 

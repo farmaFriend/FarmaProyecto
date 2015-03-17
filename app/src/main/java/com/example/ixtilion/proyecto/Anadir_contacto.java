@@ -74,11 +74,11 @@ public class Anadir_contacto extends Fragment {
                             Toast.makeText(c, "Contacto añadido correctamente", Toast.LENGTH_LONG).show();
                         }
                     }
-                    else{
-                        Log.d("error","else");
-                    }
                     NOMBRE.setText("");
                     TELF.setText("");
+                }
+                else{
+                    Toast.makeText(c,"Error: Algún campo vacío", Toast.LENGTH_LONG).show();
                 }
             }
         });
