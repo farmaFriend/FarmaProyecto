@@ -43,11 +43,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="TODO"
-        android:src="@drawable/delete1"
-        android:layout_marginLeft="174dp"
-        android:layout_marginStart="174dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/secondLine"
-        android:layout_alignStart="@+id/secondLine" />
+        android:src="@drawable/elimina"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:id="@+id/ImModificar"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_toLeftOf="@id/imageView2"
+        android:layout_marginRight="6dip"
+        android:contentDescription="Modificar"
+        android:src="@drawable/modif" />
 
 </RelativeLayout> 
