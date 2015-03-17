@@ -68,7 +68,7 @@ public class MyActivity extends ActionBarActivity
 
             case 3:
 
-                fragmento = new RegAct();
+                fragmento = new Anadir_contacto();
                 break;
         }
 
