@@ -19,7 +19,6 @@ public final class TableData {
 
     public static abstract class TableInfo implements BaseColumns {
         public static final String TABLE_NAME_AGENDA = "agenda";
-        public static final String COLUMN_NAME_ID = "id";
         public static final String COLUMN_NAME_NOMBRE = "nombre";
         public static final String COLUMN_NAME_TELEFEONO = "telefono";
     }

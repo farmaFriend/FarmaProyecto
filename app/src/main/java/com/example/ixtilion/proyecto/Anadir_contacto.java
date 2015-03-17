@@ -2,10 +2,12 @@ package com.example.ixtilion.proyecto;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +25,6 @@ public class Anadir_contacto extends Fragment {
     String id, nombre, telf;
     Button anadir;
     Context c;
-    int i = 0;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,9 +46,8 @@ public class Anadir_contacto extends Fragment {
             public void onClick(View v) {
 
                 if((NOMBRE.getText().length()!=0) && (TELF.getText().length()!=0)){
-                    i ++;
 
-                    id = String.valueOf(i);
+
                     nombre = NOMBRE.getText().toString();
                     telf = TELF.getText().toString();
 
@@ -62,9 +62,9 @@ public class Anadir_contacto extends Fragment {
                         if (db != null) {
                             ContentValues cv = new ContentValues();
 
-                            cv.put(TableData.TableInfo.COLUMN_NAME_ID, id);
-                            cv.put(TableData.TableInfo.COLUMN_NAME_NOMBRE, nombre);
                             cv.put(TableData.TableInfo.COLUMN_NAME_TELEFEONO, telf);
+                            cv.put(TableData.TableInfo.COLUMN_NAME_NOMBRE, nombre);
+
 
                             db.insert(TableData.TableInfo.TABLE_NAME_AGENDA, null, cv);
                             Log.d("Operaciones bases de datos", "Insertada una fila");
@@ -72,6 +72,14 @@ public class Anadir_contacto extends Fragment {
                             db.close();
 
                             Toast.makeText(c, "Contacto añadido correctamente", Toast.LENGTH_LONG).show();
+
+
+                            //CODIGO QUE MANDA A VISTA AGENDA
+                            FragmentManager fm = getFragmentManager();
+                            Fragment fragmento = new Agenda();
+                            fm.beginTransaction()
+                                    .replace(R.id.container, new Agenda() )
+                                    .commit();
                         }
                     }
                     NOMBRE.setText("");

@@ -1,6 +1,7 @@
 package com.example.ixtilion.proyecto;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -56,6 +57,13 @@ public class Anadir_medicamento extends Fragment {
                             db.close();
 
                             Toast.makeText(c,"Medicamento añadido correctamente", Toast.LENGTH_LONG).show();
+
+                            //CODIGO QUE MANDA A VISTA LISTA MEDICAMENTOS
+                            FragmentManager fm = getFragmentManager();
+                            Fragment fragmento = new Agenda();
+                            fm.beginTransaction()
+                                    .replace(R.id.container, new Lista_medicamento() )
+                                    .commit();
                         }
                     }
                     else{
