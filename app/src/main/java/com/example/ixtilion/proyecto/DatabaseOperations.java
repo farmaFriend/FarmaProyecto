@@ -27,7 +27,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + TableData.TableInfo.TABLE_NAME_AGENDA + " (" +
                     TableData.TableInfo.COLUMN_NAME_TELEFEONO + TEXT_TYPE+ " primary key " + COMMA_SEP +
-                    TableData.TableInfo.COLUMN_NAME_NOMBRE + TEXT_TYPE + COMMA_SEP + " )";
+                    TableData.TableInfo.COLUMN_NAME_NOMBRE + TEXT_TYPE + " )";
 
     private static final String SQL_CREATE_ENTRIES_MEDICAMENTO =
             "CREATE TABLE " + TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO + " (" +
