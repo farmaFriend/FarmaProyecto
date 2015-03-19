@@ -17,10 +17,10 @@
 
     <string-array name="sections_icons">
         <item>@drawable/pill</item>
-        <item>@drawable/agenda</item>
-        <item>@drawable/pill</item>
-        <item>@drawable/pill</item>
-        <item>@drawable/agenda</item>
+        <item>@drawable/personal</item>
+        <item>@drawable/capsule</item>
+        <item>@drawable/capsuleanadir</item>
+        <item>@drawable/personalanadir</item>
 
     </string-array>
 
