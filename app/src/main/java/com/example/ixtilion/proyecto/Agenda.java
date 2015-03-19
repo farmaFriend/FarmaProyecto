@@ -45,8 +45,8 @@ public class Agenda extends Fragment{
         if(cursor.moveToFirst()){
             do{
 
-                String nombre = cursor.getString(1);
-                String telefono = cursor.getString(0);
+                String nombre = cursor.getString(0);
+                String telefono = cursor.getString(1);
 
 
                 contacts.add(new Contacto(nombre, telefono));

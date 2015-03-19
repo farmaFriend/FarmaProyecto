@@ -62,8 +62,9 @@ public class Anadir_contacto extends Fragment {
                         if (db != null) {
                             ContentValues cv = new ContentValues();
 
-                            cv.put(TableData.TableInfo.COLUMN_NAME_TELEFEONO, telf);
+
                             cv.put(TableData.TableInfo.COLUMN_NAME_NOMBRE, nombre);
+                            cv.put(TableData.TableInfo.COLUMN_NAME_TELEFEONO, telf);
 
 
                             db.insert(TableData.TableInfo.TABLE_NAME_AGENDA, null, cv);
@@ -71,7 +72,7 @@ public class Anadir_contacto extends Fragment {
 
                             db.close();
 
-                            Toast.makeText(c, "Contacto añadido correctamente", Toast.LENGTH_LONG).show();
+                            Toast.makeText(c, nombre+telf, Toast.LENGTH_LONG).show();
 
 
                             //CODIGO QUE MANDA A VISTA AGENDA

@@ -43,7 +43,6 @@ public class CustomArrayAdapter extends ArrayAdapter<Contacto> {
         linea1.setText(contactos.get(position).getName());
         linea2.setText(contactos.get(position).getPhone());
         imageView.setImageResource(R.drawable.agenda);
-       // imageView2.setImageResource(R.drawable.delete1);
 
         imageView2.setOnClickListener(new View.OnClickListener() {
 
