@@ -1,5 +1,6 @@
 package com.example.ixtilion.proyecto;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
@@ -39,6 +40,7 @@ public class CustomArrayAdapter extends ArrayAdapter<Contacto> {
         TextView linea2 = (TextView) rowView.findViewById(R.id.secondLine);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
         ImageView imageView2 = (ImageView) rowView.findViewById(R.id.imageView2);
+        ImageView imageView3 = (ImageView) rowView.findViewById(R.id.ImModificar);
 
         linea1.setText(contactos.get(position).getName());
         linea2.setText(contactos.get(position).getPhone());
@@ -67,6 +69,20 @@ public class CustomArrayAdapter extends ArrayAdapter<Contacto> {
 
              }
         });
+
+
+        imageView3.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                FragmentManager fm = ((Activity)context).getFragmentManager();
+                fm.beginTransaction()
+                        .replace(R.id.container, new Anadir_medicamento() )
+                        .commit();
+            }
+        });
+
 
         return rowView;
     }

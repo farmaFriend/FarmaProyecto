@@ -93,7 +93,6 @@ public class Anadir_medicamento extends Fragment {
 
                                 //CODIGO QUE MANDA A VISTA LISTA MEDICAMENTOS
                                 FragmentManager fm = getFragmentManager();
-                                Fragment fragmento = new Agenda();
                                 fm.beginTransaction()
                                         .replace(R.id.container, new Lista_medicamento())
                                         .commit();

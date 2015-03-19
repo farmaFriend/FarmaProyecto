@@ -77,7 +77,6 @@ public class Anadir_contacto extends Fragment {
 
                             //CODIGO QUE MANDA A VISTA AGENDA
                             FragmentManager fm = getFragmentManager();
-                            Fragment fragmento = new Agenda();
                             fm.beginTransaction()
                                     .replace(R.id.container, new Agenda() )
                                     .commit();
