@@ -72,7 +72,7 @@ public class Anadir_contacto extends Fragment {
 
                             db.close();
 
-                            Toast.makeText(c, nombre+telf, Toast.LENGTH_LONG).show();
+                            Toast.makeText(c, "Se ha añadido el contacto correctamente", Toast.LENGTH_LONG).show();
 
 
                             //CODIGO QUE MANDA A VISTA AGENDA

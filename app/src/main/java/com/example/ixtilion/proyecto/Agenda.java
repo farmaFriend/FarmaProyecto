@@ -68,7 +68,6 @@ public class Agenda extends Fragment{
             public void onClick(View v) {
 
                 FragmentManager fm = getFragmentManager();
-                Fragment fragmento = new Agenda();
                 fm.beginTransaction()
                         .replace(R.id.container, new Anadir_contacto() )
                         .commit();
