@@ -34,11 +34,22 @@ public class DatabaseOperations extends SQLiteOpenHelper{
                     TableData.TableInfoMedic.COLUMN_NAME_NOMBRE + TEXT_TYPE+ " primary key " + COMMA_SEP +
                     TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD + REAL_TYPE + " )";
 
+    private static final String SQL_CREATE_ENTRIES_MEDICO =
+            "CREATE TABLE " + TableData.TableInfoMedico.TABLE_NAME_MEDICO + " ( " +
+                    TableData.TableInfoMedico.COLUMN_NAME_DI + TEXT_TYPE + " primary key " + COMMA_SEP +
+                    TableData.TableInfoMedico.COLUMN_NAME_NOMBRE + TEXT_TYPE + COMMA_SEP +
+                    TableData.TableInfoMedico.COLUMN_NAME_ESPECIALIDAD + TEXT_TYPE + COMMA_SEP +
+                    TableData.TableInfoMedico.COLUMN_NAME_DIRECCION + TEXT_TYPE + COMMA_SEP +
+                    TableData.TableInfoMedico.COLUMN_NAME_TELEFEONO + TEXT_TYPE + " ) ";
+
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TableData.TableInfo.TABLE_NAME_AGENDA;
 
     private static final String SQL_DELETE_ENTRIES_MEDICAMENTO =
             "DROP TABLE IF EXISTS " + TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO;
+
+    private static final String SQL_DELETE_ENTRIES_MEDICO =
+            "DROP TABLE IF EXISTS " + TableData.TableInfoMedico.TABLE_NAME_MEDICO;
 
 
     public DatabaseOperations(Context context) {
@@ -54,6 +65,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES);
         db.execSQL(SQL_CREATE_ENTRIES_MEDICAMENTO);
+        db.execSQL(SQL_CREATE_ENTRIES_MEDICO);
         Log.d("Operaciones bases de datos","Tabla creada");
     }
 
@@ -63,6 +75,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
         // to simply to discard the data and start over
         db.execSQL(SQL_DELETE_ENTRIES);
         db.execSQL(SQL_DELETE_ENTRIES_MEDICAMENTO);
+        db.execSQL(SQL_DELETE_ENTRIES_MEDICO);
         onCreate(db);
     }
 
@@ -79,6 +92,14 @@ public class DatabaseOperations extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
 
         String s = "select " + TableData.TableInfoMedic.COLUMN_NAME_NOMBRE + " , " + TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD + " FROM " + TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO;
+
+        return db.rawQuery( s, null);
+    }
+
+    public Cursor cargarCursorMedicos(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String s = "select " + TableData.TableInfoMedico.COLUMN_NAME_NOMBRE + " , " + TableData.TableInfoMedico.COLUMN_NAME_ESPECIALIDAD + " , " + TableData.TableInfoMedico.COLUMN_NAME_DIRECCION + " , " + TableData.TableInfoMedico.COLUMN_NAME_TELEFEONO + " FROM " + TableData.TableInfoMedico.TABLE_NAME_MEDICO;
 
         return db.rawQuery( s, null);
     }
