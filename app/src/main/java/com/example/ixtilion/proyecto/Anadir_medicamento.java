@@ -4,6 +4,8 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +16,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 /**
  * Created by rok on 14/03/2015.
  */
@@ -23,6 +27,8 @@ public class Anadir_medicamento extends Fragment {
     float cantidad;
     Button anadir;
     Context c;
+    private DatabaseOperations dbOp;
+    Cursor cursor;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         c = container.getContext();
@@ -51,23 +57,55 @@ public class Anadir_medicamento extends Fragment {
                             cv.put(TableData.TableInfoMedic.COLUMN_NAME_NOMBRE, nombre);
                             cv.put(TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD, cantidad);
 
-                            db.insert(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO, null, cv);
-                            Log.d("Operaciones bases de datos", "Insertada una fila");
 
-                            db.close();
+                            //Mirar si en la base de datos exite un medicamento con ese nombre
 
-                            Toast.makeText(c,"Medicamento añadido correctamente", Toast.LENGTH_LONG).show();
+                            dbOp = new DatabaseOperations(c);
+                            cursor = dbOp.cargarCursorMedicamentos();
+                            Medicamento m;
 
-                            //CODIGO QUE MANDA A VISTA LISTA MEDICAMENTOS
-                            FragmentManager fm = getFragmentManager();
-                            Fragment fragmento = new Agenda();
-                            fm.beginTransaction()
-                                    .replace(R.id.container, new Lista_medicamento() )
-                                    .commit();
+                            final ArrayList<Medicamento> medicamentos = new ArrayList<Medicamento>();
+
+                            if (cursor.moveToFirst()) {
+                                do {
+                                    String nombre = cursor.getString(0);
+                                    float cantidad = cursor.getFloat(1);
+
+                                    medicamentos.add(new Medicamento(nombre, cantidad));
+
+                                } while (cursor.moveToNext());
+                            }
+
+                            int i=0;
+                            boolean existe=false;
+                            while(i<medicamentos.size()&& existe==false) {
+                                if(nombre.compareTo(medicamentos.get(i).getNombre())==0){
+                                    Toast.makeText(c, "Ya existe un medicamento con ese nombre", Toast.LENGTH_LONG).show();
+                                    existe=true;
+                                }
+                                i++;
+                            }
+                            if(existe==false){
+                                db.insert(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO, null, cv);
+                                Log.d("Operaciones bases de datos", "Insertada una fila");
+
+                                db.close();
+
+                                //CODIGO QUE MANDA A VISTA LISTA MEDICAMENTOS
+                                FragmentManager fm = getFragmentManager();
+                                Fragment fragmento = new Agenda();
+                                fm.beginTransaction()
+                                        .replace(R.id.container, new Lista_medicamento())
+                                        .commit();
+
+                                Toast.makeText(c, "Medicamento añadido correctamente", Toast.LENGTH_LONG).show();
+
+                            }
+
                         }
                     }
                     else{
-                        Log.d("error","else");
+                        Log.d("error", "else");
                     }
                     NOMBRE.setText("");
                     CANTIDAD.setText("");
