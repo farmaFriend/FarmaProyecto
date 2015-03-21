@@ -36,6 +36,8 @@ public class CustomArrayAdapter extends ArrayAdapter<Contacto> {
         View rowView = inflater.inflate(R.layout.linea, parent, false);
 
         final Contacto rowItem= getItem(position);
+        final String nom=contactos.get(position).getName();
+        final String tfno=contactos.get(position).getPhone();
         TextView linea1 = (TextView) rowView.findViewById(R.id.firstLine);
         TextView linea2 = (TextView) rowView.findViewById(R.id.secondLine);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
@@ -78,7 +80,7 @@ public class CustomArrayAdapter extends ArrayAdapter<Contacto> {
 
                 FragmentManager fm = ((Activity)context).getFragmentManager();
                 fm.beginTransaction()
-                        .replace(R.id.container, new Anadir_medicamento() )
+                        .replace(R.id.container, new Editar_contacto(nom,tfno) )
                         .commit();
             }
         });
