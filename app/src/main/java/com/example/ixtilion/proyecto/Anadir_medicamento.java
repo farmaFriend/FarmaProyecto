@@ -48,19 +48,12 @@ public class Anadir_medicamento extends Fragment {
 
                     if(c!=null) {
                         Log.d("NO error", "if");
-                        DatabaseOperations dbHelper = new DatabaseOperations(c);
-                        SQLiteDatabase db = dbHelper.getWritableDatabase();
+                        dbOp = new DatabaseOperations(c);
+                        SQLiteDatabase db = dbOp.getWritableDatabase();
 
                         if (db != null) {
-                            ContentValues cv = new ContentValues();
+                            //Mirar si en la base de datos existe un medicamento con ese nombre
 
-                            cv.put(TableData.TableInfoMedic.COLUMN_NAME_NOMBRE, nombre);
-                            cv.put(TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD, cantidad);
-
-
-                            //Mirar si en la base de datos exite un medicamento con ese nombre
-
-                            dbOp = new DatabaseOperations(c);
                             cursor = dbOp.cargarCursorMedicamentos();
                             Medicamento m;
 
@@ -85,7 +78,12 @@ public class Anadir_medicamento extends Fragment {
                                 }
                                 i++;
                             }
-                            if(existe==false){
+                            if(!existe){
+                                ContentValues cv = new ContentValues();
+
+                                cv.put(TableData.TableInfoMedic.COLUMN_NAME_NOMBRE, nombre);
+                                cv.put(TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD, cantidad);
+
                                 db.insert(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO, null, cv);
                                 Log.d("Operaciones bases de datos", "Insertada una fila");
 
@@ -106,8 +104,6 @@ public class Anadir_medicamento extends Fragment {
                     else{
                         Log.d("error", "else");
                     }
-                    NOMBRE.setText("");
-                    CANTIDAD.setText("");
                 }
                 else{
                     Toast.makeText(c,"Error: Algún campo vacío", Toast.LENGTH_LONG).show();

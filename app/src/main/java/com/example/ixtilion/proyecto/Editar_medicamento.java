@@ -22,30 +22,30 @@ import java.util.ArrayList;
  */
 public class Editar_medicamento extends Fragment {
     EditText NOMBRE, CANTIDAD;
-    String nom;
+    String nombre;
     float cantidad;
     Button editar;
     Context c;
     private DatabaseOperations dbOp;
     Cursor cursor;
-    private String nombre;
-    private String pastillas;
+    private String n;
+    private String pas;
 
     public Editar_medicamento (String n, String pas){
-        this.nombre=n;
-        this.pastillas=pas;
+        this.n=n;
+        this.pas=pas;
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         c = container.getContext();
         View view = inflater.inflate(R.layout.editar_medicamento, container, false);
-        dbOp= new DatabaseOperations(c);
-        final SQLiteDatabase db = dbOp.getWritableDatabase();
+
         editar = (Button) view.findViewById(R.id.bEdiMedi);
         NOMBRE = (EditText) view.findViewById(R.id.tbNomEdiMedi);
         CANTIDAD = (EditText) view.findViewById(R.id.tbPasEdiMedi);
-        NOMBRE.setText(this.nombre);
-        CANTIDAD.setText(this.pastillas);
+
+        NOMBRE.setText(this.n);
+        CANTIDAD.setText(this.pas);
 
         editar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,17 +55,26 @@ public class Editar_medicamento extends Fragment {
                     nombre = NOMBRE.getText().toString();
                     cantidad = Float.parseFloat(CANTIDAD.getText().toString());
 
+                    dbOp= new DatabaseOperations(c);
+                    final SQLiteDatabase db = dbOp.getWritableDatabase();
+
                     if(c!=null) {
                         Log.d("NO error", "if");
 
                         if (db != null) {
+                            //Primero eliminar el existente
+                            String col=TableData.TableInfoMedic.COLUMN_NAME_NOMBRE;
+                            String val=n;
+                            String aux=col+"='"+val+"'";
+                            db.delete(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO,aux,null);
+                            Log.d("Operaciones bases de datos", "Eliminada una fila");
 
-                            //Mirar si en la base de datos exite un medicamento con ese nombre
 
                             Medicamento m;
 
                             final ArrayList<Medicamento> medicamentos = new ArrayList<Medicamento>();
 
+                            //Obtener medicamentos de la BD
                             cursor = dbOp.cargarCursorMedicamentos();
                             if (cursor.moveToFirst()) {
                                 do {
@@ -77,6 +86,7 @@ public class Editar_medicamento extends Fragment {
                                 } while (cursor.moveToNext());
                             }
 
+                            //Mirar si en la base de datos existe un medicamento con ese nombre
                             int i=0;
                             boolean existe=false;
                             while(i<medicamentos.size()&& existe==false) {
@@ -86,9 +96,13 @@ public class Editar_medicamento extends Fragment {
                                 }
                                 i++;
                             }
-                            if(existe==false){
-                                //FALTA!!!
-                                //db.update(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO, "", null);
+                            if(!existe){
+                                ContentValues cv = new ContentValues();
+
+                                cv.put(TableData.TableInfoMedic.COLUMN_NAME_NOMBRE, nombre);
+                                cv.put(TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD, cantidad);
+
+                                db.insert(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO, null, cv);
                                 Log.d("Operaciones bases de datos", "Insertada una fila");
 
                                 db.close();
@@ -99,17 +113,13 @@ public class Editar_medicamento extends Fragment {
                                         .replace(R.id.container, new Lista_medicamento())
                                         .commit();
 
-                                Toast.makeText(c, "Medicamento añadido correctamente", Toast.LENGTH_LONG).show();
-
+                                Toast.makeText(c, "Medicamento editado correctamente", Toast.LENGTH_LONG).show();
                             }
-
                         }
                     }
                     else{
                         Log.d("error", "else");
                     }
-                    NOMBRE.setText("");
-                    CANTIDAD.setText("");
                 }
                 else{
                     Toast.makeText(c,"Error: Algún campo vacío", Toast.LENGTH_LONG).show();
