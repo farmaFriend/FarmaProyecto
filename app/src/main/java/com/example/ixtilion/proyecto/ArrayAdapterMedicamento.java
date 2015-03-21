@@ -1,5 +1,8 @@
 package com.example.ixtilion.proyecto;
 
+
+import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -27,6 +30,8 @@ public class ArrayAdapterMedicamento extends ArrayAdapter<Medicamento> {
     }
     public View getView(int position, View convertView, ViewGroup parent) {
         final int pos=position;
+        final String nom=medicamentos.get(position).getNombre();
+        final String pas=String.valueOf(medicamentos.get(position).getNum_pastillas());
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.linea_medicamento, parent, false);
@@ -34,8 +39,8 @@ public class ArrayAdapterMedicamento extends ArrayAdapter<Medicamento> {
         TextView linea2 = (TextView) rowView.findViewById(R.id.sLMed);
         ImageView imageQuit = (ImageView) rowView.findViewById(R.id.ImQuitar);
         ImageView imageEdit = (ImageView) rowView.findViewById(R.id.ImModificar);
-        linea1.setText(medicamentos.get(position).getNombre());
-        linea2.setText(String.valueOf(medicamentos.get(position).getNum_pastillas()));
+        linea1.setText(nom);
+        linea2.setText(pas);
 
         imageQuit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +62,15 @@ public class ArrayAdapterMedicamento extends ArrayAdapter<Medicamento> {
                 }
             }
         });
-
+        imageEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = ((Activity)context).getFragmentManager();
+                fm.beginTransaction()
+                        .replace(R.id.container, new Editar_medicamento(nom, pas))
+                        .commit();
+            }
+        });
         return rowView;
     }
 }
