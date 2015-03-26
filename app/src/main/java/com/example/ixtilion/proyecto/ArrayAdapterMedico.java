@@ -1,12 +1,15 @@
 package com.example.ixtilion.proyecto;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -36,6 +39,27 @@ public class ArrayAdapterMedico extends ArrayAdapter<Medico> {
         ImageView imageEdit = (ImageView) rowView.findViewById(R.id.ImModificarMedico);
         linea1.setText(nom);
         linea2.setText(espe);
+
+        imageQuit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseOperations dbHelper = new DatabaseOperations(context);
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+                if (db != null) {
+                    String col=TableData.TableInfoMedico.COLUMN_NAME_ID;
+                    String val=medicos.get(pos).getId();
+                    String aux=col+"='"+val+"'";
+                    db.delete(TableData.TableInfoMedico.TABLE_NAME_MEDICO,aux,null);
+                    Log.d("Operaciones bases de datos", "Eliminada una fila");
+                    db.close();
+
+                    Toast.makeText(context, "Medico eliminado correctamente", Toast.LENGTH_LONG).show();
+                    medicos.remove(pos);
+                    ArrayAdapterMedico.this.notifyDataSetChanged();
+                }
+            }
+        });
 
         return rowView;
     }
