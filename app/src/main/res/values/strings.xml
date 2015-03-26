@@ -4,16 +4,14 @@
         <item>FarmaFriend</item>
         <item>Agenda</item>
         <item>Medicamentos</item>
-        <item>Añadir medicamento</item>
-        <item>Añadir contacto</item>
+        <item>Medicos</item>
         <item>Añadir médico</item>
     </string-array>
     <string-array name="section_titles">
         <item>Inicio</item>
         <item>Agenda</item>
         <item>Medicamentos</item>
-        <item>Añadir medicamento</item>
-        <item>Añadir contacto</item>
+        <item>Medicos</item>
         <item>Añadir médico</item>
     </string-array>
 
@@ -21,9 +19,8 @@
         <item>@drawable/capsule</item>
         <item>@drawable/personal</item>
         <item>@drawable/capsule</item>
-        <item>@drawable/capsuleanadir</item>
-        <item>@drawable/personalanadir</item>
-        <item>@drawable/personalanadir</item>
+        <item>@drawable/doctor</item>
+        <item>@drawable/doctoranadir</item>
 
     </string-array>
 

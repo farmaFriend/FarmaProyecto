@@ -67,14 +67,10 @@ public class MyActivity extends ActionBarActivity
                 break;
 
             case 3:
-
-                fragmento = new Anadir_medicamento();
+                fragmento = new Lista_medico();
                 break;
+
             case 4:
-
-                fragmento = new Anadir_contacto();
-                break;
-            case 5:
                 fragmento = new Anadir_medico();
                 break;
         }

@@ -105,13 +105,11 @@ public class Anadir_medico extends Fragment{
 
                                 db.close();
 
-                                /*
-                                //CODIGO QUE MANDA A VISTA LISTA MEDICAMENTOS
+                                //CODIGO QUE MANDA A VISTA LISTA MEDICOS
                                 FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction()
-                                        .replace(R.id.container, new Lista_medicamento())
+                                        .replace(R.id.container, new Lista_medico())
                                         .commit();
-                                */
                                 
                                 Toast.makeText(c, "Medicamento añadido correctamente", Toast.LENGTH_LONG).show();
 

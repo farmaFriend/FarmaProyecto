@@ -24,7 +24,6 @@ public class Lista_medicamento extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         dbOp = new DatabaseOperations(container.getContext());
         cursor = dbOp.cargarCursorMedicamentos();
-        Medicamento m;
 
         final ArrayList<Medicamento> medicamentos = new ArrayList<Medicamento>();
 
@@ -37,9 +36,6 @@ public class Lista_medicamento extends Fragment {
 
             } while (cursor.moveToNext());
         }
-
-        String tam = String.valueOf(medicamentos.size());
-        Log.d("tamaño", tam);
 
         View view = inflater.inflate(R.layout.lis_medicamento, container, false);
         ListView list = (ListView)view.findViewById(R.id.list_medic);
