@@ -21,7 +21,7 @@ public class Lista_medico extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         dbOp = new DatabaseOperations(container.getContext());
-        cursor = dbOp.cargarCursorMedicamentos();
+        cursor = dbOp.cargarCursorMedicos();
 
         final ArrayList<Medico> medicos = new ArrayList<Medico>();
 

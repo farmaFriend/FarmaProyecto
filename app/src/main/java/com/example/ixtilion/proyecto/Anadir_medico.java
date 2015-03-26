@@ -98,7 +98,6 @@ public class Anadir_medico extends Fragment{
                                 cv.put(TableData.TableInfoMedico.COLUMN_NAME_ESPECIALIDAD, especialidad);
                                 cv.put(TableData.TableInfoMedico.COLUMN_NAME_TELEFONO, telefono);
 
-
                                 db.insert(TableData.TableInfoMedico.TABLE_NAME_MEDICO, null, cv);
 
                                 Log.d("Operaciones bases de datos", "Insertada una fila");
