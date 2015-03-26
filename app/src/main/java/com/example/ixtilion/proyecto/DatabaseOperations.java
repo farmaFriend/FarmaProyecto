@@ -99,7 +99,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
     public Cursor cargarCursorMedicos(){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String s = "select " + TableData.TableInfoMedico.COLUMN_NAME_NOMBRE + " , " + TableData.TableInfoMedico.COLUMN_NAME_ESPECIALIDAD + " , " + TableData.TableInfoMedico.COLUMN_NAME_DIRECCION + " , " + TableData.TableInfoMedico.COLUMN_NAME_TELEFONO + " FROM " + TableData.TableInfoMedico.TABLE_NAME_MEDICO;
+        String s = "select "+ TableData.TableInfoMedico.COLUMN_NAME_ID +" , " + TableData.TableInfoMedico.COLUMN_NAME_NOMBRE + " , " + TableData.TableInfoMedico.COLUMN_NAME_ESPECIALIDAD + " , " + TableData.TableInfoMedico.COLUMN_NAME_DIRECCION + " , " + TableData.TableInfoMedico.COLUMN_NAME_TELEFONO + " FROM " + TableData.TableInfoMedico.TABLE_NAME_MEDICO;
 
         return db.rawQuery( s, null);
     }

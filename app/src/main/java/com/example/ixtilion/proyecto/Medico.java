@@ -8,12 +8,14 @@ public class Medico {
     private String especialidad;
     private String direccion;
     private String telefono;
+    private String id;
 
-    public Medico(String nombre, String especialidad, String direccion, String telefono){
+    public Medico(String nombre, String especialidad, String direccion, String telefono, String id){
         this.nombre=nombre;
         this.especialidad=especialidad;
         this.direccion=direccion;
         this.telefono=telefono;
+        this.id=id;
     }
 
     public String getNombre(){
@@ -23,13 +25,17 @@ public class Medico {
     public String getEspecialidad(){
         return this.especialidad;
     }
-    
+
     public String getDireccion(){
         return this.direccion;
     }
 
     public String getTelefono(){
         return this.telefono;
+    }
+
+    public String getId(){
+        return this.id;
     }
 
 }
