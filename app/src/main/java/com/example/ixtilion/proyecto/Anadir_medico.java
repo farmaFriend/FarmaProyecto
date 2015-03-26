@@ -1,5 +1,6 @@
 package com.example.ixtilion.proyecto;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 /**
  * Created by Alumno on 26/03/2015.
  */
-public class Anadir_medico {
+public class Anadir_medico extends Fragment{
     EditText NOMBRE, ESPECIALIDAD, DIRECCION, TELEFONO;
     String nombre, especialidad, direccion,telefono,id;
     Button anadir;
