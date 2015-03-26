@@ -30,11 +30,11 @@ public final class TableData {
 
     public static abstract class TableInfoMedico implements BaseColumns{
         public static final String TABLE_NAME_MEDICO = "medico";
-        public static final String COLUMN_NAME_DI = "id";
+        public static final String COLUMN_NAME_ID = "id";
         public static final String COLUMN_NAME_NOMBRE = "nombre";
         public static final String COLUMN_NAME_ESPECIALIDAD = "especialidad";
         public static final String COLUMN_NAME_DIRECCION = "direccion";
-        public static final String COLUMN_NAME_TELEFEONO = "telefono";
+        public static final String COLUMN_NAME_TELEFONO = "telefono";
     }
 
 
