@@ -60,6 +60,45 @@ public class Anadir_medico extends Fragment{
                         id=nombre+especialidad;
 
                         if (db != null) {
+
+                            if((TELEFONO.getText().length()!=0)){
+                                cursor = dbOp.cargarCursorContactos();
+                                Contacto c;
+
+                                final ArrayList<Contacto> cont = new ArrayList<Contacto>();
+
+                                if (cursor.moveToFirst()) {
+                                    do {
+                                        String nombre = cursor.getString(0);
+                                        String telefono = cursor.getString(1);
+
+                                        cont.add(new Contacto(nombre, telefono));
+
+                                    } while (cursor.moveToNext());
+                                }
+
+                                int i=0;
+                                boolean existe=false;
+                                while(i<cont.size()&& existe==false) {
+                                    if(telefono.compareTo(cont.get(i).getPhone())==0){
+                                        existe=true;
+                                    }
+                                    i++;
+                                }
+                                if(!existe){
+                                    ContentValues cv = new ContentValues();
+
+                                    cv.put(TableData.TableInfo.COLUMN_NAME_NOMBRE, nombre);
+                                    cv.put(TableData.TableInfo.COLUMN_NAME_TELEFEONO, telefono);
+
+
+                                    db.insert(TableData.TableInfo.TABLE_NAME_AGENDA, null, cv);
+                                    Log.d("Operaciones bases de datos", "Insertada una fila");
+
+                                }
+
+                            }
+
                             //Mirar si en la base de datos existe un medico con ese nombre y especialidad
 
                             cursor = dbOp.cargarCursorMedicos();
