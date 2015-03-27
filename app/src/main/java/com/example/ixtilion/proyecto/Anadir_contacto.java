@@ -28,6 +28,7 @@ public class Anadir_contacto extends Fragment {
     String id, nombre, telf;
     Button anadir;
     Context c;
+    private DatabaseOperations dbOp;
     Cursor cursor;
 
 
@@ -42,7 +43,6 @@ public class Anadir_contacto extends Fragment {
 
         NOMBRE = (EditText) view.findViewById(R.id.editTextNombre);
         TELF = (EditText) view.findViewById(R.id.editTextTelf);
-        //ID = (EditText) view.findViewById(R.id.editTextId);
 
 
         anadir.setOnClickListener(new View.OnClickListener() {
@@ -59,13 +59,14 @@ public class Anadir_contacto extends Fragment {
                     if(c!=null) {
 
                         Log.d("NO error","if");
-                        DatabaseOperations dbHelper = new DatabaseOperations(c);
-                        SQLiteDatabase db = dbHelper.getWritableDatabase();
+                        dbOp = new DatabaseOperations(c);
+                        SQLiteDatabase db = dbOp.getWritableDatabase();
 
 
                         if (db != null) {
-                            cursor = dbHelper.cargarCursorContactos();
-                            Contacto co;
+
+                            //Mirar si existen dos contactos con el mismo numero de telefono
+                            cursor = dbOp.cargarCursorContactos();
 
                             final ArrayList<Contacto> cont = new ArrayList<Contacto>();
 
@@ -83,6 +84,7 @@ public class Anadir_contacto extends Fragment {
                             boolean existe=false;
                             while(i<cont.size()&& existe==false) {
                                 if(telf.compareTo(cont.get(i).getPhone())==0){
+                                    Toast.makeText(c, "Yaexiste un contacto con ese número de teléfono", Toast.LENGTH_LONG).show();
                                     existe=true;
                                 }
                                 i++;
@@ -99,15 +101,17 @@ public class Anadir_contacto extends Fragment {
 
                                 db.close();
 
+                                //CODIGO QUE MANDA A VISTA AGENDA
+                                FragmentManager fm = getFragmentManager();
+                                fm.beginTransaction()
+                                        .replace(R.id.container, new Agenda() )
+                                        .commit();
+
                                 Toast.makeText(c, "Se ha añadido el contacto correctamente", Toast.LENGTH_LONG).show();
 
 
                             }
-                            //CODIGO QUE MANDA A VISTA AGENDA
-                            FragmentManager fm = getFragmentManager();
-                            fm.beginTransaction()
-                                    .replace(R.id.container, new Agenda() )
-                                    .commit();
+
                         }
                     }
                     NOMBRE.setText("");
