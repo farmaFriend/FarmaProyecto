@@ -13,8 +13,8 @@
         android:layout_gravity="center_horizontal" />
 
     <ImageButton
-        android:layout_width="43dp"
-        android:layout_height="25dp"
+        android:layout_width="38dp"
+        android:layout_height="22dp"
         android:id="@+id/anadirContacto"
         android:layout_gravity="right"
         android:background="@drawable/personalanadir"

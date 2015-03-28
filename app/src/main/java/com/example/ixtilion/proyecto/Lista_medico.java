@@ -31,9 +31,8 @@ public class Lista_medico extends Fragment {
                 String nombre = cursor.getString(1);
                 String especialidad = cursor.getString(2);
                 String direccion = cursor.getString(3);
-                String tlfn = cursor.getString(4);
 
-                medicos.add(new Medico(nombre,especialidad,direccion,tlfn,id));
+                medicos.add(new Medico(nombre,especialidad,direccion,id));
 
             } while (cursor.moveToNext());
         }

@@ -55,22 +55,11 @@ public class Editar_medicamento extends Fragment {
                     nombre = NOMBRE.getText().toString();
                     cantidad = Float.parseFloat(CANTIDAD.getText().toString());
 
-                    dbOp= new DatabaseOperations(c);
-                    final SQLiteDatabase db = dbOp.getWritableDatabase();
-
                     if(c!=null) {
-                        Log.d("NO error", "if");
+                        dbOp= new DatabaseOperations(c);
+                        final SQLiteDatabase db = dbOp.getWritableDatabase();
 
                         if (db != null) {
-                            //Primero eliminar el existente
-                            String col=TableData.TableInfoMedic.COLUMN_NAME_NOMBRE;
-                            String val=n;
-                            String aux=col+"='"+val+"'";
-                            db.delete(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO,aux,null);
-                            Log.d("Operaciones bases de datos", "Eliminada una fila");
-
-
-                            Medicamento m;
 
                             final ArrayList<Medicamento> medicamentos = new ArrayList<Medicamento>();
 
@@ -89,12 +78,14 @@ public class Editar_medicamento extends Fragment {
                             //Mirar si en la base de datos existe un medicamento con ese nombre
                             int i=0;
                             boolean existe=false;
-                            while(i<medicamentos.size()&& existe==false) {
-                                if(nombre.compareTo(medicamentos.get(i).getNombre())==0){
-                                    Toast.makeText(c, "Ya existe un medicamento con ese nombre", Toast.LENGTH_LONG).show();
-                                    existe=true;
+                            if(n.compareTo(nombre)!=0) {
+                                while (i < medicamentos.size() && existe == false) {
+                                    if (nombre.compareTo(medicamentos.get(i).getNombre()) == 0) {
+                                        Toast.makeText(c, "Ya existe un medicamento con ese nombre", Toast.LENGTH_LONG).show();
+                                        existe = true;
+                                    }
+                                    i++;
                                 }
-                                i++;
                             }
                             if(!existe){
                                 ContentValues cv = new ContentValues();
@@ -102,8 +93,12 @@ public class Editar_medicamento extends Fragment {
                                 cv.put(TableData.TableInfoMedic.COLUMN_NAME_NOMBRE, nombre);
                                 cv.put(TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD, cantidad);
 
-                                db.insert(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO, null, cv);
-                                Log.d("Operaciones bases de datos", "Insertada una fila");
+                                String col=TableData.TableInfoMedic.COLUMN_NAME_NOMBRE;
+                                String val=n;
+                                String aux=col+"='"+val+"'";
+
+                                db.update(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO, cv, aux, null);
+                                Log.d("Operaciones bases de datos", "Actualizada una fila");
 
                                 db.close();
 

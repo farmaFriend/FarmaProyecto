@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:layout_height="65dip"
     android:padding="6dip" >
 
     <ImageView
         android:id="@+id/ImMedico"
-        android:layout_width="wrap_content"
+        android:layout_width="35dp"
         android:layout_height="fill_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
@@ -18,9 +18,8 @@
         android:id="@+id/sLMedico"
         android:layout_width="fill_parent"
         android:layout_height="26dip"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/ImMedico"
+        android:layout_marginTop="20dip"
         android:text="Description"
         android:textSize="12sp" />
 
@@ -28,10 +27,6 @@
         android:id="@+id/fLMedico"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/sLMedico"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignWithParentIfMissing="true"
         android:layout_toRightOf="@id/ImMedico"
         android:gravity="center_vertical"
         android:text="Example application"
@@ -41,12 +36,11 @@
         android:id="@+id/dirMedico"
         android:layout_width="fill_parent"
         android:layout_height="26dip"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/ImMedico"
+        android:layout_marginTop="35dip"
         android:ellipsize="marquee"
         android:singleLine="true"
-        android:text="***************"
+        android:text="Turruturutututu"
         android:textSize="12sp" />
 
     <ImageView

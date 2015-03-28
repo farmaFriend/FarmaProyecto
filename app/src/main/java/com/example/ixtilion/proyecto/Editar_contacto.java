@@ -55,22 +55,11 @@ public class Editar_contacto extends Fragment{
                     nombre = NOMBRE.getText().toString();
                     telefono = TELEFONO.getText().toString();
 
-                    dbOp= new DatabaseOperations(c);
-                    final SQLiteDatabase db = dbOp.getWritableDatabase();
-
                     if(c!=null) {
-                        Log.d("NO error", "if");
+                        dbOp= new DatabaseOperations(c);
+                        final SQLiteDatabase db = dbOp.getWritableDatabase();
 
                         if (db != null) {
-                            //Primero eliminar el existente
-                            String col=TableData.TableInfo.COLUMN_NAME_TELEFEONO;
-                            String val=pas;
-                            String aux=col+"='"+val+"'";
-                            db.delete(TableData.TableInfo.TABLE_NAME_AGENDA,aux,null);
-                            Log.d("Operaciones bases de datos", "Eliminada una fila");
-
-
-                            Contacto con;
 
                             final ArrayList<Contacto> contactos = new ArrayList<Contacto>();
 
@@ -89,12 +78,14 @@ public class Editar_contacto extends Fragment{
                             //Mirar si en la base de datos existe un contacto con ese numero
                             int i=0;
                             boolean existe=false;
-                            while(i<contactos.size()&& existe==false) {
-                                if(telefono.compareTo(contactos.get(i).getPhone())==0){
-                                    Toast.makeText(c, "Ya existe un contacto con ese telefono", Toast.LENGTH_LONG).show();
-                                    existe=true;
+                            if(pas.compareTo(telefono)!=0) {
+                                while (i < contactos.size() && existe == false) {
+                                    if (telefono.compareTo(contactos.get(i).getPhone()) == 0) {
+                                        Toast.makeText(c, "Ya existe un contacto con ese telefono", Toast.LENGTH_LONG).show();
+                                        existe = true;
+                                    }
+                                    i++;
                                 }
-                                i++;
                             }
                             if(!existe){
                                 ContentValues cv = new ContentValues();
@@ -102,8 +93,12 @@ public class Editar_contacto extends Fragment{
                                 cv.put(TableData.TableInfo.COLUMN_NAME_NOMBRE, nombre);
                                 cv.put(TableData.TableInfo.COLUMN_NAME_TELEFEONO, telefono);
 
-                                db.insert(TableData.TableInfo.TABLE_NAME_AGENDA, null, cv);
-                                Log.d("Operaciones bases de datos", "Insertada una fila");
+                                String col=TableData.TableInfo.COLUMN_NAME_TELEFEONO;
+                                String val=pas;
+                                String aux=col+"='"+val+"'";
+
+                                db.update(TableData.TableInfo.TABLE_NAME_AGENDA, cv, aux, null);
+                                Log.d("Operaciones bases de datos", "Actualizada una fila");
 
                                 db.close();
 

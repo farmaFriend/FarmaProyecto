@@ -1,5 +1,7 @@
 package com.example.ixtilion.proyecto;
 
+import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -30,15 +32,18 @@ public class ArrayAdapterMedico extends ArrayAdapter<Medico> {
         final int pos = position;
         final String nom = medicos.get(position).getNombre();
         final String espe = medicos.get(position).getEspecialidad();
+        final String direc = medicos.get(position).getDireccion();
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.linea_medico, parent, false);
         TextView linea1 = (TextView) rowView.findViewById(R.id.fLMedico);
         TextView linea2 = (TextView) rowView.findViewById(R.id.sLMedico);
+        TextView linea3 = (TextView) rowView.findViewById(R.id.dirMedico);
         ImageView imageQuit = (ImageView) rowView.findViewById(R.id.ImQuitarMedico);
         ImageView imageEdit = (ImageView) rowView.findViewById(R.id.ImModificarMedico);
         linea1.setText(nom);
         linea2.setText(espe);
+        linea3.setText(direc);
 
         imageQuit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +63,15 @@ public class ArrayAdapterMedico extends ArrayAdapter<Medico> {
                     medicos.remove(pos);
                     ArrayAdapterMedico.this.notifyDataSetChanged();
                 }
+            }
+        });
+        imageEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = ((Activity)context).getFragmentManager();
+                fm.beginTransaction()
+                        .replace(R.id.container, new Edita_medico(nom, espe, direc))
+                        .commit();
             }
         });
 

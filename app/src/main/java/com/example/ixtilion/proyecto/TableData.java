@@ -34,7 +34,6 @@ public final class TableData {
         public static final String COLUMN_NAME_NOMBRE = "nombre";
         public static final String COLUMN_NAME_ESPECIALIDAD = "especialidad";
         public static final String COLUMN_NAME_DIRECCION = "direccion";
-        public static final String COLUMN_NAME_TELEFONO = "telefono";
     }
 
 

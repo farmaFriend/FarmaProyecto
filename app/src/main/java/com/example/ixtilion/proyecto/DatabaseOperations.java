@@ -39,8 +39,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
                     TableData.TableInfoMedico.COLUMN_NAME_ID + TEXT_TYPE + " primary key " + COMMA_SEP +
                     TableData.TableInfoMedico.COLUMN_NAME_NOMBRE + TEXT_TYPE + COMMA_SEP +
                     TableData.TableInfoMedico.COLUMN_NAME_ESPECIALIDAD + TEXT_TYPE + COMMA_SEP +
-                    TableData.TableInfoMedico.COLUMN_NAME_DIRECCION + TEXT_TYPE + COMMA_SEP +
-                    TableData.TableInfoMedico.COLUMN_NAME_TELEFONO + TEXT_TYPE + " ) ";
+                    TableData.TableInfoMedico.COLUMN_NAME_DIRECCION + TEXT_TYPE + " ) ";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TableData.TableInfo.TABLE_NAME_AGENDA;
@@ -99,7 +98,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
     public Cursor cargarCursorMedicos(){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String s = "select "+ TableData.TableInfoMedico.COLUMN_NAME_ID +" , " + TableData.TableInfoMedico.COLUMN_NAME_NOMBRE + " , " + TableData.TableInfoMedico.COLUMN_NAME_ESPECIALIDAD + " , " + TableData.TableInfoMedico.COLUMN_NAME_DIRECCION + " , " + TableData.TableInfoMedico.COLUMN_NAME_TELEFONO + " FROM " + TableData.TableInfoMedico.TABLE_NAME_MEDICO;
+        String s = "select "+ TableData.TableInfoMedico.COLUMN_NAME_ID +" , " + TableData.TableInfoMedico.COLUMN_NAME_NOMBRE + " , " + TableData.TableInfoMedico.COLUMN_NAME_ESPECIALIDAD + " , " + TableData.TableInfoMedico.COLUMN_NAME_DIRECCION + " FROM " + TableData.TableInfoMedico.TABLE_NAME_MEDICO;
 
         return db.rawQuery( s, null);
     }
