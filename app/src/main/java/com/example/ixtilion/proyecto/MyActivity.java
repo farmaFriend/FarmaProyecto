@@ -53,7 +53,7 @@ public class MyActivity extends ActionBarActivity
 
         switch (position){
             case 0:
-                fragmento = new Agenda();
+                fragmento = new Principal();
 
                 break;
 
