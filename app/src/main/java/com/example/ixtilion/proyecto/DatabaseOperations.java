@@ -41,6 +41,20 @@ public class DatabaseOperations extends SQLiteOpenHelper{
                     TableData.TableInfoMedico.COLUMN_NAME_ESPECIALIDAD + TEXT_TYPE + COMMA_SEP +
                     TableData.TableInfoMedico.COLUMN_NAME_DIRECCION + TEXT_TYPE + " ) ";
 
+    private static final String SQL_CREATE_ENTRIES_RECORDATORIO =
+            "CREATE TABLE " + TableData.TableInfoRecordatorio.TABLE_NAME_MEDICAMENTO + " ( " +
+                    TableData.TableInfoRecordatorio.COLUMN_NAME_ID + TEXT_TYPE + " primary key " + COMMA_SEP +
+                    TableData.TableInfoRecordatorio.COLUMN_NAME_DESCRIPCION + TEXT_TYPE + COMMA_SEP +
+                    TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAINICIO + TEXT_TYPE + COMMA_SEP +
+                    TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAFIN + TEXT_TYPE + COMMA_SEP +
+                    TableData.TableInfoRecordatorio.COLUMN_NAME_CANTIDADTOMA  + REAL_TYPE + COMMA_SEP +
+                    TableData.TableInfoRecordatorio.COLUMN_NAME_INTERVALO + INT_TYPE + COMMA_SEP +
+                    TableData.TableInfoRecordatorio.COLUMN_NAME_DIASTOMASMES + INT_TYPE + COMMA_SEP +
+                    TableData.TableInfoRecordatorio.COLUMN_NAME_DIASDESCANSOMES + INT_TYPE + COMMA_SEP +
+                    " foreign key ( " + TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO +" ) references " +
+                            TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO + " ( " + TableData.TableInfoMedic.COLUMN_NAME_NOMBRE + " ) ) ";
+
+
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TableData.TableInfo.TABLE_NAME_AGENDA;
 
@@ -49,6 +63,9 @@ public class DatabaseOperations extends SQLiteOpenHelper{
 
     private static final String SQL_DELETE_ENTRIES_MEDICO =
             "DROP TABLE IF EXISTS " + TableData.TableInfoMedico.TABLE_NAME_MEDICO;
+
+    private static final String SQL_DELETE_ENTRIES_RECORDATORIO =
+            "DROP TABLE IF EXISTS " + TableData.TableInfoRecordatorio.TABLE_NAME_MEDICAMENTO;
 
 
     public DatabaseOperations(Context context) {
@@ -65,6 +82,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
         db.execSQL(SQL_CREATE_ENTRIES);
         db.execSQL(SQL_CREATE_ENTRIES_MEDICAMENTO);
         db.execSQL(SQL_CREATE_ENTRIES_MEDICO);
+        db.execSQL(SQL_DELETE_ENTRIES_RECORDATORIO);
         Log.d("Operaciones bases de datos","Tabla creada");
     }
 
@@ -75,14 +93,15 @@ public class DatabaseOperations extends SQLiteOpenHelper{
         db.execSQL(SQL_DELETE_ENTRIES);
         db.execSQL(SQL_DELETE_ENTRIES_MEDICAMENTO);
         db.execSQL(SQL_DELETE_ENTRIES_MEDICO);
+        db.execSQL(SQL_DELETE_ENTRIES_RECORDATORIO);
         onCreate(db);
     }
 
     public Cursor cargarCursorContactos(){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String s = "select "  + TableData.TableInfo.COLUMN_NAME_NOMBRE + " , " + TableData.TableInfo.COLUMN_NAME_TELEFEONO + " FROM " + TableData.TableInfo.TABLE_NAME_AGENDA;
-        //String[] columnas = new String[]{TableData.TableInfo.COLUMN_NAME_ID, TableData.TableInfo.COLUMN_NAME_NOMBRE, TableData.TableInfo.COLUMN_NAME_TELEFEONO};
+        String s = "select "  + TableData.TableInfo.COLUMN_NAME_NOMBRE + " , " + TableData.TableInfo.COLUMN_NAME_TELEFEONO +
+                " FROM " + TableData.TableInfo.TABLE_NAME_AGENDA;
 
         return db.rawQuery( s, null);
     }
@@ -90,7 +109,8 @@ public class DatabaseOperations extends SQLiteOpenHelper{
     public Cursor cargarCursorMedicamentos(){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String s = "select " + TableData.TableInfoMedic.COLUMN_NAME_NOMBRE + " , " + TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD + " FROM " + TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO;
+        String s = "select " + TableData.TableInfoMedic.COLUMN_NAME_NOMBRE + " , " + TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD +
+                " FROM " + TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO;
 
         return db.rawQuery( s, null);
     }
@@ -98,10 +118,24 @@ public class DatabaseOperations extends SQLiteOpenHelper{
     public Cursor cargarCursorMedicos(){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String s = "select "+ TableData.TableInfoMedico.COLUMN_NAME_ID +" , " + TableData.TableInfoMedico.COLUMN_NAME_NOMBRE + " , " + TableData.TableInfoMedico.COLUMN_NAME_ESPECIALIDAD + " , " + TableData.TableInfoMedico.COLUMN_NAME_DIRECCION + " FROM " + TableData.TableInfoMedico.TABLE_NAME_MEDICO;
+        String s = "select "+ TableData.TableInfoMedico.COLUMN_NAME_ID +" , " + TableData.TableInfoMedico.COLUMN_NAME_NOMBRE +
+                " , " + TableData.TableInfoMedico.COLUMN_NAME_ESPECIALIDAD + " , " + TableData.TableInfoMedico.COLUMN_NAME_DIRECCION +
+                " FROM " + TableData.TableInfoMedico.TABLE_NAME_MEDICO;
 
         return db.rawQuery( s, null);
     }
 
+
+    public Cursor cargarCursorRecordatorios(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String s = "select "+ TableData.TableInfoRecordatorio.COLUMN_NAME_ID +" , " + TableData.TableInfoRecordatorio.COLUMN_NAME_DESCRIPCION +
+                " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAINICIO + " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAFIN +
+                " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_CANTIDADTOMA + " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_INTERVALO +
+                " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_DIASTOMASMES + " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_DIASDESCANSOMES +
+                " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO + " FROM " + TableData.TableInfoMedico.TABLE_NAME_MEDICO;
+
+        return db.rawQuery( s, null);
+    }
 
 }
