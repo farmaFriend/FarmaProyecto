@@ -7,44 +7,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imMas"
-        android:layout_gravity="center_horizontal"
         android:src="@drawable/mas"
-        android:layout_marginBottom="0dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
-    
-    <HorizontalScrollView
-        android:layout_width="370dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:scrollbars="none">
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/manana"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/manana"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tarde"
-                android:layout_gravity="center_horizontal"
-                android:paddingLeft="10dp"
-                android:src="@drawable/tardee"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/noche"
-                android:layout_gravity="center_horizontal"
-                android:paddingLeft="10dp"
-                android:src="@drawable/noche"/>
-            </LinearLayout>
-        </HorizontalScrollView>
+        android:layout_marginTop="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"/>
+
+    <ImageView
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:id="@+id/manana"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/manana"
+        android:layout_alignParentTop="true" />
+    <ImageView
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:id="@+id/tarde"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="155dp"
+        android:src="@drawable/tardee"/>
+    <ImageView
+        android:layout_width="232dp"
+        android:layout_height="232dp"
+        android:id="@+id/noche"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="320dp"
+        android:src="@drawable/noche"/>
 
 </RelativeLayout>
