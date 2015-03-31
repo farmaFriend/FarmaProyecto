@@ -38,7 +38,7 @@ public final class TableData {
 
 
     public static abstract class TableInfoRecordatorio implements BaseColumns{
-        public static final String TABLE_NAME_MEDICAMENTO = "medicamento";
+        public static final String TABLE_NAME_RECORDATORIO = "recordatorio";
         public static final String COLUMN_NAME_ID = "id";
         public static final String COLUMN_NAME_DESCRIPCION = "descripcion";
         public static final String COLUMN_NAME_FECHAINICIO = "fecha inicio";

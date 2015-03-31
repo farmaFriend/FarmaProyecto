@@ -6,17 +6,17 @@ import java.util.Date;
  * Created by rok on 14/03/2015.
  */
 public class Recordatorio_medicamento {
-    private Medicamento medicamento;
+    private String medicamento;
     private String fecha_ini;
     private String fecha_fin;
     private int intervalo; //cada cuantas horas quiere que recuerde
     private float cantidadToma;
-    private String id;
+    private int id;
     private String descripcion; //opcional
     private int diasTomaMes; //opcional, solo con configuracion avanzada
     private int diasDescansoMes; //opcional, solo con configuracion avanzada
 
-    public Recordatorio_medicamento(Medicamento medicamento, String fecha_ini, String fecha_fin, int intervalo, float cantidadToma, String id){
+    public Recordatorio_medicamento(String medicamento, String fecha_ini, String fecha_fin, int intervalo, float cantidadToma, int id){
         this.medicamento=medicamento;
         this.fecha_ini=fecha_ini;
         this.fecha_fin=fecha_fin;
@@ -27,7 +27,7 @@ public class Recordatorio_medicamento {
         this.diasTomaMes=30;//Si es 0 es que se repite el mes entero
         this.diasDescansoMes=0;
     }
-    public Recordatorio_medicamento(Medicamento medicamento, String fecha_ini, String fecha_fin, int intervalo, float cantidadToma, String id, String descripcion, int diasTomaMes, int diasDescansoMes){
+    public Recordatorio_medicamento(String medicamento, String fecha_ini, String fecha_fin, int intervalo, float cantidadToma, int id, String descripcion, int diasTomaMes, int diasDescansoMes){
         this.medicamento=medicamento;
         this.fecha_ini=fecha_ini;
         this.fecha_fin=fecha_fin;
@@ -38,7 +38,7 @@ public class Recordatorio_medicamento {
         this.diasTomaMes=diasTomaMes;
         this.diasDescansoMes=diasDescansoMes;
     }
-    public Medicamento getMedicamento() {
+    public String getMedicamento() {
         return medicamento;
     }
     public String getFecha_ini() {
@@ -53,7 +53,7 @@ public class Recordatorio_medicamento {
     public float getCantidadToma() {
         return cantidadToma;
     }
-    public String getId() {
+    public int getId() {
         return id;
     }
     public String getDescripcion() {

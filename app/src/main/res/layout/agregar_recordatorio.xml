@@ -56,7 +56,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/tbFinic"
         android:inputType="date|none"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:text="dd/mm/aaaa" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -69,7 +70,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tbFfin"
-        android:inputType="date|none" />
+        android:inputType="date|none"
+        android:text="dd/mm/aaaa" />
 
     <Button
         android:layout_width="wrap_content"

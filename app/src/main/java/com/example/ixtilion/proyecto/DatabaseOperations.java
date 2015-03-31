@@ -42,7 +42,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
                     TableData.TableInfoMedico.COLUMN_NAME_DIRECCION + TEXT_TYPE + " ) ";
 
     private static final String SQL_CREATE_ENTRIES_RECORDATORIO =
-            "CREATE TABLE " + TableData.TableInfoRecordatorio.TABLE_NAME_MEDICAMENTO + " ( " +
+            "CREATE TABLE " + TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO + " ( " +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_ID + TEXT_TYPE + " primary key " + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_DESCRIPCION + TEXT_TYPE + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAINICIO + TEXT_TYPE + COMMA_SEP +
@@ -65,7 +65,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
             "DROP TABLE IF EXISTS " + TableData.TableInfoMedico.TABLE_NAME_MEDICO;
 
     private static final String SQL_DELETE_ENTRIES_RECORDATORIO =
-            "DROP TABLE IF EXISTS " + TableData.TableInfoRecordatorio.TABLE_NAME_MEDICAMENTO;
+            "DROP TABLE IF EXISTS " + TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO;
 
 
     public DatabaseOperations(Context context) {
@@ -133,9 +133,17 @@ public class DatabaseOperations extends SQLiteOpenHelper{
                 " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAINICIO + " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAFIN +
                 " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_CANTIDADTOMA + " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_INTERVALO +
                 " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_DIASTOMASMES + " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_DIASDESCANSOMES +
-                " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO + " FROM " + TableData.TableInfoMedico.TABLE_NAME_MEDICO;
+                " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO + " FROM " + TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO;
 
         return db.rawQuery( s, null);
+    }
+
+    public String cargarCursorRecordatoriosCount(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String s = "select COUNT * FROM " + TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO;
+
+        return s;
     }
 
 }

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -31,14 +32,13 @@ public class Anadir_recordatorio extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         c = container.getContext();
-        View view = inflater.inflate(R.layout.agregar_recordatorio, container, false);
-
+        View view = inflater.inflate(R.layout.agregar_recor_pastilla, container, false);
         anadir = (Button) view.findViewById(R.id.btAnadirRec);
-        NOMBRE = (EditText) view.findViewById(R.id.tbNomRec);
-        CANTIDADTOMA = (EditText) view.findViewById(R.id.tbNumPasti);
-        FECHAINICIO = (EditText) view.findViewById(R.id.tbFinic);
-        FECHAFIN = (EditText) view.findViewById(R.id.tbFfin);
-        INTERVALO = (EditText) view.findViewById(R.id.tbIntervalo);
+        NOMBRE = (EditText) view.findViewById(R.id.TbnomMedi);
+        CANTIDADTOMA =   (EditText) view.findViewById(R.id.tbCantidad);
+        FECHAINICIO = (EditText) view.findViewById(R.id.TbfechaIni);
+        FECHAFIN = (EditText) view.findViewById(R.id.Tbfechafin);
+        INTERVALO = (EditText) view.findViewById(R.id.tbTiempo);
 
         fechaIni = FECHAINICIO.getText().toString();
         fechaFin = FECHAFIN.getText().toString();
@@ -49,11 +49,11 @@ public class Anadir_recordatorio extends Fragment {
             public void onClick(View v) {
 
                 //COMPROBAMOS QUE EXISTE EL MEDICAMENTO
-                if((NOMBRE.getText().length()!=0) && (CANTIDADTOMA.getText().length()!=0)){
+                if ((NOMBRE.getText().length() != 0) && (CANTIDADTOMA.getText().length() != 0)) {
                     nombre = NOMBRE.getText().toString();
                     cantidad = Float.parseFloat(CANTIDADTOMA.getText().toString());
 
-                    if(c!=null) {
+                    if (c != null) {
                         dbOp = new DatabaseOperations(c);
                         SQLiteDatabase db = dbOp.getWritableDatabase();
 
@@ -73,21 +73,25 @@ public class Anadir_recordatorio extends Fragment {
                                 } while (cursor.moveToNext());
                             }
 
-                            int i=0;
-                            boolean existe=false;
-                            while(i<medicamentos.size()&& existe==false) {
-                                if(nombre.compareTo(medicamentos.get(i).getNombre())==0){
-                                    existe=true;
+                            int i = 0;
+                            boolean existe = false;
+                            while (i < medicamentos.size() && existe == false) {
+                                if (nombre.compareTo(medicamentos.get(i).getNombre()) == 0) {
+                                    existe = true;
                                 }
                                 i++;
                             }
 
-                            if(!existe){Toast.makeText(c, "Introduce un medicamento existente", Toast.LENGTH_LONG).show();}
+                            if (!existe) {
+                                Toast.makeText(c, "Introduce un medicamento existente", Toast.LENGTH_LONG).show();
+                            }
 
-                            if(existe){
+                            if (existe) {
+                                int id = Integer.parseInt(dbOp.cargarCursorRecordatoriosCount())+1;
+
 
                                 ContentValues cv = new ContentValues();
-
+                                cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_ID, id);
                                 cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO, nombre);
                                 cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_CANTIDADTOMA, cantidad);
                                 cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAINICIO, fechaIni);
@@ -95,29 +99,27 @@ public class Anadir_recordatorio extends Fragment {
                                 cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_INTERVALO, intervalo);
 
 
-                                db.insert(TableData.TableInfoRecordatorio.TABLE_NAME_MEDICAMENTO, null, cv);
+                                db.insert(TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO, null, cv);
                                 Log.d("Operaciones bases de datos", "Insertada una fila");
 
                                 db.close();
 
-                                //CODIGO QUE MANDA A VISTA LISTA MEDICAMENTOS
-                                //FragmentManager fm = getFragmentManager();
-                                //fm.beginTransaction()
-                                  //      .replace(R.id.container, new Lista_medicamento())
-                                    //    .commit();
+                                //CODIGO QUE MANDA A VISTA LISTA RECORDATORIOS
+                                FragmentManager fm = getFragmentManager();
+                                fm.beginTransaction()
+                                      .replace(R.id.container, new Lista_recordatorio())
+                                    .commit();
 
                                 Toast.makeText(c, "Recordatorio añadido correctamente", Toast.LENGTH_LONG).show();
 
                             }
 
                         }
-                    }
-                    else{
+                    } else {
                         Log.d("error", "else");
                     }
-                }
-                else{
-                    Toast.makeText(c,"Error: Algún campo vacío", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(c, "Error: Algún campo vacío", Toast.LENGTH_LONG).show();
                 }
             }
         });

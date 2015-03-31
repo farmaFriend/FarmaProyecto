@@ -52,11 +52,12 @@
         android:id="@+id/LCantidad"
         android:textSize="40px" />
 
-    <NumberPicker
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="111dp"
         android:layout_height="wrap_content"
-        android:id="@+id/numberPicker"
-        android:orientation="horizontal" />
+        android:inputType="none|numberDecimal"
+        android:ems="10"
+        android:id="@+id/tbCantidad" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -84,5 +85,11 @@
         android:layout_height="57dp"
         android:id="@+id/Config"
         android:src="@drawable/config" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Añadir recordatorio"
+        android:id="@+id/btAnadirRec" />
 
 </LinearLayout>
