@@ -1,6 +1,7 @@
 package com.example.ixtilion.proyecto;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -47,8 +48,10 @@ public class Principal extends Fragment {
         mas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(c, "Quieres añadir un recordatorio", Toast.LENGTH_LONG).show();
-            }
+                FragmentManager fm = getFragmentManager();
+                fm.beginTransaction()
+                      .replace(R.id.container, new Anadir_recordatorio())
+                   .commit();            }
         });
 
         return view;
