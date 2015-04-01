@@ -23,7 +23,8 @@ import java.util.ArrayList;
  */
 public class Anadir_recordatorio extends Fragment {
     EditText NOMBRE, CANTIDADTOMA, FECHAINICIO, FECHAFIN, INTERVALO;
-    String nombre,fechaIni,fechaFin,intervalo;
+    String nombre,fechaIni,fechaFin;
+    int intervalo;
     float cantidad;
     Button anadir;
     Context c;
@@ -40,10 +41,6 @@ public class Anadir_recordatorio extends Fragment {
         FECHAFIN = (EditText) view.findViewById(R.id.Tbfechafin);
         INTERVALO = (EditText) view.findViewById(R.id.tbTiempo);
 
-        fechaIni = FECHAINICIO.getText().toString();
-        fechaFin = FECHAFIN.getText().toString();
-        intervalo = INTERVALO.getText().toString();
-
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +49,9 @@ public class Anadir_recordatorio extends Fragment {
                 if ((NOMBRE.getText().length() != 0) && (CANTIDADTOMA.getText().length() != 0)) {
                     nombre = NOMBRE.getText().toString();
                     cantidad = Float.parseFloat(CANTIDADTOMA.getText().toString());
+                    fechaIni = FECHAINICIO.getText().toString();
+                    fechaFin = FECHAFIN.getText().toString();
+                    intervalo = Integer.parseInt(INTERVALO.getText().toString());
 
                     if (c != null) {
                         dbOp = new DatabaseOperations(c);
@@ -87,19 +87,22 @@ public class Anadir_recordatorio extends Fragment {
                             }
 
                             if (existe) {
-                                int id = 0;
-                                Cursor c1 = dbOp.cargarCursorRecordatoriosCount();
+
+                                int id=0; //Id temporal
+                                /*Cursor c1 = dbOp.cargarCursorRecordatorios();
                                 if (c1.moveToFirst()) {
                                         id = cursor.getInt(0);
                                         medicamentos.add(new Medicamento(nombre, cantidad));
-                                }
+                                }*/
 
-                                //id = Integer.parseInt(dbOp.cargarCursorRecordatoriosCount())+1;
-
+                                id = nombre.length()+intervalo;
 
                                 ContentValues cv = new ContentValues();
                                 cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_ID, id);
                                 cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO, nombre);
+                                cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_DESCRIPCION,"");
+                                cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_DIASTOMASMES,30);
+                                cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_DIASDESCANSOMES,0);
                                 cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_CANTIDADTOMA, cantidad);
                                 cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAINICIO, fechaIni);
                                 cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAFIN, fechaFin);

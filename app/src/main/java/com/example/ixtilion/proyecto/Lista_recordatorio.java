@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ public class Lista_recordatorio extends Fragment {
         if (cursor.moveToFirst()) {
             do {
                 int id = cursor.getInt(0);
-                String nombre = cursor.getString(9);
+                String nombre = cursor.getString(8);
                 float cantidad = cursor.getFloat(4);
                 String fechaIni = cursor.getString(2);
                 String fechaFin = cursor.getString(3);

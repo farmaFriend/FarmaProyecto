@@ -43,7 +43,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
 
     private static final String SQL_CREATE_ENTRIES_RECORDATORIO =
             "CREATE TABLE " + TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO + " ( " +
-                    TableData.TableInfoRecordatorio.COLUMN_NAME_ID + TEXT_TYPE + " primary key " + COMMA_SEP +
+                    TableData.TableInfoRecordatorio.COLUMN_NAME_ID + INT_TYPE + " primary key " + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_DESCRIPCION + TEXT_TYPE + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAINICIO + TEXT_TYPE + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAFIN + TEXT_TYPE + COMMA_SEP +
@@ -51,6 +51,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
                     TableData.TableInfoRecordatorio.COLUMN_NAME_INTERVALO + INT_TYPE + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_DIASTOMASMES + INT_TYPE + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_DIASDESCANSOMES + INT_TYPE + COMMA_SEP +
+                    TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO + TEXT_TYPE + COMMA_SEP +
                     " foreign key ( " + TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO +" ) references " +
                             TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO + " ( " + TableData.TableInfoMedic.COLUMN_NAME_NOMBRE + " ) ) ";
 
@@ -82,7 +83,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
         db.execSQL(SQL_CREATE_ENTRIES);
         db.execSQL(SQL_CREATE_ENTRIES_MEDICAMENTO);
         db.execSQL(SQL_CREATE_ENTRIES_MEDICO);
-        db.execSQL(SQL_DELETE_ENTRIES_RECORDATORIO);
+        db.execSQL(SQL_CREATE_ENTRIES_RECORDATORIO);
         Log.d("Operaciones bases de datos","Tabla creada");
     }
 
@@ -128,14 +129,13 @@ public class DatabaseOperations extends SQLiteOpenHelper{
 
     public Cursor cargarCursorRecordatorios(){
         SQLiteDatabase db = this.getWritableDatabase();
-
         String s = "select "+ TableData.TableInfoRecordatorio.COLUMN_NAME_ID +" , " + TableData.TableInfoRecordatorio.COLUMN_NAME_DESCRIPCION +
                 " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAINICIO + " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAFIN +
                 " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_CANTIDADTOMA + " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_INTERVALO +
                 " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_DIASTOMASMES + " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_DIASDESCANSOMES +
                 " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO + " FROM " + TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO;
-
-        return db.rawQuery( s, null);
+        Cursor cu= db.rawQuery( s, null);
+        return cu;
     }
 
     public Cursor cargarCursorRecordatoriosCount(){

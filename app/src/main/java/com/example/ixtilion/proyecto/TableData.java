@@ -41,12 +41,12 @@ public final class TableData {
         public static final String TABLE_NAME_RECORDATORIO = "recordatorio";
         public static final String COLUMN_NAME_ID = "id";
         public static final String COLUMN_NAME_DESCRIPCION = "descripcion";
-        public static final String COLUMN_NAME_FECHAINICIO = "fecha inicio";
-        public static final String COLUMN_NAME_FECHAFIN = "fecha fin";
-        public static final String COLUMN_NAME_CANTIDADTOMA = " cantidad toma";
+        public static final String COLUMN_NAME_FECHAINICIO = "fecha_inicio";
+        public static final String COLUMN_NAME_FECHAFIN = "fecha_fin";
+        public static final String COLUMN_NAME_CANTIDADTOMA = " cantidad_toma";
         public static final String COLUMN_NAME_INTERVALO = "intervalo";
-        public static final String COLUMN_NAME_DIASTOMASMES = "dias tomas mes";
-        public static final String COLUMN_NAME_DIASDESCANSOMES = "dias descanso mes";
+        public static final String COLUMN_NAME_DIASTOMASMES = "dias_tomas_mes";
+        public static final String COLUMN_NAME_DIASDESCANSOMES = "dias_descanso_mes";
         public static final String COLUMN_NAME_MEDICAMENTO = "medicamento";
     }
 

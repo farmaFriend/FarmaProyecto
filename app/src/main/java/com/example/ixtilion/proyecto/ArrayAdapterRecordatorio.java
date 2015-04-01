@@ -35,11 +35,11 @@ public class ArrayAdapterRecordatorio extends ArrayAdapter<Recordatorio_medicame
         final String pas=String.valueOf(recordatorios.get(position).getCantidadToma());
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.linea_medicamento, parent, false);
-        TextView linea1 = (TextView) rowView.findViewById(R.id.fLMed);
-        TextView linea2 = (TextView) rowView.findViewById(R.id.sLMed);
-        ImageView imageQuit = (ImageView) rowView.findViewById(R.id.ImQuitar);
-        ImageView imageEdit = (ImageView) rowView.findViewById(R.id.ImModificar);
+        View rowView = inflater.inflate(R.layout.linea_recordatorio, parent, false);
+        TextView linea1 = (TextView) rowView.findViewById(R.id.fLRec);
+        TextView linea2 = (TextView) rowView.findViewById(R.id.sLRec);
+        ImageView imageQuit = (ImageView) rowView.findViewById(R.id.ImQuitarRec);
+        ImageView imageEdit = (ImageView) rowView.findViewById(R.id.ImModificarRec);
         linea1.setText(nom);
         linea2.setText(pas);
 
@@ -53,7 +53,7 @@ public class ArrayAdapterRecordatorio extends ArrayAdapter<Recordatorio_medicame
                     String col=TableData.TableInfoRecordatorio.COLUMN_NAME_ID;
                     int val=recordatorios.get(pos).getId();
                     String aux=col+"='"+val+"'";
-                    db.delete(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO,aux,null);
+                    db.delete(TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO,aux,null);
                     Log.d("Operaciones bases de datos", "Eliminada una fila");
                     db.close();
 

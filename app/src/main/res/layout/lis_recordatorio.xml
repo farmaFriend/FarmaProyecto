@@ -12,11 +12,11 @@
         android:layout_gravity="center_horizontal" />
 
     <ImageButton
-        android:layout_width="35dp"
-        android:layout_height="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/anadirRecordatorio"
         android:layout_gravity="right"
-        android:background="@drawable/capsuleanadir" />
+        android:background="@drawable/mas" />
 
     <ListView
         android:layout_width="match_parent"
