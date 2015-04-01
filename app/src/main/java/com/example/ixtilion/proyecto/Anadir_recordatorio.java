@@ -87,7 +87,14 @@ public class Anadir_recordatorio extends Fragment {
                             }
 
                             if (existe) {
-                                int id = Integer.parseInt(dbOp.cargarCursorRecordatoriosCount())+1;
+                                int id = 0;
+                                Cursor c1 = dbOp.cargarCursorRecordatoriosCount();
+                                if (c1.moveToFirst()) {
+                                        id = cursor.getInt(0);
+                                        medicamentos.add(new Medicamento(nombre, cantidad));
+                                }
+
+                                //id = Integer.parseInt(dbOp.cargarCursorRecordatoriosCount())+1;
 
 
                                 ContentValues cv = new ContentValues();

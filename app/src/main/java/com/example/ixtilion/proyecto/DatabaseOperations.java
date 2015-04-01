@@ -138,12 +138,12 @@ public class DatabaseOperations extends SQLiteOpenHelper{
         return db.rawQuery( s, null);
     }
 
-    public String cargarCursorRecordatoriosCount(){
+    public Cursor cargarCursorRecordatoriosCount(){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String s = "select COUNT * FROM " + TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO;
+        String s = "SELECT COUNT(*) FROM " + TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO;
 
-        return s;
+        return db.rawQuery(s,null);
     }
 
 }
