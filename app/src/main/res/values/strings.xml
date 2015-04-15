@@ -5,14 +5,12 @@
         <item>Agenda</item>
         <item>Medicamentos</item>
         <item>Medicos</item>
-        <item>Añadir médico</item>
     </string-array>
     <string-array name="section_titles">
         <item>Inicio</item>
         <item>Agenda</item>
         <item>Medicamentos</item>
         <item>Medicos</item>
-        <item>Añadir médico</item>
     </string-array>
 
     <string-array name="sections_icons">
@@ -20,7 +18,6 @@
         <item>@drawable/personal</item>
         <item>@drawable/capsule</item>
         <item>@drawable/doctor</item>
-        <item>@drawable/doctoranadir</item>
 
     </string-array>
 
