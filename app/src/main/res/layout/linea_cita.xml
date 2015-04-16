@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="65dip"
+    android:padding="6dip" >
+
+    <ImageView
+        android:id="@+id/ImMedico"
+        android:layout_width="35dp"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="6dip"
+        android:contentDescription="TODO"
+        android:src="@drawable/schedule" />
+
+    <TextView
+        android:id="@+id/textFecha"
+        android:layout_width="fill_parent"
+        android:layout_height="26dip"
+        android:layout_toRightOf="@id/ImMedico"
+        android:layout_marginTop="20dip"
+        android:text="Fecha"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/textEspecialidad"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ImMedico"
+        android:gravity="center_vertical"
+        android:text="Podologo"
+        android:textSize="16sp"
+        android:phoneNumber="false" />
+
+    <TextView
+        android:id="@+id/textHora"
+        android:layout_width="fill_parent"
+        android:layout_height="26dip"
+        android:layout_toRightOf="@id/ImMedico"
+        android:layout_marginTop="35dip"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="Hora"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/ImQuitarMedico"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="0dip"
+        android:contentDescription="Quitar"
+        android:src="@drawable/elimina" />
+
+    <ImageView
+        android:id="@+id/ImModificarMedico"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_toLeftOf="@id/ImQuitarMedico"
+        android:layout_marginRight="6dip"
+        android:contentDescription="Modificar"
+        android:src="@drawable/modif" />
+
+</RelativeLayout>

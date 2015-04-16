@@ -73,6 +73,9 @@ public class MyActivity extends ActionBarActivity
             case 4:
                 fragmento = new Anadir_medico();
                 break;
+            case 5:
+                fragmento = new Lista_comunidad();
+                break;
         }
 
         fragmentManager.beginTransaction()

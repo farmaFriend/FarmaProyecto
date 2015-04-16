@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="CITAS"
+        android:id="@+id/textCitas"
+        android:layout_gravity="center_horizontal" />
+
+    <ImageButton
+        android:layout_width="35dp"
+        android:layout_height="32dp"
+        android:id="@+id/anadirCita"
+        android:layout_gravity="right"
+        android:background="@drawable/scheduleadd" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="484dp"
+        android:id="@+id/listCitas"
+        android:layout_marginTop="20dp" />
+
+</LinearLayout>

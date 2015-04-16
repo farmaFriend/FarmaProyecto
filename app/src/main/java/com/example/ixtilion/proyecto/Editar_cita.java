@@ -17,9 +17,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-/**
- * Created by Alumno on 19/03/2015.
- */
+
+/*
+
 public class Editar_cita extends Fragment{
     EditText NOMBRE,TELEFONO;
     String medico, especialidad, fecha, hora, descripcion;
@@ -122,3 +122,5 @@ public class Editar_cita extends Fragment{
         return view;
     }
 }
+
+*/
