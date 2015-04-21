@@ -1,10 +1,16 @@
 package com.example.ixtilion.proyecto;
 
+<<<<<<< HEAD
 import android.app.DatePickerDialog;
+=======
+import android.app.AlarmManager;
+>>>>>>> origin/master
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -24,7 +30,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+<<<<<<< HEAD
 import java.text.DateFormat;
+=======
+>>>>>>> origin/master
 
 /**
  * Created by rok on 14/03/2015.
@@ -39,8 +48,13 @@ public class Anadir_recordatorio extends Fragment {
     Context c;
     private DatabaseOperations dbOp;
     Cursor cursor;
+<<<<<<< HEAD
     Calendar cal=Calendar.getInstance();
     DateFormat datfor=DateFormat.getDateInstance();
+=======
+    private AlarmManager alarmMgr;
+    private PendingIntent alarmIntent;
+>>>>>>> origin/master
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         c = container.getContext();
@@ -143,6 +157,25 @@ public class Anadir_recordatorio extends Fragment {
                 } else {
                     Toast.makeText(c, "Error: Algún campo vacío", Toast.LENGTH_LONG).show();
                 }
+
+               //ALARMA
+                alarmMgr = (AlarmManager)c.getSystemService(Context.ALARM_SERVICE);
+
+                Intent intent = new Intent(c, AlarmReceiver.class);
+
+                alarmIntent = PendingIntent.getBroadcast(c, 0, intent, 0);
+
+                // Set the alarm to start at 8:30 a.m.
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(System.currentTimeMillis());
+                calendar.set(Calendar.HOUR_OF_DAY, 17);
+                calendar.set(Calendar.MINUTE, 10);
+
+
+                // setRepeating() lets you specify a precise custom interval--in this case,
+                // 20 minutes.
+                alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                        1000 * 60 * 20, alarmIntent);
             }
         });
         config.setOnClickListener(new View.OnClickListener() {
