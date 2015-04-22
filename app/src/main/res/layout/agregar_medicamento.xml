@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Nombre"
+        android:text="Nombre (*)"
         android:id="@+id/LNomMedic" />
 
     <EditText
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Cuántas pastillas te quedan"
+        android:text="¿Cuántas pastillas te quedan? (*)"
         android:id="@+id/LNumPasti" />
 
     <EditText

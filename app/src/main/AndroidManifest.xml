@@ -25,4 +25,7 @@
         </activity>
     </application>
 
+    <receiver  android:process=":remote" android:name="AlarmaReceiver"></receiver>
+
+
 </manifest>

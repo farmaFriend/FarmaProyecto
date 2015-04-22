@@ -14,30 +14,60 @@
         android:layout_marginRight="5dp"/>
 
     <ImageView
-        android:layout_width="230dp"
-        android:layout_height="230dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/manana"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/manana"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/man"
         android:layout_alignParentTop="true" />
     <ImageView
-        android:layout_width="230dp"
-        android:layout_height="230dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/manana1"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/manana"
+        android:layout_alignParentTop="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/tarde"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="155dp"
-        android:src="@drawable/tardee"/>
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="115dp"
+        android:src="@drawable/tar"/>
     <ImageView
-        android:layout_width="232dp"
-        android:layout_height="232dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/tarde1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="105dp"
+        android:src="@drawable/tarde"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/noche"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="320dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="235dp"
+        android:src="@drawable/noc"/>
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/noche1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="330dp"
         android:src="@drawable/noche"/>
 
 </RelativeLayout>

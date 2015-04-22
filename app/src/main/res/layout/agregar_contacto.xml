@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Nombre"
+        android:text="Nombre (*)"
         android:id="@+id/textViewNombre" />
 
     <EditText
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Teléfono"
+        android:text="Teléfono (*)"
         android:id="@+id/textViewTelf" />
 
     <EditText
