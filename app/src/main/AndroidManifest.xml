@@ -23,6 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
     </application>
 
     <receiver  android:process=":remote" android:name="AlarmaReceiver"></receiver>

@@ -1,10 +1,9 @@
 package com.example.ixtilion.proyecto;
 
-<<<<<<< HEAD
 import android.app.DatePickerDialog;
-=======
+
 import android.app.AlarmManager;
->>>>>>> origin/master
+
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.PendingIntent;
@@ -30,10 +29,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-<<<<<<< HEAD
+
 import java.text.DateFormat;
-=======
->>>>>>> origin/master
+
 
 /**
  * Created by rok on 14/03/2015.
@@ -48,13 +46,13 @@ public class Anadir_recordatorio extends Fragment {
     Context c;
     private DatabaseOperations dbOp;
     Cursor cursor;
-<<<<<<< HEAD
+
     Calendar cal=Calendar.getInstance();
     DateFormat datfor=DateFormat.getDateInstance();
-=======
+
     private AlarmManager alarmMgr;
     private PendingIntent alarmIntent;
->>>>>>> origin/master
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         c = container.getContext();
