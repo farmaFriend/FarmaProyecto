@@ -11,6 +11,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.ixtilion.proyecto.dummy.Comunidad;
+
 import java.util.ArrayList;
 
 /**
@@ -19,16 +21,23 @@ import java.util.ArrayList;
 public class Lista_comunidad extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        final ArrayList<Comunidad> comunidades = new ArrayList<Comunidad>();
+        comunidades.add(new Comunidad("La Rioja","www.larioja.com" ,"larioja"));
+        comunidades.add(new Comunidad("Navarra","www","navarra"));
+        comunidades.add(new Comunidad("Cataluña","www","catalunya"));
+        comunidades.add(new Comunidad("Castilla León","www","castillaleon"));
+        comunidades.add(new Comunidad("Pais Vasco","www","paisvasco"));
+        comunidades.add(new Comunidad("Asturias","www","asturias"));
+
+
+
+
         View view = inflater.inflate(R.layout.solicitar_cita, container, false);
         ListView list = (ListView)view.findViewById(R.id.listCitas);
-        final ArrayAdapterComunidad adapter = new ArrayAdapterComunidad(view.getContext());
+        final ArrayAdapterComunidad adapter = new ArrayAdapterComunidad(view.getContext(), comunidades);
         list.setAdapter(adapter);
-        ((TextView)list.getChildAt(0).findViewById(R.id.textComunidad)).setText("La Rioja");
-        ((TextView)list.getChildAt(1).findViewById(R.id.textComunidad)).setText("Navarra");
-        ((TextView)list.getChildAt(2).findViewById(R.id.textComunidad)).setText("Santander");
-        ((TextView)list.getChildAt(3).findViewById(R.id.textComunidad)).setText("Madrid");
-        ((TextView)list.getChildAt(4).findViewById(R.id.textComunidad)).setText("Barcelona");
 
         return view;
     }
+
 }

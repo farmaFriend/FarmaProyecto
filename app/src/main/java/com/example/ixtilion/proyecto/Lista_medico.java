@@ -39,7 +39,6 @@ public class Lista_medico extends Fragment {
 
         View view = inflater.inflate(R.layout.lis_medico, container, false);
         ListView list = (ListView)view.findViewById(R.id.list_medicos);
-
         final ArrayAdapterMedico adapter = new ArrayAdapterMedico(view.getContext(),medicos);
         list.setAdapter(adapter);
         View imageButton = (ImageButton) view.findViewById(R.id.anadirMedico);

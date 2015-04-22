@@ -12,7 +12,7 @@
         android:layout_gravity="center_horizontal" />
 
     <ListView
-        android:layout_width="320dp"
+        android:layout_width="399dp"
         android:layout_height="428dp"
         android:id="@+id/listCitas"
         android:layout_marginTop="20dp"
