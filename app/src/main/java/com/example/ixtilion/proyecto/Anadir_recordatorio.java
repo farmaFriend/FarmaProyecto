@@ -14,17 +14,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.NumberPicker;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -179,7 +175,9 @@ public class Anadir_recordatorio extends Fragment {
         config.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //poner
+                config.setVisibility(View.INVISIBLE);
+                EditText textView=new EditText(c); //no se ve
+                textView.setText("Ave yo");
             }
         });
 
@@ -197,9 +195,26 @@ public class Anadir_recordatorio extends Fragment {
                 new DatePickerDialog(c,dpd,cal.get(Calendar.YEAR),cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-        /*FECHAFIN.setOnTouchListener(new View.OnTouchListener() {
+        FECHAINICIO.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(FECHAINICIO.isFocused()){
+                    DatePickerDialog.OnDateSetListener dpd= new DatePickerDialog.OnDateSetListener(){
+                        public void onDateSet (DatePicker fec, int y, int m, int d){
+                            cal.set(Calendar.YEAR, y);
+                            cal.set(Calendar.MONTH, m);
+                            cal.set(Calendar.DAY_OF_MONTH, d);
+                            FECHAINICIO.setText(datfor.format(cal.getTime()));
+                        }
+                    };
+                    new DatePickerDialog(c,dpd,cal.get(Calendar.YEAR),cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
+                }
+            }
+        });
+
+        FECHAFIN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 DatePickerDialog.OnDateSetListener dpd= new DatePickerDialog.OnDateSetListener(){
                     public void onDateSet (DatePicker fec, int y, int m, int d){
                         cal.set(Calendar.YEAR, y);
@@ -209,24 +224,25 @@ public class Anadir_recordatorio extends Fragment {
                     }
                 };
                 new DatePickerDialog(c,dpd,cal.get(Calendar.YEAR),cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
-                return false;
             }
-        });*/
-        /*FECHAFIN.setOnKeyListener(new View.OnKeyListener() {
+        });
+        FECHAFIN.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                DatePickerDialog.OnDateSetListener dpd= new DatePickerDialog.OnDateSetListener(){
-                    public void onDateSet (DatePicker fec, int y, int m, int d){
-                        cal.set(Calendar.YEAR, y);
-                        cal.set(Calendar.MONTH, m);
-                        cal.set(Calendar.DAY_OF_MONTH, d);
-                        FECHAFIN.setText(datfor.format(cal.getTime()));
-                    }
-                };
-                new DatePickerDialog(c,dpd,cal.get(Calendar.YEAR),cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
-                return false;
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(FECHAFIN.isFocused()){
+                    DatePickerDialog.OnDateSetListener dpd= new DatePickerDialog.OnDateSetListener(){
+                        public void onDateSet (DatePicker fec, int y, int m, int d){
+                            cal.set(Calendar.YEAR, y);
+                            cal.set(Calendar.MONTH, m);
+                            cal.set(Calendar.DAY_OF_MONTH, d);
+                            FECHAFIN.setText(datfor.format(cal.getTime()));
+                        }
+                    };
+                    new DatePickerDialog(c,dpd,cal.get(Calendar.YEAR),cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
+                }
             }
-        });*/
+        });
+
 
         return view;
     }
