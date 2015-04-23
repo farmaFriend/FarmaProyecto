@@ -147,22 +147,24 @@ public class Anadir_recordatorio extends Fragment {
 
                //ALARMA
                 alarmMgr = (AlarmManager)c.getSystemService(Context.ALARM_SERVICE);
-
                 Intent intent = new Intent(c, AlarmReceiver.class);
-
                 alarmIntent = PendingIntent.getBroadcast(c, 0, intent, 0);
+
+                /*int alarmType =AlarmManager.ELAPSED_REALTIME_WAKEUP;
+                long trig=Calendar.getInstance().getTimeInMillis()+5000;
+                alarmMgr.set(alarmType,trig, alarmIntent);*/
 
                 // Set the alarm to start at 8:30 a.m.
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTimeInMillis(System.currentTimeMillis());
                 calendar.set(Calendar.HOUR_OF_DAY, 17);
-                calendar.set(Calendar.MINUTE, 10);
+                calendar.set(Calendar.MINUTE, 57);
 
 
                 // setRepeating() lets you specify a precise custom interval--in this case,
                 // 20 minutes.
                 alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                        1000 * 60 * 20, alarmIntent);
+                        2000, alarmIntent);
             }
         });
         config.setOnClickListener(new View.OnClickListener() {
