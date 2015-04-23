@@ -80,6 +80,7 @@ public class Anadir_recordatorio extends Fragment {
         medicamentos.setAdapter(dataAdapter);
 
         //ESTO NO VA AQUI VA EN EDITAR RECORDATORIO PARA DEJAR SELECIONADO EL MEDICAMENTO QUE YA ESTABA
+        //medicamentos.setSelection (dataAdapter.getPosition ("IBUPROFENO"));
 
         anadir = (Button) view.findViewById(R.id.btAnadirRec);
         config = (ImageView) view.findViewById(R.id.Config);
