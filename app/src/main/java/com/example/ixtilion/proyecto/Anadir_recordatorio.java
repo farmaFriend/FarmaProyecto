@@ -17,16 +17,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import java.text.DateFormat;
+import java.util.List;
 
 
 /**
@@ -42,6 +45,8 @@ public class Anadir_recordatorio extends Fragment {
     Context c;
     private DatabaseOperations dbOp;
     Cursor cursor;
+    private Spinner medicamentos;
+    Cursor cursorMedicamentos;
 
     Calendar cal=Calendar.getInstance();
     DateFormat datfor=DateFormat.getDateInstance();
@@ -53,9 +58,30 @@ public class Anadir_recordatorio extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         c = container.getContext();
         View view = inflater.inflate(R.layout.agregar_recor_pastilla, container, false);
+
+        medicamentos = (Spinner) view.findViewById(R.id.spMedicamentos);
+        List<String> list = new ArrayList<>();
+
+        dbOp = new DatabaseOperations(c);
+        cursorMedicamentos = dbOp.cargarCursorMedicamentos();
+        list.add("---Elige un medicamento---");
+
+        if (cursorMedicamentos.moveToFirst()) {
+            do {
+                String nombre = cursorMedicamentos.getString(0).toUpperCase();
+
+                list.add(nombre);
+
+            } while (cursorMedicamentos.moveToNext());
+        }
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        medicamentos.setAdapter(dataAdapter);
+
+
         anadir = (Button) view.findViewById(R.id.btAnadirRec);
         config = (ImageView) view.findViewById(R.id.Config);
-        NOMBRE = (EditText) view.findViewById(R.id.TbnomMedi);
         CANTIDADTOMA =   (EditText) view.findViewById(R.id.tbCantidad);
         FECHAINICIO = (EditText) view.findViewById(R.id.TbfechaIni);
         FECHAFIN = (EditText) view.findViewById(R.id.Tbfechafin);
@@ -64,56 +90,23 @@ public class Anadir_recordatorio extends Fragment {
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                nombre = medicamentos.getSelectedItem().toString();
 
                 //COMPROBAMOS QUE EXISTE EL MEDICAMENTO
-                if ((NOMBRE.getText().length() != 0) && (CANTIDADTOMA.getText().length() != 0)) {
-                    nombre = NOMBRE.getText().toString();
+                if ((nombre.compareTo("---Elige un medicamento---")!=0) && (CANTIDADTOMA.getText().length() != 0)) {
+
                     cantidad = Float.parseFloat(CANTIDADTOMA.getText().toString());
                     fechaIni = FECHAINICIO.getText().toString();
                     fechaFin = FECHAFIN.getText().toString();
                     intervalo = Integer.parseInt(INTERVALO.getText().toString());
 
                     if (c != null) {
+
                         dbOp = new DatabaseOperations(c);
                         SQLiteDatabase db = dbOp.getWritableDatabase();
 
-                        if (db != null) {
-                            cursor = dbOp.cargarCursorMedicamentos();
-                            Medicamento m;
-
-                            final ArrayList<Medicamento> medicamentos = new ArrayList<Medicamento>();
-
-                            if (cursor.moveToFirst()) {
-                                do {
-                                    String nombre = cursor.getString(0);
-                                    float cantidad = cursor.getFloat(1);
-
-                                    medicamentos.add(new Medicamento(nombre, cantidad));
-
-                                } while (cursor.moveToNext());
-                            }
-
-                            int i = 0;
-                            boolean existe = false;
-                            while (i < medicamentos.size() && existe == false) {
-                                if (nombre.compareTo(medicamentos.get(i).getNombre()) == 0) {
-                                    existe = true;
-                                }
-                                i++;
-                            }
-
-                            if (!existe) {
-                                Toast.makeText(c, "Introduce un medicamento existente", Toast.LENGTH_LONG).show();
-                            }
-
-                            if (existe) {
-
                                 int id=0; //Id temporal
-                                /*Cursor c1 = dbOp.cargarCursorRecordatorios();
-                                if (c1.moveToFirst()) {
-                                        id = cursor.getInt(0);
-                                        medicamentos.add(new Medicamento(nombre, cantidad));
-                                }*/
+
 
                                 id = nombre.length()+intervalo;
 
@@ -142,9 +135,7 @@ public class Anadir_recordatorio extends Fragment {
 
                                 Toast.makeText(c, "Recordatorio añadido correctamente", Toast.LENGTH_LONG).show();
 
-                            }
-
-                        }
+                           
                     } else {
                         Log.d("error", "else");
                     }
