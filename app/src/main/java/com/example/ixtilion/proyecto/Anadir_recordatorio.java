@@ -79,6 +79,7 @@ public class Anadir_recordatorio extends Fragment {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         medicamentos.setAdapter(dataAdapter);
 
+        //ESTO NO VA AQUI VA EN EDITAR RECORDATORIO PARA DEJAR SELECIONADO EL MEDICAMENTO QUE YA ESTABA
 
         anadir = (Button) view.findViewById(R.id.btAnadirRec);
         config = (ImageView) view.findViewById(R.id.Config);
@@ -135,7 +136,7 @@ public class Anadir_recordatorio extends Fragment {
 
                                 Toast.makeText(c, "Recordatorio añadido correctamente", Toast.LENGTH_LONG).show();
 
-                           
+
                     } else {
                         Log.d("error", "else");
                     }
