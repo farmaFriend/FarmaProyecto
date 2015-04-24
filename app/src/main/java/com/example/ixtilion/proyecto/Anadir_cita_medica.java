@@ -17,7 +17,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -27,6 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Date;
 
 /**
  * Created by USUARIO on 24/04/2015.
@@ -160,16 +160,16 @@ public class Anadir_cita_medica extends Fragment {
                 TimePickerDialog.OnTimeSetListener tdp = new TimePickerDialog.OnTimeSetListener(){
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        cal.set(Calendar.HOUR, hourOfDay);
+                        cal.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         cal.set(Calendar.MINUTE, minute);
                         long milisegundos = cal.getTimeInMillis();
-                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                        SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
                         String dateString = sdf.format(milisegundos);
                         HORA.setText(dateString);
                     }
                 };
 
-                new TimePickerDialog(c, tdp, cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), true).show();
+                new TimePickerDialog(c, tdp, cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), false).show();
             }
         });
         HORA.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -179,15 +179,15 @@ public class Anadir_cita_medica extends Fragment {
                     TimePickerDialog.OnTimeSetListener tdp = new TimePickerDialog.OnTimeSetListener(){
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                            cal.set(Calendar.HOUR, hourOfDay);
+                            cal.set(Calendar.HOUR_OF_DAY, hourOfDay);
                             cal.set(Calendar.MINUTE, minute);
                             long milisegundos = cal.getTimeInMillis();
-                            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                            SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
                             String dateString = sdf.format(milisegundos);
                             HORA.setText(dateString);
                         }
                     };
-                    new TimePickerDialog(c, tdp, cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), true).show();
+                    new TimePickerDialog(c, tdp, cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), false).show();
                 }
             }
         });
