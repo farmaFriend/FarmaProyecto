@@ -79,6 +79,9 @@ public class MyActivity extends ActionBarActivity
             case 6:
                 fragmento = new Anadir_cita_medica();
                 break;
+            case 7:
+                fragmento = new Citas_medico();
+                break;
         }
 
         fragmentManager.beginTransaction()

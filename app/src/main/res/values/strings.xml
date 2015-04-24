@@ -8,6 +8,7 @@
         <item>Añadir médico</item>
         <item>Solicitar cita</item>
         <item>Añadir cita</item>
+        <item>Citas medico</item>
     </string-array>
     <string-array name="section_titles">
         <item>Inicio</item>
@@ -16,7 +17,7 @@
         <item>Medicos</item>
         <item>Añadir médico</item>
         <item>Solicitar cita</item>
-        <item>Añadir cita</item>
+        <item>Citas medico</item>
     </string-array>
 
     <string-array name="sections_icons">
@@ -24,6 +25,7 @@
         <item>@drawable/personal</item>
         <item>@drawable/capsule</item>
         <item>@drawable/doctor</item>
+        <item>@drawable/doctoranadir</item>
         <item>@drawable/doctoranadir</item>
         <item>@drawable/doctoranadir</item>
         <item>@drawable/doctoranadir</item>
