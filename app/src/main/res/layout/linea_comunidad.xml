@@ -16,14 +16,12 @@
         android:textSize="16sp" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:id="@+id/bandera"
         android:src="@drawable/castillamancha"
         android:layout_marginRight="59dp"
-        android:layout_marginEnd="59dp"
         android:layout_alignTop="@+id/textComunidad"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentRight="true"/>
 
 </RelativeLayout>
