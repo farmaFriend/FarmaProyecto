@@ -55,6 +55,14 @@ public class DatabaseOperations extends SQLiteOpenHelper{
                     " foreign key ( " + TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO +" ) references " +
                             TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO + " ( " + TableData.TableInfoMedic.COLUMN_NAME_NOMBRE + " ) ) ";
 
+    private static final String SQL_CREATE_ENTRIES_CITA =
+            "CREATE TABLE " + TableData.TableCitaMedico.TABLE_NAME_CITEMEDICO + " ( " +
+                    TableData.TableCitaMedico.COLUMN_NAME_ID + TEXT_TYPE + " primary key " + COMMA_SEP +
+                    TableData.TableCitaMedico.COLUMN_NAME_DESCRIPCION + TEXT_TYPE + COMMA_SEP +
+                    TableData.TableCitaMedico.COLUMN_NAME_FECHA + TEXT_TYPE + COMMA_SEP +
+                    TableData.TableCitaMedico.COLUMN_NAME_HORA + TEXT_TYPE + COMMA_SEP +
+                     TableData.TableCitaMedico.COLUMN_NAME_MEDICO + TEXT_TYPE + " )";
+
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TableData.TableInfo.TABLE_NAME_AGENDA;
@@ -67,6 +75,9 @@ public class DatabaseOperations extends SQLiteOpenHelper{
 
     private static final String SQL_DELETE_ENTRIES_RECORDATORIO =
             "DROP TABLE IF EXISTS " + TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO;
+
+    private static final String SQL_DELETE_ENTRIES_CITA =
+            "DROP TABLE IF EXISTS " + TableData.TableCitaMedico.TABLE_NAME_CITEMEDICO;
 
 
     public DatabaseOperations(Context context) {
@@ -84,6 +95,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
         db.execSQL(SQL_CREATE_ENTRIES_MEDICAMENTO);
         db.execSQL(SQL_CREATE_ENTRIES_MEDICO);
         db.execSQL(SQL_CREATE_ENTRIES_RECORDATORIO);
+        db.execSQL(SQL_CREATE_ENTRIES_CITA);
         Log.d("Operaciones bases de datos","Tabla creada");
     }
 
@@ -95,6 +107,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
         db.execSQL(SQL_DELETE_ENTRIES_MEDICAMENTO);
         db.execSQL(SQL_DELETE_ENTRIES_MEDICO);
         db.execSQL(SQL_DELETE_ENTRIES_RECORDATORIO);
+        db.execSQL(SQL_DELETE_ENTRIES_CITA);
         onCreate(db);
     }
 
@@ -144,6 +157,14 @@ public class DatabaseOperations extends SQLiteOpenHelper{
         String s = "SELECT COUNT(*) FROM " + TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO;
 
         return db.rawQuery(s,null);
+    }
+
+    public Cursor cargarCursorCitasMedico(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String s = "select " + TableData.TableCitaMedico.COLUMN_NAME_MEDICO + " , " + TableData.TableCitaMedico.COLUMN_NAME_DESCRIPCION +
+                " , " + TableData.TableCitaMedico.COLUMN_NAME_FECHA + " , " + TableData.TableCitaMedico.COLUMN_NAME_HORA +
+                " FROM " + TableData.TableCitaMedico.TABLE_NAME_CITEMEDICO;
+        return db.rawQuery(s, null);
     }
 
 }
