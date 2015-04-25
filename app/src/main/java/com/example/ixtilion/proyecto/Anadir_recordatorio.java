@@ -92,7 +92,8 @@ public class Anadir_recordatorio extends Fragment {
                 nombre = medicamentos.getSelectedItem().toString();
 
                 //COMPROBAMOS QUE EXISTE EL MEDICAMENTO
-                if ((nombre.compareTo("---Elige un medicamento---")!=0) && (CANTIDADTOMA.getText().length() != 0)) {
+                if ((nombre.compareTo("---Elige un medicamento---")!=0) && (CANTIDADTOMA.getText().length() != 0) &&
+                        (FECHAINICIO.getText().length() != 0) && (FECHAFIN.getText().length() != 0) && (INTERVALO.getText().length() != 0)) {
 
                     cantidad = Float.parseFloat(CANTIDADTOMA.getText().toString());
                     fechaIni = FECHAINICIO.getText().toString();
