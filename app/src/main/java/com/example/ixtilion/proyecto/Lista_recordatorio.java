@@ -19,6 +19,11 @@ import java.util.ArrayList;
 public class Lista_recordatorio extends Fragment {
     private DatabaseOperations dbOp;
     Cursor cursor;
+    String momento;
+
+    public Lista_recordatorio(String m){
+        this.momento = m;
+    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         dbOp = new DatabaseOperations(container.getContext());
@@ -34,10 +39,23 @@ public class Lista_recordatorio extends Fragment {
                 String fechaIni = cursor.getString(2);
                 String fechaFin = cursor.getString(3);
                 int intervalo = cursor.getInt(5);
+                //int horaIni = cursor.getInt(9);
 
+                if(this.momento =="m") {
+                    if(((horaIni + intervalo)%24) >6 &&((horaIni + intervalo)%24) <14){}
+                    recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,5));
+                }
 
-                recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id));
+                if(this.momento =="t") {
+                    if(((horaIni + intervalo)%24) >14 &&((horaIni + intervalo)%24) <20){}
+                    recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,5));
+                }
 
+                if(this.momento =="n") if(((horaIni + intervalo)%24) <24 &&((horaIni + intervalo)%24) <14){}
+
+                if(this.momento =="all") {
+                    recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,5));
+                }
             } while (cursor.moveToNext());
         }
 

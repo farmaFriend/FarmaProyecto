@@ -1,4 +1,4 @@
-package com.example.ixtilion.proyecto.dummy;
+package com.example.ixtilion.proyecto;
 
 /**
  * Created by Ixtilion on 3/5/2015.

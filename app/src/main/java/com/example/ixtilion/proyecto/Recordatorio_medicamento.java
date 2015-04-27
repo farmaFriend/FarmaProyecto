@@ -10,17 +10,19 @@ public class Recordatorio_medicamento {
     private String fecha_ini;
     private String fecha_fin;
     private int intervalo; //cada cuantas horas quiere que recuerde
+    private int horaIni;
     private float cantidadToma;
     private int id;
     private String descripcion; //opcional
     private int diasTomaMes; //opcional, solo con configuracion avanzada
     private int diasDescansoMes; //opcional, solo con configuracion avanzada
 
-    public Recordatorio_medicamento(String medicamento, String fecha_ini, String fecha_fin, int intervalo, float cantidadToma, int id){
+    public Recordatorio_medicamento(String medicamento, String fecha_ini, String fecha_fin, int intervalo, float cantidadToma, int id, int horaIni){
         this.medicamento=medicamento;
         this.fecha_ini=fecha_ini;
         this.fecha_fin=fecha_fin;
         this.intervalo=intervalo;
+        this.horaIni = horaIni;
         this.cantidadToma=cantidadToma;
         this.id=id;
         this.descripcion="";

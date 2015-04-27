@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/ll"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre medicamento (*)"
+        android:id="@+id/LnomMedi"
+        android:textSize="40px" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TbnomMedi" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha inicio (*)"
+        android:id="@+id/LfechaIni"
+        android:textSize="40px" />
+
+    <EditText
+        android:layout_width="259dp"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/TbfechaIni" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha fin (*)"
+        android:id="@+id/Lfechafin"
+        android:textSize="40px" />
+
+    <EditText
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/Tbfechafin" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cantidad por toma (*)"
+        android:id="@+id/LCantidad"
+        android:textSize="40px" />
+
+    <EditText
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
+        android:inputType="none|numberDecimal"
+        android:ems="10"
+        android:id="@+id/tbCantidad" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cada cuanto tiempo (horas) (*)"
+        android:id="@+id/LTiempo"
+        android:textSize="40px" />
+
+    <EditText
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/tbTiempo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Configuración avanzada"
+        android:textColorLink="@color/highlighted_text_material_dark"
+        android:id="@+id/textView4"
+        android:textSize="40px" />
+
+    <ImageView
+        android:layout_width="78dp"
+        android:layout_height="57dp"
+        android:id="@+id/Config"
+        android:src="@drawable/config"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar recordatorio"
+        android:id="@+id/btEditar" />
+
+</LinearLayout>

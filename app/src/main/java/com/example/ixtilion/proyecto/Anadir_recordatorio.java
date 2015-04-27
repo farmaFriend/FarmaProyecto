@@ -137,7 +137,7 @@ public class Anadir_recordatorio extends Fragment {
                                 //CODIGO QUE MANDA A VISTA LISTA RECORDATORIOS
                                 FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction()
-                                      .replace(R.id.container, new Lista_recordatorio())
+                                      .replace(R.id.container, new Lista_recordatorio("all"))
                                     .commit();
 
                                 Toast.makeText(c, "Recordatorio añadido correctamente", Toast.LENGTH_LONG).show();

@@ -29,6 +29,10 @@ public class Principal extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(c, "Mañana ha sido pulsado", Toast.LENGTH_LONG).show();
+                FragmentManager fm = getFragmentManager();
+                fm.beginTransaction()
+                        .replace(R.id.container, new Lista_recordatorio("m"))
+                        .commit();
             }
         });
 
@@ -36,6 +40,10 @@ public class Principal extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(c, "Tarde ha sido pulsado", Toast.LENGTH_LONG).show();
+                FragmentManager fm = getFragmentManager();
+                fm.beginTransaction()
+                        .replace(R.id.container, new Lista_recordatorio("t"))
+                        .commit();
             }
         });
 
@@ -43,8 +51,13 @@ public class Principal extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(c, "Noche ha sido pulsado", Toast.LENGTH_LONG).show();
+                FragmentManager fm = getFragmentManager();
+                fm.beginTransaction()
+                        .replace(R.id.container, new Lista_recordatorio("n"))
+                        .commit();
             }
         });
+
         mas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
