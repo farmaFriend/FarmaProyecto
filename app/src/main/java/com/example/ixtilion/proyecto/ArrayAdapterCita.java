@@ -34,6 +34,7 @@ public class ArrayAdapterCita extends ArrayAdapter<Cita> {
         final String descripcion = citas.get(position).getDescripcion();
         final String fecha = citas.get(position).getFecha();
         final String hora = citas.get(position).getHora();
+        final String id = citas.get(position).getId();
 
 
         LayoutInflater inflater = (LayoutInflater) context
@@ -60,15 +61,7 @@ public class ArrayAdapterCita extends ArrayAdapter<Cita> {
             linea4.setText(descripcion);
         }
 
-<<<<<<< HEAD
-        linea1.setText(medico + " - " + descripcion);
-        linea2.setText(fecha);
-        linea3.setText(hora);
 
-
-=======
-/*
->>>>>>> origin/master
         imageQuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

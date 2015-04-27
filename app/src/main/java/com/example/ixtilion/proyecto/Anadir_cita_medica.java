@@ -26,7 +26,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Date;
 
 /**
  * Created by USUARIO on 24/04/2015.
@@ -75,6 +74,8 @@ public class Anadir_cita_medica extends Fragment {
         DESCRIPCION =   (EditText) view.findViewById(R.id.tbDescrpcion);
         FECHA = (EditText) view.findViewById(R.id.tbFecha);
         HORA = (EditText) view.findViewById(R.id.tbHora);
+
+
 
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
