@@ -60,8 +60,9 @@ public class Anadir_cita_medica extends Fragment {
         if (cursorMedico.moveToFirst()) {
             do {
                 String nombre = cursorMedico.getString(1).toUpperCase();
+                String especialidad = cursorMedico.getString(2).toUpperCase();
 
-                list.add(nombre);
+                list.add(nombre+" - "+especialidad);
 
             } while (cursorMedico.moveToNext());
         }

@@ -60,6 +60,7 @@ public class Lista_recordatorio extends Fragment {
                 if(this.momento =="all") {
                     recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,5));
                 }
+
             } while (cursor.moveToNext());
         }
 
