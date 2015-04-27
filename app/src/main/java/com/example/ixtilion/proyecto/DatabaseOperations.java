@@ -163,6 +163,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         String s = "select " + TableData.TableCitaMedico.COLUMN_NAME_MEDICO + " , " + TableData.TableCitaMedico.COLUMN_NAME_DESCRIPCION +
                 " , " + TableData.TableCitaMedico.COLUMN_NAME_FECHA + " , " + TableData.TableCitaMedico.COLUMN_NAME_HORA +
+                " , " + TableData.TableCitaMedico.COLUMN_NAME_ID +
                 " FROM " + TableData.TableCitaMedico.TABLE_NAME_CITEMEDICO;
         return db.rawQuery(s, null);
     }

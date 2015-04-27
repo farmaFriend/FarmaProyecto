@@ -93,25 +93,62 @@ public class Anadir_cita_medica extends Fragment {
 
                         id=descripcion+fecha+hora;
 
-                        ContentValues cv = new ContentValues();
-                        cv.put(TableData.TableCitaMedico.COLUMN_NAME_ID, id);
-                        cv.put(TableData.TableCitaMedico.COLUMN_NAME_DESCRIPCION, descripcion);
-                        cv.put(TableData.TableCitaMedico.COLUMN_NAME_FECHA, fecha);
-                        cv.put(TableData.TableCitaMedico.COLUMN_NAME_HORA, hora);
-                        cv.put(TableData.TableCitaMedico.COLUMN_NAME_MEDICO, medico);
+                        if(db!=null){
+                            //Mirar si en la base de datos existe un medico con ese nombre y especialidad
 
-                        db.insert(TableData.TableCitaMedico.TABLE_NAME_CITEMEDICO,null, cv);
-                        Log.d("Operaciones bases de datos", "Insertada una fila");
+                            cursor = dbOp.cargarCursorCitasMedico();
 
-                        db.close();
+                            final ArrayList<Cita> citas = new ArrayList<Cita>();
 
-                        //CODIGO QUE MANDA A VISTA LISTA CITAS
-                        FragmentManager fm = getFragmentManager();
-                        fm.beginTransaction()
-                                .replace(R.id.container, new Citas_medico())
-                                .commit();
+                            if (cursor.moveToFirst()) {
+                                do {
+                                    String id = cursor.getString(4);
+                                    String descripcion = cursor.getString(1);
+                                    String fecha = cursor.getString(2);
+                                    String hora = cursor.getString(3);
+                                    String medico = cursor.getString(0);
 
-                        Toast.makeText(c, "Cita médico añadida correctamente", Toast.LENGTH_LONG).show();
+                                    citas.add(new Cita(medico, descripcion, fecha,hora,id));
+
+
+                                } while (cursor.moveToNext());
+                            }
+
+                            int i=0;
+                            boolean existe=false;
+                            while(i<citas.size()&& existe==false) {
+                                if(id.compareTo(citas.get(i).getId())==0){
+                                    Toast.makeText(c, "Ya existe una cita con la misma descripcion, fecha y hora", Toast.LENGTH_LONG).show();
+                                    existe=true;
+                                }
+                                i++;
+                            }
+                            if(!existe){
+                                ContentValues cv = new ContentValues();
+                                cv.put(TableData.TableCitaMedico.COLUMN_NAME_ID, id);
+                                cv.put(TableData.TableCitaMedico.COLUMN_NAME_DESCRIPCION, descripcion);
+                                cv.put(TableData.TableCitaMedico.COLUMN_NAME_FECHA, fecha);
+                                cv.put(TableData.TableCitaMedico.COLUMN_NAME_HORA, hora);
+                                cv.put(TableData.TableCitaMedico.COLUMN_NAME_MEDICO, medico);
+
+                                db.insert(TableData.TableCitaMedico.TABLE_NAME_CITEMEDICO,null, cv);
+
+
+                                Log.d("Operaciones bases de datos", "Insertada una fila");
+
+                                db.close();
+
+                                //CODIGO QUE MANDA A VISTA LISTA CITAS
+                                FragmentManager fm = getFragmentManager();
+                                fm.beginTransaction()
+                                        .replace(R.id.container, new Citas_medico())
+                                        .commit();
+
+                                Toast.makeText(c, "Cita médico añadida correctamente", Toast.LENGTH_LONG).show();
+
+                            }
+
+                        }
 
                     }else{
                         Log.d("error", "else");

@@ -43,14 +43,15 @@ public class ArrayAdapterCita extends ArrayAdapter<Cita> {
         TextView linea2 = (TextView) rowView.findViewById(R.id.textFecha);
         TextView linea3 = (TextView) rowView.findViewById(R.id.textHora);
 
-        ImageView imageQuit = (ImageView) rowView.findViewById(R.id.ImQuitar);
-        ImageView imageEdit = (ImageView) rowView.findViewById(R.id.ImModificar);
+        ImageView imageQuit = (ImageView) rowView.findViewById(R.id.ImQuitarMedico);
+        ImageView imageEdit = (ImageView) rowView.findViewById(R.id.ImModificarCita);
 
 
         linea1.setText(medico + " - " + descripcion);
         linea2.setText(fecha);
         linea3.setText(hora);
-/*
+
+
         imageQuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,17 +72,17 @@ public class ArrayAdapterCita extends ArrayAdapter<Cita> {
                 }
             }
         });
-        /*
+
         imageEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = ((Activity)context).getFragmentManager();
                 fm.beginTransaction()
-                        .replace(R.id.container, new Editar_medicamento(nom, pas))
+                        .replace(R.id.container, new Editar_cita(medico, descripcion, fecha, hora))
                         .commit();
             }
         });
-        */
+
         return rowView;
     }
 }

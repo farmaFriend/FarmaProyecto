@@ -62,7 +62,7 @@ public class Anadir_medico extends Fragment{
                             //Mirar si en la base de datos existe un medico con ese nombre y especialidad
 
                             cursor = dbOp.cargarCursorMedicos();
-                            Medico m;
+
 
                             final ArrayList<Medico> medicos = new ArrayList<Medico>();
 
