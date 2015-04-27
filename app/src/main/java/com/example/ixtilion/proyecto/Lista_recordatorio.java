@@ -42,16 +42,16 @@ public class Lista_recordatorio extends Fragment {
                 //int horaIni = cursor.getInt(9);
 
                 if(this.momento =="m") {
-                    if(((horaIni + intervalo)%24) >6 &&((horaIni + intervalo)%24) <14){}
+                    if(((horaIni + intervalo)%24) >0 &&((horaIni + intervalo)%24) <8){}
                     recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,5));
                 }
 
                 if(this.momento =="t") {
-                    if(((horaIni + intervalo)%24) >14 &&((horaIni + intervalo)%24) <20){}
+                    if(((horaIni + intervalo)%24) >8 &&((horaIni + intervalo)%24) <18){}
                     recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,5));
                 }
 
-                if(this.momento =="n") if(((horaIni + intervalo)%24) <24 &&((horaIni + intervalo)%24) <14){}
+                if(this.momento =="n") if(((horaIni + intervalo)%24) >18 &&((horaIni + intervalo)%24) <24){}
 
                 if(this.momento =="all") {
                     recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,5));

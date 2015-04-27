@@ -50,5 +50,14 @@ public final class TableData {
         public static final String COLUMN_NAME_MEDICAMENTO = "medicamento";
     }
 
+    public static abstract class TableCitaMedico implements BaseColumns {
+        public static final String TABLE_NAME_CITEMEDICO = "citaMedico";
+        public static final String COLUMN_NAME_ID = "id";
+        public static final String COLUMN_NAME_MEDICO = "medico";
+        public static final String COLUMN_NAME_DESCRIPCION = "descripcion";
+        public static final String COLUMN_NAME_FECHA = "fecha";
+        public static final String COLUMN_NAME_HORA= "hora";
+    }
+
 
 }
