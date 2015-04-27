@@ -42,14 +42,24 @@ public class ArrayAdapterCita extends ArrayAdapter<Cita> {
         TextView linea1 = (TextView) rowView.findViewById(R.id.textEspecialidad);
         TextView linea2 = (TextView) rowView.findViewById(R.id.textFecha);
         TextView linea3 = (TextView) rowView.findViewById(R.id.textHora);
+        TextView linea4 = (TextView) rowView.findViewById(R.id.textDescr);
 
         ImageView imageQuit = (ImageView) rowView.findViewById(R.id.ImQuitar);
         ImageView imageEdit = (ImageView) rowView.findViewById(R.id.ImModificar);
 
+        if(medico.compareTo("---Elige un médico---")==0){
+            linea1.setText(descripcion);
+            linea4.setText(fecha);
+            linea2.setText(hora);
+            linea3.setText("");
+        }
+        else{
+            linea1.setText(medico);
+            linea2.setText(fecha);
+            linea3.setText(hora);
+            linea4.setText(descripcion);
+        }
 
-        linea1.setText(medico + " - " + descripcion);
-        linea2.setText(fecha);
-        linea3.setText(hora);
 /*
         imageQuit.setOnClickListener(new View.OnClickListener() {
             @Override
