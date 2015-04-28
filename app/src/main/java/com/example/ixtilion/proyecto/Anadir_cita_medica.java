@@ -114,6 +114,27 @@ public class Anadir_cita_medica extends Fragment {
                                 } while (cursor.moveToNext());
                             }
 
+                            //Borrar citas pasadas
+                            Date fA = new Date();
+                            DateFormat df =  DateFormat.getDateInstance();
+                            String fechAct = df.format(fA);
+
+                            Long l = Date.parse(fechAct);
+                            Calendar fechaActual = Calendar.getInstance();
+                            fechaActual.setTimeInMillis(l);
+
+                            Long l2 = Date.parse(fecha);
+                            Calendar fech = Calendar.getInstance();
+                            fech.setTimeInMillis(l2);
+
+                            boolean fechaIncorrecta=false;
+                            if((fech.before(fechaActual))){
+                                fechaIncorrecta=true;
+                                Toast.makeText(c, "No se guardará la cita ya que la fecha es anterior a la actual", Toast.LENGTH_LONG).show();
+                            }
+
+
+
                             int i=0;
                             boolean existe=false;
                             while(i<citas.size()&& existe==false) {
@@ -123,7 +144,7 @@ public class Anadir_cita_medica extends Fragment {
                                 }
                                 i++;
                             }
-                            if(!existe){
+                            if(!existe && !fechaIncorrecta){
                                 ContentValues cv = new ContentValues();
                                 cv.put(TableData.TableCitaMedico.COLUMN_NAME_ID, id);
                                 cv.put(TableData.TableCitaMedico.COLUMN_NAME_DESCRIPCION, descripcion);
@@ -131,11 +152,24 @@ public class Anadir_cita_medica extends Fragment {
                                 cv.put(TableData.TableCitaMedico.COLUMN_NAME_HORA, hora);
                                 cv.put(TableData.TableCitaMedico.COLUMN_NAME_MEDICO, medico);
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/master
                         //CODIGO QUE MANDA A VISTA LISTA CITAS
                         FragmentManager fm = getFragmentManager();
                         fm.beginTransaction()
                                 .replace(R.id.container, new Lista_citas())
                                 .commit();
+<<<<<<< HEAD
+
+
+                                db.insert(TableData.TableCitaMedico.TABLE_NAME_CITEMEDICO,null, cv);
+
+                                Toast.makeText(c, "Cita médico añadida correctamente", Toast.LENGTH_LONG).show();
+
+
+=======
 
                                 db.insert(TableData.TableCitaMedico.TABLE_NAME_CITEMEDICO,null, cv);
 
@@ -144,6 +178,7 @@ public class Anadir_cita_medica extends Fragment {
                                 Log.d("Operaciones bases de datos", "Insertada una fila");
 
                                 db.close();
+>>>>>>> origin/master
                             }
 
                         }
