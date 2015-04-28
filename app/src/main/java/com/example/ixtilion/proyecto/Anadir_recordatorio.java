@@ -7,6 +7,7 @@ import android.app.AlarmManager;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.PendingIntent;
+import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -23,8 +24,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -36,9 +39,9 @@ import java.util.List;
  * Created by rok on 14/03/2015.
  */
 public class Anadir_recordatorio extends Fragment {
-    EditText NOMBRE, CANTIDADTOMA, FECHAINICIO, FECHAFIN, INTERVALO;
+    EditText NOMBRE, CANTIDADTOMA, FECHAINICIO, FECHAFIN, INTERVALO, HORA;
     String nombre,fechaIni,fechaFin;
-    int intervalo;
+    int intervalo, horaIni;
     float cantidad;
     Button anadir;
     ImageView config;
@@ -85,6 +88,7 @@ public class Anadir_recordatorio extends Fragment {
         FECHAINICIO = (EditText) view.findViewById(R.id.TbfechaIni);
         FECHAFIN = (EditText) view.findViewById(R.id.Tbfechafin);
         INTERVALO = (EditText) view.findViewById(R.id.tbTiempo);
+        HORA = (EditText) view.findViewById(R.id.tbHora);
 
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +103,7 @@ public class Anadir_recordatorio extends Fragment {
                     fechaIni = FECHAINICIO.getText().toString();
                     fechaFin = FECHAFIN.getText().toString();
                     intervalo = Integer.parseInt(INTERVALO.getText().toString());
+                    horaIni = Integer.parseInt(HORA.getText().toString());
 
                     if (c != null) {
 
@@ -120,7 +125,7 @@ public class Anadir_recordatorio extends Fragment {
                                 cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAINICIO, fechaIni);
                                 cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAFIN, fechaFin);
                                 cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_INTERVALO, intervalo);
-
+                                cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_HORA, horaIni);
 
                                 db.insert(TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO, null, cv);
                                 Log.d("Operaciones bases de datos", "Insertada una fila");
@@ -148,6 +153,44 @@ public class Anadir_recordatorio extends Fragment {
                 //alarm.setOnetimeTimer(c);
 
 
+            }
+        });
+
+        HORA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog.OnTimeSetListener tdp = new TimePickerDialog.OnTimeSetListener(){
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        cal.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        cal.set(Calendar.MINUTE, minute);
+                        long milisegundos = cal.getTimeInMillis();
+                        SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
+                        String dateString = sdf.format(milisegundos);
+                        HORA.setText(dateString);
+                    }
+                };
+
+                new TimePickerDialog(c, tdp, cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), false).show();
+            }
+        });
+        HORA.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(HORA.isFocused()){
+                    TimePickerDialog.OnTimeSetListener tdp = new TimePickerDialog.OnTimeSetListener(){
+                        @Override
+                        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                            cal.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                            cal.set(Calendar.MINUTE, minute);
+                            long milisegundos = cal.getTimeInMillis();
+                            SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
+                            String dateString = sdf.format(milisegundos);
+                            HORA.setText(dateString);
+                        }
+                    };
+                    new TimePickerDialog(c, tdp, cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), false).show();
+                }
             }
         });
         config.setOnClickListener(new View.OnClickListener() {
