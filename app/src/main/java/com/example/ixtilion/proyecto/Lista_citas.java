@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by USUARIO on 27/04/2015.
@@ -24,6 +27,8 @@ public class Lista_citas extends Fragment {
         cursor = dbOp.cargarCursorCitasMedico();
 
         final ArrayList<Cita> citas = new ArrayList<Cita>();
+
+
 
         if (cursor.moveToFirst()) {
             do {
