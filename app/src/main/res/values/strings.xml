@@ -6,9 +6,7 @@
         <item>Medicamentos</item>
         <item>Medicos</item>
         <item>Solicitar cita</item>
-        <item>Añadir cita</item>
         <item>Citas medico</item>
-        <item>Lista citas medico</item>
     </string-array>
     <string-array name="section_titles">
         <item>Inicio</item>
@@ -16,20 +14,16 @@
         <item>Medicamentos</item>
         <item>Medicos</item>
         <item>Solicitar cita</item>
-        <item>Añadir cita</item>
         <item>Citas medico</item>
-        <item>Lista citas medico</item>
     </string-array>
 
     <string-array name="sections_icons">
-        <item>@drawable/capsule</item>
+        <item>@drawable/princ</item>
         <item>@drawable/personal</item>
         <item>@drawable/capsule</item>
         <item>@drawable/doctor</item>
         <item>@drawable/doctoranadir</item>
-        <item>@drawable/doctoranadir</item>
-        <item>@drawable/doctoranadir</item>
-        <item>@drawable/doctoranadir</item>
+        <item>@drawable/schedule1</item>
     </string-array>
 
     <string name="app_name">FarmaFriend</string>
