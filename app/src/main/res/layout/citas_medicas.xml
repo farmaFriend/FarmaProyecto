@@ -2,11 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:focusable="false">
 
     <CalendarView
         android:layout_width="323dp"
         android:layout_height="430dp"
         android:id="@+id/calendarView"
-        android:layout_weight="0.11" />
+        android:layout_gravity="center"/>
+
 </LinearLayout>

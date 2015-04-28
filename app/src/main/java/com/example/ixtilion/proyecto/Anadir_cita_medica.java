@@ -108,7 +108,7 @@ public class Anadir_cita_medica extends Fragment {
                         //CODIGO QUE MANDA A VISTA LISTA CITAS
                         FragmentManager fm = getFragmentManager();
                         fm.beginTransaction()
-                                .replace(R.id.container, new Citas_medico())
+                                .replace(R.id.container, new Citas_medico(fecha))
                                 .commit();
 
                         Toast.makeText(c, "Cita médico añadida correctamente", Toast.LENGTH_LONG).show();
