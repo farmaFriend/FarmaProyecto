@@ -10,9 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
-import java.text.ParsePosition;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -46,6 +47,35 @@ public class Lista_citas extends Fragment {
         ListView list = (ListView)view.findViewById(R.id.listCitas);
 
 
+        //Borrar citas pasadas
+        Date fA = new Date();
+        DateFormat df =  DateFormat.getDateInstance();
+        String fechAct = df.format(fA);
+
+        Long l = Date.parse(fechAct);
+        Calendar fechaActual = Calendar.getInstance();
+        fechaActual.setTimeInMillis(l);
+
+
+        for(int i=0; i<citas.size();i++){
+            String f = citas.get(i).getFecha();
+            Long l2 = Date.parse(f);
+            Calendar fecha = Calendar.getInstance();
+            fecha.setTimeInMillis(l2);
+            if((fechaActual.after(fecha))){
+                citas.remove(i);
+            }
+        }
+/*
+        int j=1;
+        for (int i=0; i<citas.size(); i++){
+            String f1 = citas.get(i).getFecha();
+            String f2 = citas.get(j).getFecha();
+
+
+        }
+
+*/
         final ArrayAdapterCita adapter = new ArrayAdapterCita(view.getContext(),citas);
         list.setAdapter(adapter);
         View imageButton = (ImageButton) view.findViewById(R.id.anadirCita);

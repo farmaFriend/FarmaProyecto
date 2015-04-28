@@ -24,16 +24,10 @@ public class Citas_medico extends Fragment{
 
     Context c;
     CalendarView calendario;
-    private DatabaseOperations dbOp;
-    private Cursor cursor;
-    private String fecha;
-
-    public Citas_medico(String fecha){
-        this.fecha=fecha;
-    }
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+<<<<<<< HEAD
         dbOp = new DatabaseOperations(container.getContext());
         cursor = dbOp.cargarCursorCitasMedico();
 
@@ -51,6 +45,8 @@ public class Citas_medico extends Fragment{
 
             } while (cursor.moveToNext());
         }
+=======
+>>>>>>> b85b1851410fc4706af7b345a1e95c3c845d0e8e
 
         c = container.getContext();
         View view = inflater.inflate(R.layout.citas_medicas, container, false);
