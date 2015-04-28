@@ -114,7 +114,7 @@ public class Anadir_cita_medica extends Fragment {
                                 } while (cursor.moveToNext());
                             }
 
-                            //Borrar citas pasadas
+                            /*Borrar citas pasadas
                             Date fA = new Date();
                             DateFormat df =  DateFormat.getDateInstance();
                             String fechAct = df.format(fA);
@@ -131,7 +131,7 @@ public class Anadir_cita_medica extends Fragment {
                             if((fech.before(fechaActual))){
                                 fechaIncorrecta=true;
                                 Toast.makeText(c, "No se guardará la cita ya que la fecha es anterior a la actual", Toast.LENGTH_LONG).show();
-                            }
+                            }*/
 
 
 
@@ -144,7 +144,7 @@ public class Anadir_cita_medica extends Fragment {
                                 }
                                 i++;
                             }
-                            if(!existe && !fechaIncorrecta){
+                            if(!existe){
                                 ContentValues cv = new ContentValues();
                                 cv.put(TableData.TableCitaMedico.COLUMN_NAME_ID, id);
                                 cv.put(TableData.TableCitaMedico.COLUMN_NAME_DESCRIPCION, descripcion);
