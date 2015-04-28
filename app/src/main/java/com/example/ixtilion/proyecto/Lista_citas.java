@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -66,16 +67,33 @@ public class Lista_citas extends Fragment {
                 citas.remove(i);
             }
         }
-/*
-        int j=1;
-        for (int i=0; i<citas.size(); i++){
-            String f1 = citas.get(i).getFecha();
-            String f2 = citas.get(j).getFecha();
 
 
+
+        int i,j;
+        Cita aux;
+        for (i=0; i<citas.size()-1; i++){
+            for(j=0 ;j <citas.size()-i-1 ; j++){
+                String f1 = citas.get(j).getFecha();
+                String f2 = citas.get(j+1).getFecha();
+
+                Long l1 = Date.parse(f1);
+                Calendar fech1 = Calendar.getInstance();
+                fech1.setTimeInMillis(l1);
+
+                Long l2 = Date.parse(f2);
+                Calendar fech2 = Calendar.getInstance();
+                fech2.setTimeInMillis(l2);
+
+
+                if(fech1.after(fech2)){
+                    aux = citas.get(j+1);
+                    citas.set(j+1,citas.get(j));
+                    citas.set(j,aux);
+                }
+            }
         }
 
-*/
         final ArrayAdapterCita adapter = new ArrayAdapterCita(view.getContext(),citas);
         list.setAdapter(adapter);
         View imageButton = (ImageButton) view.findViewById(R.id.anadirCita);
