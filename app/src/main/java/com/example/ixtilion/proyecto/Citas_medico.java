@@ -24,32 +24,9 @@ public class Citas_medico extends Fragment{
 
     Context c;
     CalendarView calendario;
-    private DatabaseOperations dbOp;
-    private Cursor cursor;
-    private String fecha;
-
-    public Citas_medico(String fecha){
-        this.fecha=fecha;
-    }
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        dbOp = new DatabaseOperations(container.getContext());
-        cursor = dbOp.cargarCursorCitasMedico();
-
-        final ArrayList<Cita> citas = new ArrayList<Cita>();
-
-        if (cursor.moveToFirst()) {
-            do {
-                String descripcion = cursor.getString(1);
-                String fecha = cursor.getString(2);
-                String hora = cursor.getString(3);
-                String medico = cursor.getString(0);
-
-                citas.add(new Cita(medico, descripcion, fecha,hora));
-
-            } while (cursor.moveToNext());
-        }
 
         c = container.getContext();
         View view = inflater.inflate(R.layout.citas_medicas, container, false);

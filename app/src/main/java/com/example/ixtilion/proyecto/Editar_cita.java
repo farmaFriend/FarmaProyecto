@@ -135,14 +135,14 @@ public class Editar_cita extends Fragment{
                             }
                             if(!existe){
                                 ContentValues cv = new ContentValues();
-                                cv.put(TableData.TableCitaMedico.COLUMN_NAME_ID, id);
+                                cv.put(TableData.TableCitaMedico.COLUMN_NAME_ID, id2);
                                 cv.put(TableData.TableCitaMedico.COLUMN_NAME_DESCRIPCION, descripcion);
                                 cv.put(TableData.TableCitaMedico.COLUMN_NAME_FECHA, fecha);
                                 cv.put(TableData.TableCitaMedico.COLUMN_NAME_HORA, hora);
                                 cv.put(TableData.TableCitaMedico.COLUMN_NAME_MEDICO, medico);
 
-                                String col=TableData.TableCitaMedico.COLUMN_NAME_DESCRIPCION;
-                                String val=descripcion;
+                                String col=TableData.TableCitaMedico.COLUMN_NAME_ID;
+                                String val=id2;
 
                                 String aux=col+"='"+val+"'";
 
@@ -156,7 +156,7 @@ public class Editar_cita extends Fragment{
                                 //CODIGO QUE MANDA A VISTA LISTA CITAS
                                 FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction()
-                                        .replace(R.id.container, new Citas_medico())
+                                        .replace(R.id.container, new Lista_citas())
                                         .commit();
 
 

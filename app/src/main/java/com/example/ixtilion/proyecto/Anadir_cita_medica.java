@@ -25,6 +25,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -74,8 +75,6 @@ public class Anadir_cita_medica extends Fragment {
         DESCRIPCION =   (EditText) view.findViewById(R.id.tbDescrpcion);
         FECHA = (EditText) view.findViewById(R.id.tbFecha);
         HORA = (EditText) view.findViewById(R.id.tbHora);
-
-
 
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,29 +131,18 @@ public class Anadir_cita_medica extends Fragment {
                                 cv.put(TableData.TableCitaMedico.COLUMN_NAME_HORA, hora);
                                 cv.put(TableData.TableCitaMedico.COLUMN_NAME_MEDICO, medico);
 
-<<<<<<< HEAD
                         //CODIGO QUE MANDA A VISTA LISTA CITAS
                         FragmentManager fm = getFragmentManager();
                         fm.beginTransaction()
-                                .replace(R.id.container, new Citas_medico(fecha))
+                                .replace(R.id.container, new Lista_citas())
                                 .commit();
-=======
-                                db.insert(TableData.TableCitaMedico.TABLE_NAME_CITEMEDICO,null, cv);
->>>>>>> origin/master
 
+                                db.insert(TableData.TableCitaMedico.TABLE_NAME_CITEMEDICO,null, cv);
+                                Toast.makeText(c, "Cita médico añadida correctamente", Toast.LENGTH_LONG).show();
 
                                 Log.d("Operaciones bases de datos", "Insertada una fila");
 
                                 db.close();
-
-                                //CODIGO QUE MANDA A VISTA LISTA CITAS
-                                FragmentManager fm = getFragmentManager();
-                                fm.beginTransaction()
-                                        .replace(R.id.container, new Citas_medico())
-                                        .commit();
-
-                                Toast.makeText(c, "Cita médico añadida correctamente", Toast.LENGTH_LONG).show();
-
                             }
 
                         }
