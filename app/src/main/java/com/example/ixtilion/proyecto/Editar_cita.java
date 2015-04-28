@@ -48,6 +48,7 @@ public class Editar_cita extends Fragment{
         this.descripcion=des;
         this.fecha=f;
         this.hora=h;
+        this.id=des+f+h;
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -142,7 +143,7 @@ public class Editar_cita extends Fragment{
                                 cv.put(TableData.TableCitaMedico.COLUMN_NAME_MEDICO, medico);
 
                                 String col=TableData.TableCitaMedico.COLUMN_NAME_ID;
-                                String val=id2;
+                                String val=id;
 
                                 String aux=col+"='"+val+"'";
 
@@ -156,11 +157,7 @@ public class Editar_cita extends Fragment{
                                 //CODIGO QUE MANDA A VISTA LISTA CITAS
                                 FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction()
-<<<<<<< HEAD
-                                        .replace(R.id.container, new Citas_medico(fecha))
-=======
                                         .replace(R.id.container, new Lista_citas())
->>>>>>> b85b1851410fc4706af7b345a1e95c3c845d0e8e
                                         .commit();
 
 

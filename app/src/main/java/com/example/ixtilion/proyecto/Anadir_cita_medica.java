@@ -131,41 +131,19 @@ public class Anadir_cita_medica extends Fragment {
                                 cv.put(TableData.TableCitaMedico.COLUMN_NAME_HORA, hora);
                                 cv.put(TableData.TableCitaMedico.COLUMN_NAME_MEDICO, medico);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> b85b1851410fc4706af7b345a1e95c3c845d0e8e
                         //CODIGO QUE MANDA A VISTA LISTA CITAS
                         FragmentManager fm = getFragmentManager();
                         fm.beginTransaction()
                                 .replace(R.id.container, new Lista_citas())
                                 .commit();
-<<<<<<< HEAD
 
                                 db.insert(TableData.TableCitaMedico.TABLE_NAME_CITEMEDICO,null, cv);
 
-/*
-=======
-
-                                db.insert(TableData.TableCitaMedico.TABLE_NAME_CITEMEDICO,null, cv);
                                 Toast.makeText(c, "Cita médico añadida correctamente", Toast.LENGTH_LONG).show();
->>>>>>> b85b1851410fc4706af7b345a1e95c3c845d0e8e
 
                                 Log.d("Operaciones bases de datos", "Insertada una fila");
 
                                 db.close();
-<<<<<<< HEAD
-
-                                //CODIGO QUE MANDA A VISTA LISTA CITAS
-                                FragmentManager fm = getFragmentManager();
-                                fm.beginTransaction()
-                                        .replace(R.id.container, new Citas_medico())
-                                        .commit();
-*/
-                                Toast.makeText(c, "Cita médico añadida correctamente", Toast.LENGTH_LONG).show();
-
-=======
->>>>>>> b85b1851410fc4706af7b345a1e95c3c845d0e8e
                             }
 
                         }
