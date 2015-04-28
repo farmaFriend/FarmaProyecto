@@ -9,13 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.StringTokenizer;
 
 /**
  * Created by USUARIO on 27/04/2015.
@@ -53,19 +52,38 @@ public class Lista_citas extends Fragment {
         DateFormat df =  DateFormat.getDateInstance();
         String fechAct = df.format(fA);
 
-        Long l = Date.parse(fechAct);
-        Calendar fechaActual = Calendar.getInstance();
-        fechaActual.setTimeInMillis(l);
-
-
+        int dia, diaux, mes, mesaux,anio, anioaux;
+        StringTokenizer st,staux;
+        int auxil=0;
         for(int i=0; i<citas.size();i++){
-            String f = citas.get(i).getFecha();
-            Long l2 = Date.parse(f);
-            Calendar fecha = Calendar.getInstance();
-            fecha.setTimeInMillis(l2);
-            if((fechaActual.after(fecha))){
-                citas.remove(i);
+            String f = citas.get(auxil).getFecha();
+            st=new StringTokenizer(fechAct, "/");
+            staux=new StringTokenizer(f, "/");
+
+            dia=Integer.parseInt(st.nextToken());
+            diaux=Integer.parseInt(staux.nextToken());
+            mes=Integer.parseInt(st.nextToken());
+            mesaux=Integer.parseInt(staux.nextToken());
+            anio=Integer.parseInt(st.nextToken());
+            anioaux=Integer.parseInt(staux.nextToken());
+
+            if(anioaux<anio){
+                citas.remove(auxil);
+                auxil--;
             }
+            else if(anioaux==anio){
+                if(mesaux<mes){
+                    citas.remove(auxil);
+                    auxil--;
+                }
+                else  if(mesaux==mes){
+                    if(diaux<dia){
+                        citas.remove(auxil);
+                        auxil--;
+                    }
+                }
+            }
+            auxil++;
         }
 
 

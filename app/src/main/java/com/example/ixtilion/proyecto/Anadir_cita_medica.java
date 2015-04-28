@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  * Created by USUARIO on 24/04/2015.
@@ -114,24 +115,37 @@ public class Anadir_cita_medica extends Fragment {
                                 } while (cursor.moveToNext());
                             }
 
-                            /*Borrar citas pasadas
+                            //No poner citas pasadas
                             Date fA = new Date();
                             DateFormat df =  DateFormat.getDateInstance();
                             String fechAct = df.format(fA);
+                            StringTokenizer st=new StringTokenizer(fechAct, "/");
+                            StringTokenizer staux=new StringTokenizer(fecha, "/");
 
-                            Long l = Date.parse(fechAct);
-                            Calendar fechaActual = Calendar.getInstance();
-                            fechaActual.setTimeInMillis(l);
+                            boolean fechaCorrecta=true;
+                            int dia=Integer.parseInt(st.nextToken());
+                            int diaux=Integer.parseInt(staux.nextToken());
+                            int mes=Integer.parseInt(st.nextToken());
+                            int mesaux=Integer.parseInt(staux.nextToken());
+                            int anio=Integer.parseInt(st.nextToken());
+                            int anioaux=Integer.parseInt(staux.nextToken());
 
-                            Long l2 = Date.parse(fecha);
-                            Calendar fech = Calendar.getInstance();
-                            fech.setTimeInMillis(l2);
-
-                            boolean fechaIncorrecta=false;
-                            if((fech.before(fechaActual))){
-                                fechaIncorrecta=true;
+                            if(anioaux<anio){
+                                fechaCorrecta=false;
                                 Toast.makeText(c, "No se guardará la cita ya que la fecha es anterior a la actual", Toast.LENGTH_LONG).show();
-                            }*/
+                            }
+                            else if(anioaux==anio){
+                                if(mesaux<mes){
+                                    fechaCorrecta=false;
+                                    Toast.makeText(c, "No se guardará la cita ya que la fecha es anterior a la actual", Toast.LENGTH_LONG).show();
+                                }
+                                else if(mesaux==mes){
+                                    if(diaux<dia){
+                                        fechaCorrecta=false;
+                                        Toast.makeText(c, "No se guardará la cita ya que la fecha es anterior a la actual", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            }
 
 
 
@@ -144,7 +158,7 @@ public class Anadir_cita_medica extends Fragment {
                                 }
                                 i++;
                             }
-                            if(!existe){
+                            if(!existe && fechaCorrecta){
                                 ContentValues cv = new ContentValues();
                                 cv.put(TableData.TableCitaMedico.COLUMN_NAME_ID, id);
                                 cv.put(TableData.TableCitaMedico.COLUMN_NAME_DESCRIPCION, descripcion);
