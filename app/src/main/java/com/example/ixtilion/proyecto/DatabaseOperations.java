@@ -51,6 +51,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
                     TableData.TableInfoRecordatorio.COLUMN_NAME_INTERVALO + INT_TYPE + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_DIASTOMASMES + INT_TYPE + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_DIASDESCANSOMES + INT_TYPE + COMMA_SEP +
+                    TableData.TableInfoRecordatorio.COLUMN_NAME_HORA + INT_TYPE + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO + TEXT_TYPE + COMMA_SEP +
                     " foreign key ( " + TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO +" ) references " +
                             TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO + " ( " + TableData.TableInfoMedic.COLUMN_NAME_NOMBRE + " ) ) ";
@@ -146,7 +147,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
                 " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAINICIO + " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAFIN +
                 " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_CANTIDADTOMA + " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_INTERVALO +
                 " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_DIASTOMASMES + " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_DIASDESCANSOMES +
-                " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO + " FROM " + TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO;
+                " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO +  " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_HORA+ " FROM " + TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO;
         Cursor cu= db.rawQuery( s, null);
         return cu;
     }

@@ -39,26 +39,49 @@ public class Lista_recordatorio extends Fragment {
                 String fechaIni = cursor.getString(2);
                 String fechaFin = cursor.getString(3);
                 int intervalo = cursor.getInt(5);
-                //int horaIni = cursor.getInt(9);
+                int horaIni = cursor.getInt(9);
 
                 if(this.momento =="m") {
-                    //if(((horaIni + intervalo)%24) >0 &&((horaIni + intervalo)%24) <8){}
-                    recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,5));
+                    if(((horaIni + intervalo)%24) >0 &&((horaIni + intervalo)%24) <8){recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,horaIni));}
+                   if(intervalo <=8) {
+                       if (((horaIni + intervalo * 2) % 24) > 0 && ((horaIni + intervalo * 2) % 24) < 8) {
+                           recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id, horaIni));
+                       }
+
+                       if (((horaIni + intervalo * 3) % 24) > 0 && ((horaIni + intervalo * 3) % 24) < 8) {
+                           recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id, horaIni));
+                       }
+                   }
                 }
 
                 if(this.momento =="t") {
-                  //  if(((horaIni + intervalo)%24) >8 &&((horaIni + intervalo)%24) <18){}
-                    recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,5));
+                    if(((horaIni + intervalo)%24) >8 &&((horaIni + intervalo)%24) <16){recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,horaIni));}
+                    if(intervalo <=8) {
+                        if (((horaIni + intervalo * 2) % 24) > 8 && ((horaIni + intervalo * 2) % 24) < 16) {
+                            recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id, horaIni));
+                        }
+
+                        if (((horaIni + intervalo * 3) % 24) > 8 && ((horaIni + intervalo * 3) % 24) < 16) {
+                            recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id, horaIni));
+                        }
+                    }
                 }
 
                 if(this.momento =="n"){
-                    //if(((horaIni + intervalo)%24) >18 &&((horaIni + intervalo)%24) <24){}
-                        recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,5));
+                    if(((horaIni + intervalo)%24) >16 &&((horaIni + intervalo)%24) <24){recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,horaIni));}
+                }
+                if(intervalo <=8) {
+                    if (((horaIni + intervalo * 2) % 24) > 16 && ((horaIni + intervalo * 2) % 24) < 8) {
+                        recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id, horaIni));
+                    }
 
+                    if (((horaIni + intervalo * 3) % 24) > 16 && ((horaIni + intervalo * 3) % 24) < 8) {
+                        recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id, horaIni));
+                    }
                 }
 
                 if(this.momento =="all") {
-                    recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,5));
+                    recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,horaIni));
                 }
 
             } while (cursor.moveToNext());

@@ -48,6 +48,8 @@ public final class TableData {
         public static final String COLUMN_NAME_DIASTOMASMES = "dias_tomas_mes";
         public static final String COLUMN_NAME_DIASDESCANSOMES = "dias_descanso_mes";
         public static final String COLUMN_NAME_MEDICAMENTO = "medicamento";
+        public static final String COLUMN_NAME_HORA = "hora";
+
     }
 
     public static abstract class TableCitaMedico implements BaseColumns {
