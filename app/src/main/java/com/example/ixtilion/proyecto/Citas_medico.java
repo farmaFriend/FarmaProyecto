@@ -45,8 +45,9 @@ public class Citas_medico extends Fragment{
                 String fecha = cursor.getString(2);
                 String hora = cursor.getString(3);
                 String medico = cursor.getString(0);
+                String id = cursor.getString(4);
 
-                citas.add(new Cita(medico, descripcion, fecha,hora));
+                citas.add(new Cita(medico, descripcion, fecha,hora,id));
 
             } while (cursor.moveToNext());
         }

@@ -156,7 +156,7 @@ public class Editar_cita extends Fragment{
                                 //CODIGO QUE MANDA A VISTA LISTA CITAS
                                 FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction()
-                                        .replace(R.id.container, new Citas_medico())
+                                        .replace(R.id.container, new Citas_medico(fecha))
                                         .commit();
 
 
