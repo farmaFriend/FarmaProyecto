@@ -34,6 +34,7 @@ public class ArrayAdapterCita extends ArrayAdapter<Cita> {
         final String descripcion = citas.get(position).getDescripcion();
         final String fecha = citas.get(position).getFecha();
         final String hora = citas.get(position).getHora();
+        final String id = citas.get(position).getId();
 
 
         LayoutInflater inflater = (LayoutInflater) context
@@ -44,8 +45,8 @@ public class ArrayAdapterCita extends ArrayAdapter<Cita> {
         TextView linea3 = (TextView) rowView.findViewById(R.id.textHora);
         TextView linea4 = (TextView) rowView.findViewById(R.id.textDescr);
 
-        ImageView imageQuit = (ImageView) rowView.findViewById(R.id.ImQuitar);
-        ImageView imageEdit = (ImageView) rowView.findViewById(R.id.ImModificar);
+        ImageView imageQuit = (ImageView) rowView.findViewById(R.id.ImQuitarMedico);
+        ImageView imageEdit = (ImageView) rowView.findViewById(R.id.ImModificarCita);
 
         if(medico.compareTo("---Elige un médico---")==0){
             linea1.setText(descripcion);
@@ -60,7 +61,7 @@ public class ArrayAdapterCita extends ArrayAdapter<Cita> {
             linea4.setText(descripcion);
         }
 
-/*
+
         imageQuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,17 +82,17 @@ public class ArrayAdapterCita extends ArrayAdapter<Cita> {
                 }
             }
         });
-        /*
+
         imageEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = ((Activity)context).getFragmentManager();
                 fm.beginTransaction()
-                        .replace(R.id.container, new Editar_medicamento(nom, pas))
+                        .replace(R.id.container, new Editar_cita(medico, descripcion, fecha, hora))
                         .commit();
             }
         });
-        */
+
         return rowView;
     }
 }

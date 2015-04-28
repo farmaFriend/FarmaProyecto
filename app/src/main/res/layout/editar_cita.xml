@@ -8,78 +8,63 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Médico"
-        android:id="@+id/textViewNombre" />
+        android:text="Médico (*)"
+        android:textSize="40px"
+        android:id="@+id/lbMedico" />
 
-    <EditText
+    <Spinner
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextMedico"
-        android:layout_gravity="center_horizontal" />
+        android:layout_height="50dp"
+        android:id="@+id/spMedico"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Especialidad"
-        android:id="@+id/textViewTelf" />
+        android:text="Descripción (*)"
+        android:textSize="40px"
+        android:id="@+id/lbDescripcion" />
+
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/editTextEsp"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/tbDescrpcion"
+        android:maxLength="10" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Fecha"
-        android:id="@+id/textView7" />
+        android:text="Fecha (*)"
+        android:textSize="40px" />
+        android:id="@+id/lbFecha" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="date"
         android:ems="10"
-        android:id="@+id/editTextFech"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/tbFecha" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Hora"
-        android:id="@+id/textView8" />
+        android:text="Hora (*)"
+        android:id="@+id/lbHora"
+        android:textSize="40px" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="date"
         android:ems="10"
-        android:id="@+id/editTextHora" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Descripción"
-        android:id="@+id/textView9" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/editTextDesc"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/tbHora" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Editar cita"
-        android:id="@+id/buttonEdit" />
+        android:id="@+id/btEditarCita" />
 
 </LinearLayout>
