@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ImAlarm"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/alarma" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="ACEPTAR"
+        android:id="@+id/btAcepAla"
+        android:layout_below="@+id/ImAlarm"
+        android:layout_alignLeft="@+id/ImAlarm"
+        android:layout_alignStart="@+id/ImAlarm"
+        android:layout_marginLeft="50dip"/>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Cancelar"
+        android:id="@+id/btCancAla"
+        android:layout_below="@+id/ImAlarm"
+        android:layout_alignRight="@+id/ImAlarm"
+        android:layout_alignEnd="@+id/ImAlarm"
+        android:layout_marginRight="50dip"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="TOMAR:"
+        android:id="@+id/tvToma"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dip"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

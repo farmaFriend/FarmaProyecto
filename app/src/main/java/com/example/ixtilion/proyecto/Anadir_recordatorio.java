@@ -152,7 +152,7 @@ public class Anadir_recordatorio extends Fragment {
                 }
                 //Alarma
                 AlarmReceiver alarm=new AlarmReceiver();
-                alarm.SetAlarm(c);
+                alarm.SetAlarm(c, nombre);
                 //alarm.setOnetimeTimer(c);
 
 

@@ -20,10 +20,15 @@ import android.os.Bundle;
  */
 public class AlarmReceiver extends BroadcastReceiver {
     final public static String ONE_TIME = "onetime";
-
+    public static String medicamento = "caca";
     @Override
     public void onReceive(Context context, Intent intent) {
-        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+
+        Intent inten = new Intent(context, Alarma.class);
+        inten.putExtra("medicam", medicamento);
+        context.startActivity(inten);
+
+        /*PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "YOUR TAG");
         //Acquire the lock
         wl.acquire();
@@ -35,17 +40,18 @@ public class AlarmReceiver extends BroadcastReceiver {
         Format formatter = new SimpleDateFormat("hh:mm:ss a");
         msgStr.append(formatter.format(new Date()));
 
-        Toast.makeText(context, msgStr, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, msgStr+medicamento, Toast.LENGTH_LONG).show();
         Vibrator vibrator= (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(2000);
 
         //Release the lock
-        wl.release();
+        wl.release();*/
 
     }
-    public void SetAlarm(Context context)
+    public void SetAlarm(Context context, String nomMed)
     {
         AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        medicamento=nomMed;
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra(ONE_TIME, Boolean.FALSE);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
