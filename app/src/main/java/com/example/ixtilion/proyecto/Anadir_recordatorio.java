@@ -88,7 +88,7 @@ public class Anadir_recordatorio extends Fragment {
         FECHAINICIO = (EditText) view.findViewById(R.id.TbfechaIni);
         FECHAFIN = (EditText) view.findViewById(R.id.Tbfechafin);
         INTERVALO = (EditText) view.findViewById(R.id.tbTiempo);
-        HORA = (EditText) view.findViewById(R.id.tbHora);
+        HORA= (EditText) view.findViewById(R.id.tbHora);
 
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +103,7 @@ public class Anadir_recordatorio extends Fragment {
                     fechaIni = FECHAINICIO.getText().toString();
                     fechaFin = FECHAFIN.getText().toString();
                     intervalo = Integer.parseInt(INTERVALO.getText().toString());
-                    horaIni = Integer.parseInt(HORA.getText().toString());
+
 
                     if (c != null) {
 
@@ -162,6 +162,7 @@ public class Anadir_recordatorio extends Fragment {
                 TimePickerDialog.OnTimeSetListener tdp = new TimePickerDialog.OnTimeSetListener(){
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        horaIni = hourOfDay;
                         cal.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         cal.set(Calendar.MINUTE, minute);
                         long milisegundos = cal.getTimeInMillis();
@@ -174,6 +175,8 @@ public class Anadir_recordatorio extends Fragment {
                 new TimePickerDialog(c, tdp, cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), false).show();
             }
         });
+
+
         HORA.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -181,6 +184,7 @@ public class Anadir_recordatorio extends Fragment {
                     TimePickerDialog.OnTimeSetListener tdp = new TimePickerDialog.OnTimeSetListener(){
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                            horaIni = hourOfDay;
                             cal.set(Calendar.HOUR_OF_DAY, hourOfDay);
                             cal.set(Calendar.MINUTE, minute);
                             long milisegundos = cal.getTimeInMillis();
