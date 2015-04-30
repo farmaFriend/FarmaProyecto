@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
 import android.os.Vibrator;
+import android.util.Log;
 import android.widget.Toast;
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -34,7 +35,6 @@ public class AlarmReceiver extends BroadcastReceiver {
         Format formatter = new SimpleDateFormat("hh:mm:ss a");
         msgStr.append(formatter.format(new Date()));
 
-
         Toast.makeText(context, msgStr, Toast.LENGTH_LONG).show();
         Vibrator vibrator= (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(2000);
@@ -50,7 +50,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         intent.putExtra(ONE_TIME, Boolean.FALSE);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
         //After after 30 seconds
-        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 30 , pi);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 30, pi);
     }
 
     public void CancelAlarm(Context context)
