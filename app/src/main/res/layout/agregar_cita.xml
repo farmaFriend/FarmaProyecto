@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Médico"
+        android:text="@string/Doctor"
         android:id="@+id/textViewNombre" />
 
     <EditText
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Especialidad"
+        android:text="@string/Especialidad"
         android:id="@+id/textViewTelf" />
 
     <EditText
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Fecha"
+        android:text="@string/Fecha"
         android:id="@+id/textView7" />
 
     <EditText
@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Hora"
+        android:text="@string/Hora"
         android:id="@+id/textView8" />
 
     <EditText
@@ -65,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Descripción"
+        android:text="@string/Descripcion"
         android:id="@+id/textView9" />
 
     <EditText
@@ -79,7 +79,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Añadir cita"
+        android:text="@string/AñCit"
         android:id="@+id/buttonAdd" />
 
 </LinearLayout>

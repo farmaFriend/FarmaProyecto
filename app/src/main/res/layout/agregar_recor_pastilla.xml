@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre medicamento (*)"
+        android:text="@string/NombreMedicamento"
         android:id="@+id/LnomMedi"
         android:textSize="40px" />
 
@@ -20,7 +20,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fecha inicio (*)"
+        android:text="@string/FechaIni"
         android:id="@+id/LfechaIni"
         android:textSize="40px" />
 
@@ -34,7 +34,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fecha fin (*)"
+        android:text="@string/FechaFin"
         android:id="@+id/Lfechafin"
         android:textSize="40px" />
 
@@ -48,7 +48,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hora comienzo"
+        android:text="@string/hORAiNI"
         android:id="@+id/textView5"
         android:textSize="40px" />
 
@@ -64,7 +64,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cantidad por toma (*)"
+        android:text="@string/Cantidadtoma"
         android:id="@+id/LCantidad"
         android:textSize="40px" />
 
@@ -78,7 +78,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cada cuanto tiempo (horas) (*)"
+        android:text="@string/Cadacuanto"
         android:id="@+id/LTiempo"
         android:textSize="40px" />
 
@@ -92,7 +92,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Configuración avanzada"
+        android:text="@string/ConfigAvanzada"
         android:textColorLink="@color/highlighted_text_material_dark"
         android:id="@+id/textView4"
         android:textSize="40px" />
@@ -106,7 +106,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Añadir recordatorio"
+        android:text="@string/AñadRecord"
         android:id="@+id/btAnadirRec" />
 
 </LinearLayout>

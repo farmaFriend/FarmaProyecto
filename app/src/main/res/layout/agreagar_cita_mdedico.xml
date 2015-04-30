@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Médico (*)"
+        android:text="@string/Doctor"
         android:textSize="40px"
         android:id="@+id/lbMedico" />
 
@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Descripción (*)"
+        android:text="@string/Descripcion"
         android:textSize="40px"
         android:id="@+id/lbDescripcion" />
 
@@ -32,7 +32,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fecha (*)"
+        android:text="@string/Fecha"
         android:id="@+id/lbFecha"
         android:textSize="40px" />
 
@@ -46,7 +46,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hora (*)"
+        android:text="@string/Hora"
         android:id="@+id/lbHora"
         android:textSize="40px" />
 
@@ -60,6 +60,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Añadir cita"
+        android:text="@string/AñCit"
         android:id="@+id/btAñadirCita" />
 </LinearLayout>

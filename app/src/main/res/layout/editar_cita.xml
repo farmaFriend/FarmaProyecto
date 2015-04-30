@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Médico (*)"
+        android:text="@string/Doctor"
         android:textSize="40px"
         android:id="@+id/lbMedico" />
 
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Descripción (*)"
+        android:text="@string/Descripcion"
         android:textSize="40px"
         android:id="@+id/lbDescripcion" />
 
@@ -36,8 +36,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Fecha (*)"
-        android:textSize="40px" />
+        android:text="@string/Fecha"
+        android:textSize="40px"
+        android:id="@+id/er" />
         android:id="@+id/lbFecha" />
 
     <EditText
@@ -50,7 +51,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hora (*)"
+        android:text="@string/Hora"
         android:id="@+id/lbHora"
         android:textSize="40px" />
 
@@ -64,7 +65,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Editar cita"
+        android:text="@string/EdCita"
         android:id="@+id/btEditarCita" />
 
 </LinearLayout>

@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Nombre (*)"
+        android:text="@string/Nombre"
         android:id="@+id/textViewNombre" />
 
     <EditText
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Teléfono (*)"
+        android:text="@string/Telefono"
         android:id="@+id/textViewTelf" />
 
     <EditText
@@ -34,7 +34,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Editar contacto"
+        android:text="@string/EdContacto"
         android:id="@+id/buttonAñadir" />
 
 </LinearLayout>

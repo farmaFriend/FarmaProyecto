@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -56,7 +57,8 @@ public class Anadir_cita_medica extends Fragment {
 
         dbOp = new DatabaseOperations(c);
         cursorMedico = dbOp.cargarCursorMedicos();
-        list.add("---Elige un médico---");
+        Resources res = getResources();
+        list.add(res.getString(R.string.ElegDoctor));
 
         if (cursorMedico.moveToFirst()) {
             do {

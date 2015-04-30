@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FarmaFriend</string>
+    <string name="Agenda">Agenda</string>
+    <string name="Medicamentos">Medicamentos</string>
+    <string name="Medicos">Médicos</string>
+    <string name="SolCita">Solicitar cita</string>
+    <string name="CitasMed">Citas médico</string>
+    <string name="Contactos">Contactos</string>
+    <string name="IntrComun">Busca por comunidad</string>
+    <string name="SelecComunidad">Selecciona tu comunidad</string>
+    <string name="Doctor">Médico (*)</string>
+    <string name="Descripcion">Descripción</string>
+    <string name="Fecha">Fecha (*)</string>
+    <string name="AñCit">Añadir cita</string>
+    <string name="ElegDoctor">--Elige un médico--</string>
+    <string name="Nombre">Nomber (*)</string>
+    <string name="Especialidad">Especialidad (*)</string>
+    <string name="Dirección">Dirección</string>
+    <string name="AñadirMedico">Añadir médico</string>
+    <string name="CuantasQuedan">¿Cuantas pastillas te quedan? (*)</string>
+    <string name="AñMedicina">Añadir medicamento</string>
+    <string name="Telefono">Teléfono (*)</string>
+    <string name="NombreMedicamento">Nombre medicamento (*)</string>
+    <string name="EligeMedicamento">--Elige un medicamento--</string>
+    <string name="FechaIni">Fecha inicio (*)</string>
+    <string name="FechaFin">Fecha fin (*)</string>
+    <string name="hORAiNI">Hora inicio (*)</string>
+    <string name="Cantidadtoma">Cantidad por toma (*)</string>
+    <string name="Cadacuanto">Intervalo de tiempo(horas) (*)</string>
+    <string name="AñadRecord">Añadir recordatorio</string>
+    <string name="ConfigAvanzada">Configuración avanzada</string>
+    <string name="Recordatorios">Recordatorios</string>
+    <string name="Hora">Hora (*)</string>
+    <string name="añcontac">Añadir contacto</string>
+    <string name="EdCita">Editar cita</string>
+    <string name="EdContacto">Editar contacto</string>
+    <string name="EdRecordatorio">Editar recordatorio</string>
+    <string name="EditMedicamento">Editar medicamento</string>
+    <string name="EditMedico">Editar médico</string>
+    <string name="Citas">Citas</string>
+</resources>

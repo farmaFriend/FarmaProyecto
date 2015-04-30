@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Introduce una comunidad"
+        android:text="@string/IntrComun"
         android:id="@+id/lbComunidad" />
 
     <EditText
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Selecciona tu comunidad"
+        android:text="@string/SelecComunidad"
         android:id="@+id/textCitas"
         android:layout_gravity="center_horizontal" />
 

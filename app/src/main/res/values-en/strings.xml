@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FarmaFriend</string>
+    <string name="Agenda">Contacts</string>
+    <string name="Medicamentos">Medicines</string>
+    <string name="Medicos">Doctors</string>
+    <string name="SolCita">Make an appointment</string>
+    <string name="CitasMed">Doctor appointments</string>
+    <string name="Contactos">Contacts</string>
+    <string name="IntrComun">Search by region</string>
+    <string name="SelecComunidad">Choose your region</string>
+    <string name="Doctor">Doctor (*)</string>
+    <string name="Descripcion">Description (*)</string>
+    <string name="Fecha">Date (*)</string>
+    <string name="AñCit">Add appointment</string>
+    <string name="ElegDoctor">--Choose a doctor--</string>
+    <string name="Nombre">Name (*)</string>
+    <string name="Especialidad">Specialization (*)</string>
+    <string name="Dirección">Address</string>
+    <string name="AñadirMedico">Add doctor</string>
+    <string name="CuantasQuedan">How many pills left? (*)</string>
+    <string name="AñMedicina">Add medicine</string>
+    <string name="Telefono">Phone (*)</string>
+    <string name="NombreMedicamento">Medicine name (*)</string>
+    <string name="EligeMedicamento">--Choose a medicine--</string>
+    <string name="FechaIni">Start date (*)</string>
+    <string name="FechaFin">End date (*)</string>
+    <string name="hORAiNI">Starting hour (*)</string>
+    <string name="Cantidadtoma">Intake amount (*)</string>
+    <string name="Cadacuanto">Time interval(hours) (*)</string>
+    <string name="AñadRecord">Add reminder</string>
+    <string name="ConfigAvanzada">Advanced config.</string>
+    <string name="Recordatorios">Reminders</string>
+    <string name="Hora">Hour (*)</string>
+    <string name="añcontac">Add contact</string>
+    <string name="EdCita">Edit appointment</string>
+    <string name="EdContacto">Edit contact</string>
+    <string name="EdRecordatorio">Edit reminder</string>
+    <string name="EditMedicamento">Edit medicine</string>
+    <string name="EditMedico">Edit doctor</string>
+    <string name="Citas">Appointments</string>
+</resources>

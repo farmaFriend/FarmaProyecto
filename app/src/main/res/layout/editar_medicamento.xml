@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Nombre (*)"
+        android:text="@string/Nombre"
         android:id="@+id/LNomEdiMedi" />
 
     <EditText
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="¿Cuántas pastillas te quedan? (*)"
+        android:text="@string/CuantasQuedan"
         android:id="@+id/LPasEdiMedi" />
 
     <EditText
@@ -32,6 +32,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Editar medicamento"
+        android:text="@string/EditMedicamento"
         android:id="@+id/bEdiMedi" />
 </LinearLayout>
