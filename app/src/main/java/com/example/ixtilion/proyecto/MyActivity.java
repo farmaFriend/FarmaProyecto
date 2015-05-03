@@ -50,6 +50,7 @@ public class MyActivity extends ActionBarActivity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         Fragment fragmento = null;
+        Activity a = null;
 
         switch (position){
             case 0:
@@ -75,6 +76,9 @@ public class MyActivity extends ActionBarActivity
                 break;
             case 5:
                 fragmento = new Lista_citas();
+                break;
+            case 6:
+                a = new MapaFar();
                 break;
         }
 

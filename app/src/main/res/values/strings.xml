@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string-array name="sections">
         <item>FarmaFriend</item>
         <item>@string/Contactos</item>
@@ -7,6 +8,7 @@
         <item>@string/Medicos</item>
         <item>@string/SolCita</item>
         <item>@string/CitasMed</item>
+        <item>@string/title_activity_mapa_far</item>
     </string-array>
     <string-array name="section_titles">
         <item>Inicio</item>
@@ -16,8 +18,8 @@
         <item>@string/Medicos</item>
         <item>@string/SolCita</item>
         <item>@string/CitasMed</item>
+        <item>@string/title_activity_mapa_far</item>
     </string-array>
-
     <string-array name="sections_icons">
         <item>@drawable/princ</item>
         <item>@drawable/personal</item>
@@ -25,10 +27,10 @@
         <item>@drawable/doctor</item>
         <item>@drawable/doctoranadir</item>
         <item>@drawable/schedule1</item>
+        <item>@drawable/schedule1</item>
     </string-array>
 
     <string name="app_name">FarmaFriend</string>
-
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="action_example" translatable="false">Example action</string>
@@ -70,5 +72,6 @@
     <string name="EdRecordatorio">Edit reminder</string>
     <string name="EditMedico">Edit doctor</string>
     <string name="EditMedicamento">Edit medicine</string>
+    <string name="title_activity_mapa_far">Map</string>
 
 </resources>
