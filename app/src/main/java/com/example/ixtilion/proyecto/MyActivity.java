@@ -1,6 +1,7 @@
 package com.example.ixtilion.proyecto;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.app.Fragment;
@@ -78,13 +79,16 @@ public class MyActivity extends ActionBarActivity
                 fragmento = new Lista_citas();
                 break;
             case 6:
-                a = new MapaFar();
-                break;
+                //a = new MapaFar();
+                //break;
+            Intent inten = new Intent(this, MapaFar.class);
+            startActivity(inten);
         }
-
-        fragmentManager.beginTransaction()
-                .replace(R.id.container,fragmento )
-                .commit();
+        if(fragmento!=null) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, fragmento)
+                    .commit();
+        }
 
 
     }
