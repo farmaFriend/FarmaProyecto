@@ -11,24 +11,12 @@
         android:src="@drawable/alarma" />
 
     <Button
-        android:layout_width="100dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:text="ACEPTAR"
+        android:text="PARAR"
         android:id="@+id/btAcepAla"
         android:layout_below="@+id/ImAlarm"
-        android:layout_alignLeft="@+id/ImAlarm"
-        android:layout_alignStart="@+id/ImAlarm"
-        android:layout_marginLeft="50dip"/>
-
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="Cancelar"
-        android:id="@+id/btCancAla"
-        android:layout_below="@+id/ImAlarm"
-        android:layout_alignRight="@+id/ImAlarm"
-        android:layout_alignEnd="@+id/ImAlarm"
-        android:layout_marginRight="50dip"/>
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:layout_width="wrap_content"

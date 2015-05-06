@@ -3,60 +3,49 @@ package com.example.ixtilion.proyecto;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.PowerManager;
-import android.os.Vibrator;
-import android.util.Log;
-import android.widget.Toast;
-import java.text.Format;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.os.Bundle;
+
+import java.util.Calendar;
 
 /**
  * Created by Alumno on 21/04/2015.
  */
 public class AlarmReceiver extends BroadcastReceiver {
     final public static String ONE_TIME = "onetime";
-    public static String medicamento = "caca";
+    public static String medicamento = "noooo";
+    public static float cantidad =0;
     @Override
     public void onReceive(Context context, Intent intent) {
 
         Intent inten = new Intent(context, Alarma.class);
         inten.putExtra("medicam", medicamento);
+        inten.putExtra("canti", cantidad);
+        inten.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(inten);
-
-        /*PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "YOUR TAG");
-        //Acquire the lock
-        wl.acquire();
-
-        //You can do the processing here update the widget/remote views.
-        Bundle extras = intent.getExtras();
-        StringBuilder msgStr = new StringBuilder();
-
-        Format formatter = new SimpleDateFormat("hh:mm:ss a");
-        msgStr.append(formatter.format(new Date()));
-
-        Toast.makeText(context, msgStr+medicamento, Toast.LENGTH_LONG).show();
-        Vibrator vibrator= (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(2000);
-
-        //Release the lock
-        wl.release();*/
-
     }
-    public void SetAlarm(Context context, String nomMed)
+
+    public void SetAlarm(Context context, String nomMed, float cant, int intervalo, int horaIni, int minIni, int anio, int mes, int dia)
     {
         AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         medicamento=nomMed;
+        cantidad=cant;
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra(ONE_TIME, Boolean.FALSE);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.YEAR, anio);
+        calendar.set(Calendar.MONTH, mes);
+        calendar.set(Calendar.DAY_OF_MONTH, dia);
+        calendar.set(Calendar.HOUR_OF_DAY, horaIni);
+        calendar.set(Calendar.MINUTE, minIni);
+
         //After after 30 seconds
-        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 30, pi);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000 * 60 * 60 * intervalo, pi);
     }
 
     public void CancelAlarm(Context context)
@@ -66,12 +55,12 @@ public class AlarmReceiver extends BroadcastReceiver {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(sender);
     }
-    public void setOnetimeTimer(Context context){
+    /*public void setOnetimeTimer(Context context){
         AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra(ONE_TIME, Boolean.TRUE);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
         am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pi);
-    }
+    }*/
 }
 

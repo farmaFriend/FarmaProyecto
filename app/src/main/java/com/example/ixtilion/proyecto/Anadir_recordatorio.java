@@ -42,7 +42,7 @@ import java.util.List;
 public class Anadir_recordatorio extends Fragment {
     EditText NOMBRE, CANTIDADTOMA, FECHAINICIO, FECHAFIN, INTERVALO, HORA;
     String nombre,fechaIni,fechaFin;
-    int intervalo, horaIni;
+    int intervalo, horaIni, minIni, anioIni, mesIni, diaIni;
     float cantidad;
     Button anadir;
     ImageView config;
@@ -115,7 +115,6 @@ public class Anadir_recordatorio extends Fragment {
 
                                 int id=0; //Id temporal
 
-
                                 id = nombre.length()+intervalo;
 
                                 ContentValues cv = new ContentValues();
@@ -152,8 +151,7 @@ public class Anadir_recordatorio extends Fragment {
                 }
                 //Alarma
                 AlarmReceiver alarm=new AlarmReceiver();
-                alarm.SetAlarm(c, nombre);
-                //alarm.setOnetimeTimer(c);
+                alarm.SetAlarm(c, nombre, cantidad, intervalo, horaIni, minIni, anioIni, mesIni, diaIni);
 
 
             }
@@ -166,6 +164,7 @@ public class Anadir_recordatorio extends Fragment {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         horaIni = hourOfDay;
+                        minIni=minute;
                         cal.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         cal.set(Calendar.MINUTE, minute);
                         long milisegundos = cal.getTimeInMillis();
@@ -188,6 +187,7 @@ public class Anadir_recordatorio extends Fragment {
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                             horaIni = hourOfDay;
+                            minIni=minute;
                             cal.set(Calendar.HOUR_OF_DAY, hourOfDay);
                             cal.set(Calendar.MINUTE, minute);
                             long milisegundos = cal.getTimeInMillis();
@@ -214,6 +214,9 @@ public class Anadir_recordatorio extends Fragment {
             public void onClick(View v) {
                 DatePickerDialog.OnDateSetListener dpd= new DatePickerDialog.OnDateSetListener(){
                     public void onDateSet (DatePicker fec, int y, int m, int d){
+                        anioIni=y;
+                        mesIni=m;
+                        diaIni=d;
                         cal.set(Calendar.YEAR, y);
                         cal.set(Calendar.MONTH, m);
                         cal.set(Calendar.DAY_OF_MONTH, d);
@@ -229,6 +232,9 @@ public class Anadir_recordatorio extends Fragment {
                 if(FECHAINICIO.isFocused()){
                     DatePickerDialog.OnDateSetListener dpd= new DatePickerDialog.OnDateSetListener(){
                         public void onDateSet (DatePicker fec, int y, int m, int d){
+                            anioIni=y;
+                            mesIni=m;
+                            diaIni=d;
                             cal.set(Calendar.YEAR, y);
                             cal.set(Calendar.MONTH, m);
                             cal.set(Calendar.DAY_OF_MONTH, d);

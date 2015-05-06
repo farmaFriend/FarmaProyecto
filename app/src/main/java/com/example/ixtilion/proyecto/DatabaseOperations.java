@@ -151,6 +151,14 @@ public class DatabaseOperations extends SQLiteOpenHelper{
         Cursor cu= db.rawQuery( s, null);
         return cu;
     }
+    public Cursor getNumPastillas(String nomMed){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String s = "SELECT "+ TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD+" FROM " + TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO + " WHERE " +
+                TableData.TableInfoMedic.COLUMN_NAME_NOMBRE+"='"+nomMed+"'";
+
+        return db.rawQuery(s,null);
+    }
 
     public Cursor cargarCursorRecordatoriosCount(){
         SQLiteDatabase db = this.getWritableDatabase();
