@@ -29,10 +29,27 @@ public class MapaFar extends FragmentActivity {
     public static final LatLng Farmacia_Logroño_6 = new LatLng(42.462819, -2.439891);
     public static final LatLng Farmacia_Logroño_7 = new LatLng(42.456718, -2.451202);
     public static final LatLng Farmacia_Logroño_8 = new LatLng(42.465951, -2.447463);
+    public static final LatLng Farmacia_Logroño_9 = new LatLng(42.466405, -2.442904);
+    public static final LatLng Farmacia_Logroño_10 = new LatLng(42.460927, -2.440632);
+    public static final LatLng Farmacia_Logroño_11 = new LatLng(42.464180, -2.449621);
+    public static final LatLng Farmacia_Logroño_12 = new LatLng(42.458756, -2.446651);
+    public static final LatLng Farmacia_Logroño_13 = new LatLng();
     //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
     //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
     //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
     //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
+    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
+    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
+    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
+    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
+    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
+    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
+    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
+    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
+    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
+    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
+    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
+
 
 
 
@@ -91,6 +108,23 @@ public class MapaFar extends FragmentActivity {
         setMarker(Farmacia_Logroño_8,"Farmacia - Carlos Martinez Gil","Calle Hermanos Moroy, 28\n" +
                 "Logroño\n" +
                 "941 25 10 65");
+
+        setMarker(Farmacia_Logroño_9,"Farmacia - Carmen García Carbonell","Av. de la Paz, 1\n" +
+                "Logroño\n" +
+                "941 24 88 01");
+
+        setMarker(Farmacia_Logroño_10,"Farmacia - Carmen Hierro Alonso","Calle Villamediana, 19\n" +
+                "Logroño\n" +
+                "941 23 29 17");
+
+        setMarker(Farmacia_Logroño_11,"Farmacia - F S Martínez Farmaceuticos Sc","Av. Gran Vía Rey Juan Carlos I, 26B\n" +
+                "Logroño\n" +
+                "941 22 57 05");
+
+        setMarker(Farmacia_Logroño_12,"Farmacia - Adan Martinez","Calle General Vara del Rey, 58\n" +
+                "Logroño\n" +
+                "941 23 66 91");
+
 
 
 
