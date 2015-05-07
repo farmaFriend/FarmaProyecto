@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -105,10 +106,14 @@ public class Editar_contacto extends Fragment{
                                 db.close();
 
                                 //CODIGO QUE MANDA A VISTA LISTA CONTACTOS
+                                /*
                                 FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction()
                                         .replace(R.id.container, new Agenda())
                                         .commit();
+                                */
+                                Intent inten = new Intent(c, Agenda.class);
+                                startActivity(inten);
 
                                 Toast.makeText(c, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();
                             }

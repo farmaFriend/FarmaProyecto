@@ -60,7 +60,9 @@ public class MyActivity extends ActionBarActivity
                 break;
 
             case 1:
-                fragmento = new Agenda();
+                //fragmento = new Agenda();
+                Intent inten1 = new Intent(this, Agenda.class);
+                startActivity(inten1);
 
                 break;
 
@@ -81,8 +83,8 @@ public class MyActivity extends ActionBarActivity
             case 6:
                 //a = new MapaFar();
                 //break;
-            Intent inten = new Intent(this, MapaFar.class);
-            startActivity(inten);
+            Intent inten6 = new Intent(this, MapaFar.class);
+            startActivity(inten6);
         }
         if(fragmento!=null) {
             fragmentManager.beginTransaction()
