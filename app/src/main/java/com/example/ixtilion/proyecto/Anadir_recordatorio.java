@@ -113,35 +113,38 @@ public class Anadir_recordatorio extends Fragment {
                         dbOp = new DatabaseOperations(c);
                         SQLiteDatabase db = dbOp.getWritableDatabase();
 
-                                int id=0; //Id temporal
+                        int id=0; //Id temporal
 
-                                id = nombre.length()+intervalo;
+                        id = nombre.length()+intervalo;
 
-                                ContentValues cv = new ContentValues();
-                                cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_ID, id);
-                                cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO, nombre);
-                                cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_DESCRIPCION,"");
-                                cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_DIASTOMASMES,30);
-                                cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_DIASDESCANSOMES,0);
-                                cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_CANTIDADTOMA, cantidad);
-                                cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAINICIO, fechaIni);
-                                cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAFIN, fechaFin);
-                                cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_INTERVALO, intervalo);
-                                cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_HORA, horaIni);
+                        ContentValues cv = new ContentValues();
+                        cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_ID, id);
+                        cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO, nombre);
+                        cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_DESCRIPCION,"");
+                        cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_DIASTOMASMES,30);
+                        cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_DIASDESCANSOMES,0);
+                        cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_CANTIDADTOMA, cantidad);
+                        cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAINICIO, fechaIni);
+                        cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAFIN, fechaFin);
+                        cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_INTERVALO, intervalo);
+                        cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_HORA, horaIni);
 
-                                db.insert(TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO, null, cv);
-                                Log.d("Operaciones bases de datos", "Insertada una fila");
+                        db.insert(TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO, null, cv);
+                        Log.d("Operaciones bases de datos", "Insertada una fila");
 
-                                db.close();
+                        db.close();
 
-                                //CODIGO QUE MANDA A VISTA LISTA RECORDATORIOS
-                                FragmentManager fm = getFragmentManager();
-                                fm.beginTransaction()
-                                      .replace(R.id.container, new Lista_recordatorio("all"))
-                                    .commit();
+                        //CODIGO QUE MANDA A VISTA LISTA RECORDATORIOS
+                        FragmentManager fm = getFragmentManager();
+                        fm.beginTransaction()
+                              .replace(R.id.container, new Lista_recordatorio("all"))
+                            .commit();
 
-                                Toast.makeText(c, "Recordatorio añadido correctamente", Toast.LENGTH_LONG).show();
+                        Toast.makeText(c, "Recordatorio añadido correctamente", Toast.LENGTH_LONG).show();
 
+                        //Alarma
+                        AlarmReceiver alarm=new AlarmReceiver();
+                        alarm.SetAlarm(c, nombre, cantidad, intervalo, horaIni, minIni, anioIni, mesIni, diaIni);
 
                     } else {
                         Log.d("error", "else");
@@ -149,11 +152,6 @@ public class Anadir_recordatorio extends Fragment {
                 } else {
                     Toast.makeText(c, "Error: Algún campo vacío", Toast.LENGTH_LONG).show();
                 }
-                //Alarma
-                AlarmReceiver alarm=new AlarmReceiver();
-                alarm.SetAlarm(c, nombre, cantidad, intervalo, horaIni, minIni, anioIni, mesIni, diaIni);
-
-
             }
         });
 

@@ -43,9 +43,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         calendar.set(Calendar.DAY_OF_MONTH, dia);
         calendar.set(Calendar.HOUR_OF_DAY, horaIni);
         calendar.set(Calendar.MINUTE, minIni);
+        calendar.set(Calendar.SECOND, 0);
 
         //After after 30 seconds
-        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000 * 60 * 60 * intervalo, pi);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000 * 60 * 3 * intervalo, pi);
     }
 
     public void CancelAlarm(Context context)
@@ -55,12 +56,5 @@ public class AlarmReceiver extends BroadcastReceiver {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(sender);
     }
-    /*public void setOnetimeTimer(Context context){
-        AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.putExtra(ONE_TIME, Boolean.TRUE);
-        PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
-        am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pi);
-    }*/
 }
 
