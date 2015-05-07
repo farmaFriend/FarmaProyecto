@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -42,6 +43,7 @@ public class Editar_cita extends Fragment{
     Cursor cursor;
     Calendar cal=Calendar.getInstance();
     DateFormat datfor=DateFormat.getDateInstance();
+    final Resources res = getResources();
 
     public Editar_cita (String med, String des, String f, String h){
         this.medico=med;
@@ -129,7 +131,7 @@ public class Editar_cita extends Fragment{
                             boolean existe=false;
                             while(i<citas.size()&& existe==false) {
                                 if(id2.compareTo(citas.get(i).getId())==0){
-                                    Toast.makeText(c, "Ya existe una cita con la misma descripcion, fecha y hora", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(c, res.getString(R.string.ErrorRepe), Toast.LENGTH_LONG).show();
                                     existe=true;
                                 }
                                 i++;
@@ -162,7 +164,7 @@ public class Editar_cita extends Fragment{
 
 
 
-                                Toast.makeText(c, "Cita editada correctamente", Toast.LENGTH_LONG).show();
+                                Toast.makeText(c, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();
 
                             }
 
@@ -174,7 +176,7 @@ public class Editar_cita extends Fragment{
                     }
                 }
                 else{
-                    Toast.makeText(c,"Error: Algún campo vacío", Toast.LENGTH_LONG).show();
+                    Toast.makeText(c, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
                 }
             }
         });

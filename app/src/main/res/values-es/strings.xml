@@ -14,7 +14,7 @@
     <string name="Fecha">Fecha (*)</string>
     <string name="AñCit">Añadir cita</string>
     <string name="ElegDoctor">--Elige un médico--</string>
-    <string name="Nombre">Nomber (*)</string>
+    <string name="Nombre">Nombre (*)</string>
     <string name="Especialidad">Especialidad (*)</string>
     <string name="Dirección">Dirección</string>
     <string name="AñadirMedico">Añadir médico</string>
@@ -39,4 +39,11 @@
     <string name="EditMedicamento">Editar medicamento</string>
     <string name="EditMedico">Editar médico</string>
     <string name="Citas">Citas</string>
+    <string name="Añadido">Añadido correctamente!</string>
+    <string name="Borrado">Borrado correctamente!</string>
+    <string name="Editado">Editado correctamente!</string>
+    <string name="Error">Error: Hay un campo vacío</string>
+    <string name="ErrorMed">Ya existe un médico con ese nombre y especialidad</string>
+    <string name="ErrorRepe">Ya existe un elemento similar</string>
+    <string name="ErrorAnt">Por favor introduce una fecha válida</string>
 </resources>

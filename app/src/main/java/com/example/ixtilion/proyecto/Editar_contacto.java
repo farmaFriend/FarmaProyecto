@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ public class Editar_contacto extends Fragment{
     Cursor cursor;
     private String n;
     private String pas;
+    final Resources res = getResources();
 
     public Editar_contacto (String nombre, String telefono){
         this.n=nombre;
@@ -81,7 +83,7 @@ public class Editar_contacto extends Fragment{
                             if(pas.compareTo(telefono)!=0) {
                                 while (i < contactos.size() && existe == false) {
                                     if (telefono.compareTo(contactos.get(i).getPhone()) == 0) {
-                                        Toast.makeText(c, "Ya existe un contacto con ese telefono", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(c, res.getString(R.string.ErrorRepe), Toast.LENGTH_LONG).show();
                                         existe = true;
                                     }
                                     i++;
@@ -108,7 +110,7 @@ public class Editar_contacto extends Fragment{
                                         .replace(R.id.container, new Agenda())
                                         .commit();
 
-                                Toast.makeText(c, "Contacto editado correctamente", Toast.LENGTH_LONG).show();
+                                Toast.makeText(c, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();
                             }
                         }
                     }
@@ -117,7 +119,7 @@ public class Editar_contacto extends Fragment{
                     }
                 }
                 else{
-                    Toast.makeText(c,"Error: Algún campo vacío", Toast.LENGTH_LONG).show();
+                    Toast.makeText(c, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
                 }
             }
         });

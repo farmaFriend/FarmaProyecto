@@ -45,19 +45,16 @@ public class Anadir_cita_medica extends Fragment {
     Calendar cal=Calendar.getInstance();
     DateFormat datfor=DateFormat.getDateInstance();
 
-
-
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         c = container.getContext();
         View view = inflater.inflate(R.layout.agreagar_cita_mdedico, container, false);
+        final Resources res = getResources();
 
         medicos = (Spinner) view.findViewById(R.id.spMedico);
         List<String> list = new ArrayList<>();
 
         dbOp = new DatabaseOperations(c);
         cursorMedico = dbOp.cargarCursorMedicos();
-        Resources res = getResources();
         list.add(res.getString(R.string.ElegDoctor));
 
         if (cursorMedico.moveToFirst()) {
@@ -131,21 +128,19 @@ public class Anadir_cita_medica extends Fragment {
                             int mesaux=Integer.parseInt(staux.nextToken());
                             int anio=Integer.parseInt(st.nextToken());
                             int anioaux=Integer.parseInt(staux.nextToken());
+                            final Resources res = getResources();
 
                             if(anioaux<anio){
                                 fechaCorrecta=false;
-                                Toast.makeText(c, "No se guardará la cita ya que la fecha es anterior a la actual", Toast.LENGTH_LONG).show();
-                            }
+                                Toast.makeText(c, res.getString(R.string.ErrorAnt), Toast.LENGTH_LONG).show();                            }
                             else if(anioaux==anio){
                                 if(mesaux<mes){
                                     fechaCorrecta=false;
-                                    Toast.makeText(c, "No se guardará la cita ya que la fecha es anterior a la actual", Toast.LENGTH_LONG).show();
-                                }
+                                    Toast.makeText(c, res.getString(R.string.ErrorAnt), Toast.LENGTH_LONG).show();                                }
                                 else if(mesaux==mes){
                                     if(diaux<dia){
                                         fechaCorrecta=false;
-                                        Toast.makeText(c, "No se guardará la cita ya que la fecha es anterior a la actual", Toast.LENGTH_LONG).show();
-                                    }
+                                        Toast.makeText(c, res.getString(R.string.ErrorAnt), Toast.LENGTH_LONG).show();                                    }
                                 }
                             }
 

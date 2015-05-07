@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -43,7 +44,7 @@ public class Anadir_contacto extends Fragment {
 
         NOMBRE = (EditText) view.findViewById(R.id.editTextNombre);
         TELF = (EditText) view.findViewById(R.id.editTextTelf);
-
+        final Resources res = getResources();
 
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,8 +85,7 @@ public class Anadir_contacto extends Fragment {
                             boolean existe=false;
                             while(i<cont.size()&& existe==false) {
                                 if(telf.compareTo(cont.get(i).getPhone())==0){
-                                    Toast.makeText(c, "Yaexiste un contacto con ese número de teléfono", Toast.LENGTH_LONG).show();
-                                    existe=true;
+                                    Toast.makeText(c, res.getString(R.string.ErrorRepe), Toast.LENGTH_LONG).show();                                    existe=true;
                                 }
                                 i++;
                             }
@@ -107,8 +107,7 @@ public class Anadir_contacto extends Fragment {
                                         .replace(R.id.container, new Agenda() )
                                         .commit();
 
-                                Toast.makeText(c, "Se ha añadido el contacto correctamente", Toast.LENGTH_LONG).show();
-
+                                Toast.makeText(c, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
 
                             }
 
@@ -118,8 +117,7 @@ public class Anadir_contacto extends Fragment {
                     TELF.setText("");
                 }
                 else{
-                    Toast.makeText(c,"Error: Algún campo vacío", Toast.LENGTH_LONG).show();
-                }
+                    Toast.makeText(c, res.getString(R.string.Error), Toast.LENGTH_LONG).show();                }
             }
         });
 

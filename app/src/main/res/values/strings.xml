@@ -62,7 +62,7 @@
     <string name="hORAiNI">Starting hour</string>
     <string name="Cantidadtoma">Intake amount</string>
     <string name="Cadacuanto">Time interval</string>
-    <string name="AñadRecord" translatable="false">Add reminder</string>
+    <string name="AñadRecord">Add reminder</string>
     <string name="ConfigAvanzada">Advanced config</string>
     <string name="Recordatorios">Reminders</string>
     <string name="Hora">Hour</string>
@@ -73,5 +73,13 @@
     <string name="EditMedico">Edit doctor</string>
     <string name="EditMedicamento">Edit medicine</string>
     <string name="title_activity_mapa_far">Map</string>
+    <string name="Añadido">Added succesfully!</string>
+    <string name="Citas">Appointments</string>
+    <string name="Borrado">Deleted succesfully</string>
+    <string name="Editado">Edited succesfully!</string>
+    <string name="Error">Error: Empty field</string>
+    <string name="ErrorMed">ErrorMed</string>
+    <string name="ErrorRepe">Ya existe un elemento similar</string>
+    <string name="ErrorAnt">Fecha anterior</string>
 
 </resources>
