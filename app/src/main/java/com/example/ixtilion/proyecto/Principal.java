@@ -28,7 +28,6 @@ public class Principal extends Fragment {
         manana.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(c, "Mañana ha sido pulsado", Toast.LENGTH_LONG).show();
                 FragmentManager fm = getFragmentManager();
                 fm.beginTransaction()
                         .replace(R.id.container, new Lista_recordatorio("m"))
@@ -39,7 +38,6 @@ public class Principal extends Fragment {
         tarde.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(c, "Tarde ha sido pulsado", Toast.LENGTH_LONG).show();
                 FragmentManager fm = getFragmentManager();
                 fm.beginTransaction()
                         .replace(R.id.container, new Lista_recordatorio("t"))
@@ -50,7 +48,6 @@ public class Principal extends Fragment {
         noche.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(c, "Noche ha sido pulsado", Toast.LENGTH_LONG).show();
                 FragmentManager fm = getFragmentManager();
                 fm.beginTransaction()
                         .replace(R.id.container, new Lista_recordatorio("n"))

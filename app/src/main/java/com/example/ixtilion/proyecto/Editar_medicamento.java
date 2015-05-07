@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ public class Editar_medicamento extends Fragment {
     Cursor cursor;
     private String n;
     private String pas;
+    final Resources res = getResources();
 
     public Editar_medicamento (String n, String pas){
         this.n=n;
@@ -81,7 +83,7 @@ public class Editar_medicamento extends Fragment {
                             if(n.compareTo(nombre)!=0) {
                                 while (i < medicamentos.size() && existe == false) {
                                     if (nombre.compareTo(medicamentos.get(i).getNombre()) == 0) {
-                                        Toast.makeText(c, "Ya existe un medicamento con ese nombre", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(c, res.getString(R.string.ErrorRepe), Toast.LENGTH_LONG).show();
                                         existe = true;
                                     }
                                     i++;
@@ -108,7 +110,7 @@ public class Editar_medicamento extends Fragment {
                                         .replace(R.id.container, new Lista_medicamento())
                                         .commit();
 
-                                Toast.makeText(c, "Medicamento editado correctamente", Toast.LENGTH_LONG).show();
+                                Toast.makeText(c, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();
                             }
                         }
                     }
@@ -117,7 +119,7 @@ public class Editar_medicamento extends Fragment {
                     }
                 }
                 else{
-                    Toast.makeText(c,"Error: Algún campo vacío", Toast.LENGTH_LONG).show();
+                    Toast.makeText(c, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
                 }
             }
         });

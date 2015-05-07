@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
@@ -37,7 +38,7 @@ public class Anadir_medicamento extends Fragment {
         anadir = (Button) view.findViewById(R.id.btAnadirMed);
         NOMBRE = (EditText) view.findViewById(R.id.tbNomMedic);
         CANTIDAD = (EditText) view.findViewById(R.id.tbNumPasti);
-
+        final Resources res = getResources();
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +74,7 @@ public class Anadir_medicamento extends Fragment {
                             boolean existe=false;
                             while(i<medicamentos.size()&& existe==false) {
                                 if(nombre.compareTo(medicamentos.get(i).getNombre())==0){
-                                    Toast.makeText(c, "Ya existe un medicamento con ese nombre", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(c, res.getString(R.string.ErrorRepe), Toast.LENGTH_LONG).show();                                    existe=true;
                                     existe=true;
                                 }
                                 i++;
@@ -95,7 +96,7 @@ public class Anadir_medicamento extends Fragment {
                                         .replace(R.id.container, new Lista_medicamento())
                                         .commit();
 
-                                Toast.makeText(c, "Medicamento añadido correctamente", Toast.LENGTH_LONG).show();
+                                Toast.makeText(c, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();                                    existe=true;
 
                             }
 
@@ -106,7 +107,7 @@ public class Anadir_medicamento extends Fragment {
                     }
                 }
                 else{
-                    Toast.makeText(c,"Error: Algún campo vacío", Toast.LENGTH_LONG).show();
+                    Toast.makeText(c, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
                 }
             }
         });

@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class Edita_medico extends Fragment {
     Context c;
     private DatabaseOperations dbOp;
     Cursor cursor;
+    final Resources res = getResources();
 
     String nom, esp, dir;
 
@@ -90,7 +92,7 @@ public class Edita_medico extends Fragment {
                             if(idAnt.compareTo(id)!=0) {
                                 while (i < medicos.size() && existe == false) {
                                     if (id.compareTo(medicos.get(i).getId()) == 0) {
-                                        Toast.makeText(c, "Ya existe un médico con ese nombre y especialidad", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(c, res.getString(R.string.ErrorRepe), Toast.LENGTH_LONG).show();                                    existe=true;
                                         existe = true;
                                     }
                                     i++;
@@ -118,7 +120,7 @@ public class Edita_medico extends Fragment {
                                         .replace(R.id.container, new Lista_medico())
                                         .commit();
 
-                                Toast.makeText(c, "Medico editado correctamente", Toast.LENGTH_LONG).show();
+                                Toast.makeText(c, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();                                    existe=true;
                             }
                         }
                     }
@@ -127,7 +129,7 @@ public class Edita_medico extends Fragment {
                     }
                 }
                 else{
-                    Toast.makeText(c,"Error: El campo nombre o especialidad esta vacío", Toast.LENGTH_LONG).show();
+                    Toast.makeText(c, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
                 }
             }
         });
