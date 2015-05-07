@@ -8,7 +8,7 @@
         <item>@string/Medicos</item>
         <item>@string/SolCita</item>
         <item>@string/CitasMed</item>
-        <item>@string/title_activity_mapa_far</item>
+        <item>@string/farmacias</item>
     </string-array>
     <string-array name="section_titles">
         <item>Inicio</item>
@@ -18,7 +18,7 @@
         <item>@string/Medicos</item>
         <item>@string/SolCita</item>
         <item>@string/CitasMed</item>
-        <item>@string/title_activity_mapa_far</item>
+        <item>@string/farmacias</item>
     </string-array>
     <string-array name="sections_icons">
         <item>@drawable/princ</item>
@@ -27,7 +27,7 @@
         <item>@drawable/doctor</item>
         <item>@drawable/doctoranadir</item>
         <item>@drawable/schedule1</item>
-        <item>@drawable/schedule1</item>
+        <item>@drawable/farmacia</item>
     </string-array>
 
     <string name="app_name">FarmaFriend</string>
@@ -73,5 +73,7 @@
     <string name="EditMedico">Edit doctor</string>
     <string name="EditMedicamento">Edit medicine</string>
     <string name="title_activity_mapa_far">Map</string>
+    <string name="farmacias">farmacias</string>
+    <string name="farmacia" translatable="false">farmacias</string>
 
 </resources>

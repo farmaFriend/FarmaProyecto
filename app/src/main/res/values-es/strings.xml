@@ -39,4 +39,5 @@
     <string name="EditMedicamento">Editar medicamento</string>
     <string name="EditMedico">Editar médico</string>
     <string name="Citas">Citas</string>
+    <string name="farmacias">Farmacias</string>
 </resources>
