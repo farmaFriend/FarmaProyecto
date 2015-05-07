@@ -1,5 +1,6 @@
 package com.example.ixtilion.proyecto;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
@@ -23,16 +24,17 @@ import java.util.ArrayList;
 /**
  * Created by USUARIO on 13/03/2015.
  */
-public class Agenda extends Fragment{
+public class Agenda extends Activity{
 
     private DatabaseOperations dbOp;
     Cursor cursor;
     SimpleCursorAdapter adap;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.lay_agenda);
 
-
-        dbOp = new DatabaseOperations(container.getContext());
+        dbOp = new DatabaseOperations(this);
         cursor = dbOp.cargarCursorContactos();
 
         final ArrayList<Contacto> contacts = new ArrayList<Contacto>();
@@ -49,7 +51,7 @@ public class Agenda extends Fragment{
             }while (cursor.moveToNext());
         }
 
-        View view = inflater.inflate(R.layout.lay_agenda, container, false);
+        View view = new View(this);
         ListView list = (ListView)view.findViewById(R.id.listView);
         final CustomArrayAdapter adapter = new CustomArrayAdapter(view.getContext(),contacts);
         list.setAdapter(adapter);
@@ -78,11 +80,10 @@ public class Agenda extends Fragment{
                 String tfno = item.getPhone();
                 String url = "tel:"+ tfno;
                 Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
-                getActivity().startActivity(intent);
+                startActivity(intent);
             }
         });
 
-        return view;
     }
 
 }

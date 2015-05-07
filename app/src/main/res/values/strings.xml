@@ -73,10 +73,10 @@
     <string name="EditMedico">Edit doctor</string>
     <string name="EditMedicamento">Edit medicine</string>
     <string name="title_activity_mapa_far">Map</string>
-<<<<<<< HEAD
+
     <string name="farmacias">farmacias</string>
     <string name="farmacia" translatable="false">farmacias</string>
-=======
+
     <string name="Añadido">Added succesfully!</string>
     <string name="Citas">Appointments</string>
     <string name="Borrado">Deleted succesfully</string>
@@ -85,6 +85,6 @@
     <string name="ErrorMed">ErrorMed</string>
     <string name="ErrorRepe">Ya existe un elemento similar</string>
     <string name="ErrorAnt">Fecha anterior</string>
->>>>>>> origin/master
+
 
 </resources>

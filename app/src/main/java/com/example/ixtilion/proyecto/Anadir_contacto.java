@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -102,10 +103,14 @@ public class Anadir_contacto extends Fragment {
                                 db.close();
 
                                 //CODIGO QUE MANDA A VISTA AGENDA
+                                /*
                                 FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction()
                                         .replace(R.id.container, new Agenda() )
                                         .commit();
+                                */
+                                Intent inten = new Intent(c, Agenda.class);
+                                startActivity(inten);
 
                                 Toast.makeText(c, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
 

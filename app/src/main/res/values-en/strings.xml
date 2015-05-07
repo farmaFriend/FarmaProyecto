@@ -39,9 +39,9 @@
     <string name="EditMedicamento">Edit medicine</string>
     <string name="EditMedico">Edit doctor</string>
     <string name="Citas">Appointments</string>
-<<<<<<< HEAD
+
     <string name="farmacias">Pharmacies</string>
-=======
+
     <string name="Añadido">Added succesfully!</string>
     <string name="Borrado">Deleted succesfully!</string>
     <string name="Editado">Edited succesfully!</string>
