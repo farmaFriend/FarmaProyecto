@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class Anadir_medico extends Fragment{
     Context c;
     private DatabaseOperations dbOp;
     Cursor cursor;
+    final Resources res = getResources();
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,8 +84,7 @@ public class Anadir_medico extends Fragment{
                             boolean existe=false;
                             while(i<medicos.size()&& existe==false) {
                                 if(id.compareTo(medicos.get(i).getId())==0){
-                                    Toast.makeText(c, "Ya existe un medico con el mismo nombre y especialidad", Toast.LENGTH_LONG).show();
-                                    existe=true;
+                                    Toast.makeText(c, res.getString(R.string.ErrorMed), Toast.LENGTH_LONG).show();                                    existe=true;
                                 }
                                 i++;
                             }
@@ -106,8 +107,8 @@ public class Anadir_medico extends Fragment{
                                 fm.beginTransaction()
                                         .replace(R.id.container, new Lista_medico())
                                         .commit();
-                                
-                                Toast.makeText(c, "Medico añadido correctamente", Toast.LENGTH_LONG).show();
+
+                                Toast.makeText(c, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();                                    existe=true;
 
                             }
 
@@ -118,8 +119,7 @@ public class Anadir_medico extends Fragment{
                     }
                 }
                 else{
-                    Toast.makeText(c,"Error: El campo nombre o especialidad esta vacío", Toast.LENGTH_LONG).show();
-                }
+                    Toast.makeText(c, res.getString(R.string.Error), Toast.LENGTH_LONG).show();                                                 }
             }
         });
 

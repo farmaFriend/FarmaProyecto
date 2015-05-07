@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class Editar_recordatorio extends Fragment {
     private String n;
     private String pas;
     private String tiem;
+    final Resources res = getResources();
 
     public Editar_recordatorio(String n, String pas, String tiempo, int id){
         this.n=n;
@@ -93,8 +95,8 @@ public class Editar_recordatorio extends Fragment {
                                         .replace(R.id.container, new Lista_recordatorio("all"))
                                         .commit();
 
-                                Toast.makeText(c, "Recordatorio editado correctamente", Toast.LENGTH_LONG).show();
-                            }
+                            Toast.makeText(c, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();
+                        }
 
                     }
                     else{
@@ -102,7 +104,7 @@ public class Editar_recordatorio extends Fragment {
                     }
                 }
                 else{
-                    Toast.makeText(c,"Error: Algún campo vacío", Toast.LENGTH_LONG).show();
+                    Toast.makeText(c, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
                 }
             }
         });
