@@ -13,12 +13,11 @@
         android:layout_gravity="center_horizontal" />
 
     <ImageButton
-        android:layout_width="38dp"
-        android:layout_height="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/anadirContacto"
         android:layout_gravity="right"
-        android:background="@drawable/personalanadir"
-        android:layout_weight="0.47" />
+        android:background="@drawable/personalanadir"/>
 
     <ListView
         android:layout_width="match_parent"

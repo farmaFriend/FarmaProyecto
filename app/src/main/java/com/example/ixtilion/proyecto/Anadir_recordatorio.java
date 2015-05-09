@@ -140,11 +140,7 @@ public class Anadir_recordatorio extends Fragment {
                               .replace(R.id.container, new Lista_recordatorio("all"))
                             .commit();
 
-<<<<<<< HEAD
-                        Toast.makeText(c, "Recordatorio añadido correctamente", Toast.LENGTH_LONG).show();
-=======
-                                Toast.makeText(c, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
->>>>>>> origin/master
+                        Toast.makeText(c, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
 
                         //Alarma
                         AlarmReceiver alarm=new AlarmReceiver();
@@ -154,17 +150,9 @@ public class Anadir_recordatorio extends Fragment {
                         Log.d("error", "else");
                     }
                 } else {
-<<<<<<< HEAD
-                    Toast.makeText(c, "Error: Algún campo vacío", Toast.LENGTH_LONG).show();
+
+                    Toast.makeText(c, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
                 }
-=======
-                    Toast.makeText(c, res.getString(R.string.Error), Toast.LENGTH_LONG).show();                }
-                //Alarma
-                AlarmReceiver alarm=new AlarmReceiver();
-                alarm.SetAlarm(c, nombre, cantidad, intervalo, horaIni, minIni, anioIni, mesIni, diaIni);
-
-
->>>>>>> origin/master
             }
         });
 

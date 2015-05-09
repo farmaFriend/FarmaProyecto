@@ -74,7 +74,7 @@ public class Anadir_medicamento extends Fragment {
                             boolean existe=false;
                             while(i<medicamentos.size()&& existe==false) {
                                 if(nombre.compareTo(medicamentos.get(i).getNombre())==0){
-                                    Toast.makeText(c, res.getString(R.string.ErrorRepe), Toast.LENGTH_LONG).show();                                    existe=true;
+                                    Toast.makeText(c, res.getString(R.string.ErrorRepe), Toast.LENGTH_LONG).show();
                                     existe=true;
                                 }
                                 i++;
@@ -96,8 +96,7 @@ public class Anadir_medicamento extends Fragment {
                                         .replace(R.id.container, new Lista_medicamento())
                                         .commit();
 
-                                Toast.makeText(c, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();                                    existe=true;
-
+                                Toast.makeText(c, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
                             }
 
                         }

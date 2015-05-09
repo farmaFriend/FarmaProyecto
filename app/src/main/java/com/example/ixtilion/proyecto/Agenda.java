@@ -3,6 +3,7 @@ package com.example.ixtilion.proyecto;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 public class Agenda extends Activity{
 
     private DatabaseOperations dbOp;
+    private final Context context=this;
     Cursor cursor;
     SimpleCursorAdapter adap;
 
@@ -51,21 +53,22 @@ public class Agenda extends Activity{
             }while (cursor.moveToNext());
         }
 
-        View view = new View(this);
-        ListView list = (ListView)view.findViewById(R.id.listView);
-        final CustomArrayAdapter adapter = new CustomArrayAdapter(view.getContext(),contacts);
+        ListView list = (ListView)findViewById(R.id.listView);
+        final CustomArrayAdapter adapter = new CustomArrayAdapter(this,contacts);
         list.setAdapter(adapter);
-        View imageButton = (ImageButton) view.findViewById(R.id.anadirContacto);
+        View imageButton = (ImageButton)findViewById(R.id.anadirContacto);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                FragmentManager fm = getFragmentManager();
+                /*FragmentManager fm = getFragmentManager();
                 fm.beginTransaction()
                         .replace(R.id.container, new Anadir_contacto() )
-                        .commit();
+                        .commit();*/
+                Intent inten = new Intent(context, Anadir_contacto.class);
+                startActivity(inten);
 
             }
 

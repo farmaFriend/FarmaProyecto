@@ -51,6 +51,7 @@ public class MyActivity extends ActionBarActivity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         Fragment fragmento = null;
+        Intent inten=null;
         Activity a = null;
 
         switch (position){
@@ -61,8 +62,8 @@ public class MyActivity extends ActionBarActivity
 
             case 1:
                 //fragmento = new Agenda();
-                Intent inten1 = new Intent(this, Agenda.class);
-                startActivity(inten1);
+                inten = new Intent(this, Agenda.class);
+                startActivity(inten);
 
                 break;
 
@@ -83,8 +84,8 @@ public class MyActivity extends ActionBarActivity
             case 6:
                 //a = new MapaFar();
                 //break;
-            Intent inten6 = new Intent(this, MapaFar.class);
-            startActivity(inten6);
+                inten = new Intent(this, MapaFar.class);
+                startActivity(inten);
         }
         if(fragmento!=null) {
             fragmentManager.beginTransaction()
