@@ -1,5 +1,6 @@
 package com.example.ixtilion.proyecto;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -19,13 +20,14 @@ import java.util.ArrayList;
 /**
  * Created by Alumno on 26/03/2015.
  */
-public class Lista_comunidad extends Fragment {
+public class Lista_comunidad extends Activity {
     EditText COMUNIDAD;
     String com;
-    Context c;
-    View view;
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        c = container.getContext();
+    private final Context c = this;
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.solicitar_cita);
+
 
         final ArrayList<Comunidad> comunidades = new ArrayList<Comunidad>();
         comunidades.add(new Comunidad("La Rioja","https://www.riojasalud.es/ciudadanos/informacion-general-a-ciudadanos/3756-pedir-cita-previa" ,"larioja"));
@@ -44,15 +46,13 @@ public class Lista_comunidad extends Fragment {
         comunidades.add(new Comunidad("Galicia","https://extranet.sergas.es/cita/autenticacion.asp?JS=S&idioma=es","galicia"));
         comunidades.add(new Comunidad("Madrid","https://www.citaprevia.sanidadmadrid.org/Forms/Acceso.aspx","madrid"));
         comunidades.add(new Comunidad("Murcia","https://sms.carm.es/cmap/iniciarReserva.do","murcia"));
-        comunidades.add(new Comunidad("País Vasco","https://www.osanet.euskadi.net/o22War/O22MainCiudadanoNPServlet;jsessionid=TlQ4V6GZwLyNQXPn1vTxXTwlcKYQl32GQdjGkfd2h08WhjhLG1y3!1511787831!-1231398069?loc=O22Txt_citapreviaNuevaCita.jsp&cod_ses=15671584","paisvasco"));
+        comunidades.add(new Comunidad("País Vasco", "https://www.osanet.euskadi.net/o22War/O22MainCiudadanoNPServlet;jsessionid=TlQ4V6GZwLyNQXPn1vTxXTwlcKYQl32GQdjGkfd2h08WhjhLG1y3!1511787831!-1231398069?loc=O22Txt_citapreviaNuevaCita.jsp&cod_ses=15671584", "paisvasco"));
 
         final ArrayList<Comunidad> comu=(ArrayList<Comunidad>)comunidades.clone();
 
-
-        view = inflater.inflate(R.layout.solicitar_cita, container, false);
-        COMUNIDAD = (EditText) view.findViewById(R.id.tbComunidad);
-        ListView list = (ListView)view.findViewById(R.id.listCitas);
-        final ArrayAdapterComunidad adapter = new ArrayAdapterComunidad(view.getContext(), comunidades);
+        COMUNIDAD = (EditText) findViewById(R.id.tbComunidad);
+        ListView list = (ListView)findViewById(R.id.listCitas);
+        final ArrayAdapterComunidad adapter = new ArrayAdapterComunidad(c, comunidades);
         list.setAdapter(adapter);
 
 
@@ -64,7 +64,7 @@ public class Lista_comunidad extends Fragment {
                 final Comunidad item = (Comunidad) parent.getItemAtPosition(position);
                 String link = item.getLink();
                 Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(link));
-                getActivity().startActivity(intent);
+                startActivity(intent);
             }
         });
         COMUNIDAD.addTextChangedListener(new TextWatcher() {
@@ -87,8 +87,8 @@ public class Lista_comunidad extends Fragment {
                 }
 
 
-                ListView list = (ListView)view.findViewById(R.id.listCitas);
-                final ArrayAdapterComunidad adapter = new ArrayAdapterComunidad(view.getContext(), comu);
+                ListView list = (ListView)findViewById(R.id.listCitas);
+                final ArrayAdapterComunidad adapter = new ArrayAdapterComunidad(c, comu);
                 list.setAdapter(adapter);
             }
             @Override
@@ -97,7 +97,6 @@ public class Lista_comunidad extends Fragment {
             }
         });
 
-        return view;
     }
 
 }

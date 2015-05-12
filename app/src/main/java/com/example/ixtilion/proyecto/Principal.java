@@ -3,6 +3,7 @@ package com.example.ixtilion.proyecto;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,40 +29,35 @@ public class Principal extends Fragment {
         manana.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getFragmentManager();
-                fm.beginTransaction()
-                        .replace(R.id.container, new Lista_recordatorio("m"))
-                        .commit();
+                Intent inten = new Intent(c, Lista_recordatorio.class);
+                inten.putExtra("m","m");
+                startActivity(inten);
             }
         });
 
         tarde.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getFragmentManager();
-                fm.beginTransaction()
-                        .replace(R.id.container, new Lista_recordatorio("t"))
-                        .commit();
+                Intent inten = new Intent(c, Lista_recordatorio.class);
+                inten.putExtra("t","t");
+                startActivity(inten);
             }
         });
 
         noche.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getFragmentManager();
-                fm.beginTransaction()
-                        .replace(R.id.container, new Lista_recordatorio("n"))
-                        .commit();
+                Intent inten = new Intent(c, Lista_recordatorio.class);
+                inten.putExtra("n","n");
+                startActivity(inten);
             }
         });
 
         mas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getFragmentManager();
-                fm.beginTransaction()
-                      .replace(R.id.container, new Anadir_recordatorio())
-                   .commit();            }
+                Intent inten = new Intent(c, Anadir_recordatorio.class);
+                startActivity(inten); }
         });
 
         return view;

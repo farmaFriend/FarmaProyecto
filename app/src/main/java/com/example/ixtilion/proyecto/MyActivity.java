@@ -56,8 +56,10 @@ public class MyActivity extends ActionBarActivity
 
         switch (position){
             case 0:
-                inten = new Intent(this, Principal.class);
-                startActivity(inten);
+                fragmento = new Principal();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, fragmento)
+                        .commit();
                 break;
 
             case 1:
@@ -78,8 +80,8 @@ public class MyActivity extends ActionBarActivity
                 startActivity(inten);                break;
 
             case 4:
-                fragmento = new Lista_comunidad();
-                break;
+                inten = new Intent(this, Lista_comunidad.class);
+                startActivity(inten);                         break;
             case 5:
                 inten = new Intent(this, Lista_citas.class);
                 startActivity(inten);

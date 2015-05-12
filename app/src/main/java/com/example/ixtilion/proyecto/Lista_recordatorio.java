@@ -111,7 +111,6 @@ public class Lista_recordatorio extends Activity {
                 Intent inten = new Intent(c, Lista_medico.class);
                 startActivity(inten);
 
-
             }
 
         });

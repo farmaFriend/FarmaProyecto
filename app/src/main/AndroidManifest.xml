@@ -51,7 +51,8 @@
         <activity  android:name = ".Lista_medico"></activity>
         <activity  android:name = ".Anadir_recordatorio" ></activity>
         <activity  android:name = ".Lista_recordatorio" ></activity>
-        <activity  android:name = ".Principal" ></activity>
+        <activity  android:name = ".Lista_comunidad" ></activity>
+
 
 
         <activity
