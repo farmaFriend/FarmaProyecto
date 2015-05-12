@@ -13,7 +13,10 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.os.PowerManager;
 import android.os.Vibrator;
@@ -22,7 +25,9 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Alumno on 30/04/2015.
@@ -31,20 +36,27 @@ public class Alarma extends Activity {
 
     private Button aceptar;
     private final Context context=this;
-    private static String nomMed;
     private Vibrator vibrator;
     private DatabaseOperations dbOp;
     private Cursor cursor;
-    private static float cant, cantiToma;
+    private Spinner sp;
+    private ArrayList<Recordatorio_medicamento> recordatorios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarma);
-        TextView med= (TextView) findViewById(R.id.tvToma);
-        nomMed=getIntent().getExtras().getString("medicam");
-        cantiToma=getIntent().getExtras().getFloat("canti");
-        med.setText("TOMAR: "+nomMed+"\n"+"CANTIDAD: "+String.valueOf(cantiToma));
+        recordatorios = (ArrayList<Recordatorio_medicamento>)getIntent().getExtras().get("recors");
+
+        //Poner todos los nombres de los medicamentos junto a la cantidad a tomar
+        sp=(Spinner)findViewById(R.id.spRecorMed);
+        List<String> list = new ArrayList<String>();
+        for(Recordatorio_medicamento r : recordatorios){
+            list.add(r.getMedicamento()+" - "+r.getCantidadToma());
+        }
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp.setAdapter(dataAdapter);
 
         vibrator= (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
         accionAlarm(vibrator);
@@ -54,35 +66,39 @@ public class Alarma extends Activity {
         dbOp= new DatabaseOperations(this);
         final SQLiteDatabase db = dbOp.getWritableDatabase();
 
-        if (db != null) {
-            cursor = dbOp.getNumPastillas(nomMed);
-            if (cursor.moveToFirst()) {
-                cant = cursor.getFloat(0);
-            }
-        }
-        Toast.makeText(context, String.valueOf(cant), Toast.LENGTH_LONG).show();
-
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Esto hay que hacerlo para cancelarla el dia que corresponda
-                //AlarmReceiver alarm=new AlarmReceiver();
-                //alarm.CancelAlarm(context);
                 vibrator.cancel();
 
                 //editar cantidad medicamento
-                ContentValues cv = new ContentValues();
+                for (Recordatorio_medicamento r : recordatorios) {
+                    ContentValues cv = new ContentValues();
 
-                cv.put(TableData.TableInfoMedic.COLUMN_NAME_NOMBRE, nomMed);
-                cv.put(TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD, cant-1);
+                    cv.put(TableData.TableInfoMedic.COLUMN_NAME_NOMBRE, r.getMedicamento());
 
-                String col=TableData.TableInfoMedic.COLUMN_NAME_NOMBRE;
-                String val=nomMed;
-                String aux=col+"='"+val+"'";
+                    float cant=0;
+                    if (db != null) {
+                        cursor = dbOp.getNumPastillas(r.getMedicamento());
+                        if (cursor.moveToFirst()) {
+                            cant = cursor.getFloat(0);
+                        }
+                    }
+                    if(cant<3){
+                        Toast.makeText(context,"Te quedan menos de 3 pastillas de "+ r.getMedicamento(), Toast.LENGTH_LONG).show();
+                    }
+                    if(cant>=r.getCantidadToma()) {
+                        float caNue=cant - r.getCantidadToma();
+                        cv.put(TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD, caNue);
+                    }
 
-                db.update(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO, cv, aux, null);
+                    String col = TableData.TableInfoMedic.COLUMN_NAME_NOMBRE;
+                    String val = r.getMedicamento();
+                    String aux = col + "='" + val + "'";
+
+                    db.update(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO, cv, aux, null);
+                }
                 db.close();
-
                 finish();
             }
         });
@@ -92,8 +108,6 @@ public class Alarma extends Activity {
         PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "YOUR TAG");
         //Acquire the lock
         wl.acquire();
-
-        Toast.makeText(context, nomMed, Toast.LENGTH_LONG).show();
 
         vibra.vibrate(60000);//vibra durante un minuto
 

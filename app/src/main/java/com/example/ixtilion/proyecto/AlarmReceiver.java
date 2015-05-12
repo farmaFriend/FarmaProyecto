@@ -6,47 +6,132 @@ import android.content.Intent;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.StringTokenizer;
 
 /**
  * Created by Alumno on 21/04/2015.
  */
 public class AlarmReceiver extends BroadcastReceiver {
-    final public static String ONE_TIME = "onetime";
-    public static String medicamento = "noooo";
-    public static float cantidad =0;
     @Override
     public void onReceive(Context context, Intent intent) {
+        //comprobar fecha y hora
+        Calendar calendar = Calendar.getInstance();
+        int hora=calendar.get(Calendar.HOUR_OF_DAY);
+        int min=calendar.get(Calendar.MINUTE);
+        int anio=calendar.get(Calendar.YEAR);
+        int mes=calendar.get(Calendar.MONTH);
+        Log.d("Datos al", String.valueOf(mes));
+        int dia=calendar.get(Calendar.DAY_OF_MONTH);
 
-        Intent inten = new Intent(context, Alarma.class);
-        inten.putExtra("medicam", medicamento);
-        inten.putExtra("canti", cantidad);
-        inten.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(inten);
+        //Sacar de la base de datos
+        DatabaseOperations dbOp= new DatabaseOperations(context);
+        int tam=0;
+        final SQLiteDatabase db = dbOp.getWritableDatabase();
+        if (db != null) {
+            Cursor cursor = dbOp.cargarCursorRecordatoriosCount();
+            if (cursor.moveToFirst()) {
+                tam = cursor.getInt(0);
+            }
+        }
+        //Si no hay recordatorios cancelo la alarma
+        if(tam==0){
+            CancelAlarm(context);
+        }
+        else {
+            Cursor cursor = dbOp.cargarCursorRecordatorios();
+
+            ArrayList<Recordatorio_medicamento> recordatorios = new ArrayList<Recordatorio_medicamento>();
+
+            if (cursor.moveToFirst()) {
+                do {
+                    int id = cursor.getInt(0);
+                    String nombre = cursor.getString(8);
+                    float cantidad = cursor.getFloat(4);
+                    String fechaIni = cursor.getString(2);
+                    String fechaFin = cursor.getString(3);
+                    int intervalo = cursor.getInt(5);
+                    int horaIni = cursor.getInt(9);
+                    int minIni = cursor.getInt(10);
+                    recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id, horaIni, minIni));
+                }while (cursor.moveToNext());
+            }
+
+            //Si la fecha fin ya es la correspondiente borro el recordatorio
+            int diaux, mesaux, anioaux;
+            StringTokenizer st;
+            int auxil=0;
+            for(int i=0; i<recordatorios.size();i++){
+                String f = recordatorios.get(auxil).getFecha_fin();
+                st=new StringTokenizer(f, "/");
+
+                diaux=Integer.parseInt(st.nextToken());
+                mesaux=Integer.parseInt(st.nextToken());
+                anioaux=Integer.parseInt(st.nextToken());
+
+                if(anioaux<anio){
+                    borrar(dbOp, context, recordatorios.get(auxil).getId());
+                    recordatorios.remove(auxil);
+                    auxil--;
+                }
+                else if(anioaux==anio){
+                    if(mesaux<mes){
+                        borrar(dbOp, context, recordatorios.get(auxil).getId());
+                        recordatorios.remove(auxil);
+                        auxil--;
+                    }
+                    else  if(mesaux==mes){
+                        if(diaux<=dia){
+                            borrar(dbOp, context, recordatorios.get(auxil).getId());
+                            recordatorios.remove(auxil);
+                            auxil--;
+                        }
+                    }
+                }
+                auxil++;
+            }
+            //Ahora sí saco los recordatorios correspondientes
+            cursor = dbOp.cargarCursorRecordatorios();
+            recordatorios = new ArrayList<Recordatorio_medicamento>();
+
+            if (cursor.moveToFirst()) {
+                do {
+                    int id = cursor.getInt(0);
+                    String nombre = cursor.getString(8);
+                    float cantidad = cursor.getFloat(4);
+                    String fechaIni = cursor.getString(2);
+                    String fechaFin = cursor.getString(3);
+                    int intervalo = cursor.getInt(5);
+                    int horaIni = cursor.getInt(9);
+                    int minIni = cursor.getInt(10);
+                    if((hora==horaIni)&&(min==minIni)){
+                        recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id, horaIni, minIni));
+                    }
+                }while (cursor.moveToNext());
+            }
+            if(!recordatorios.isEmpty()) {
+                Intent inten = new Intent(context, Alarma.class);
+                inten.putExtra("recors", recordatorios);
+                inten.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(inten);
+            }
+        }
     }
 
-    public void SetAlarm(Context context, String nomMed, float cant, int intervalo, int horaIni, int minIni, int anio, int mes, int dia)
+    public void SetAlarm(Context context)
     {
         AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        medicamento=nomMed;
-        cantidad=cant;
         Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.putExtra(ONE_TIME, Boolean.FALSE);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.YEAR, anio);
-        calendar.set(Calendar.MONTH, mes);
-        calendar.set(Calendar.DAY_OF_MONTH, dia);
-        calendar.set(Calendar.HOUR_OF_DAY, horaIni);
-        calendar.set(Calendar.MINUTE, minIni);
-        calendar.set(Calendar.SECOND, 0);
-
-        //After after 30 seconds
-        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000 * 60 * 3 * intervalo, pi);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis(), 1000 * 60, pi);
     }
 
     public void CancelAlarm(Context context)
@@ -55,6 +140,18 @@ public class AlarmReceiver extends BroadcastReceiver {
         PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(sender);
+    }
+    public void borrar(DatabaseOperations dbHelper, Context context, int id){
+        dbHelper = new DatabaseOperations(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        if (db != null) {
+            String col=TableData.TableInfoRecordatorio.COLUMN_NAME_ID;
+            String aux=col+"='"+id+"'";
+            db.delete(TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO,aux,null);
+            Log.d("Operaciones bases de datos", "Eliminada una fila");
+            db.close();
+        }
     }
 }
 

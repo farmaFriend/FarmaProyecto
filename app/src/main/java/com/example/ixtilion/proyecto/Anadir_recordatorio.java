@@ -43,7 +43,7 @@ import java.util.List;
 public class Anadir_recordatorio extends Activity {
     EditText NOMBRE, CANTIDADTOMA, FECHAINICIO, FECHAFIN, INTERVALO, HORA;
     String nombre,fechaIni,fechaFin;
-    int intervalo, horaIni, minIni, anioIni, mesIni, diaIni;
+    int intervalo, horaIni, minIni;
     float cantidad;
     Button anadir;
     ImageView config;
@@ -127,6 +127,7 @@ public class Anadir_recordatorio extends Activity {
                         cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAFIN, fechaFin);
                         cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_INTERVALO, intervalo);
                         cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_HORA, horaIni);
+                        cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_MIN, minIni);
 
                         db.insert(TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO, null, cv);
                         Log.d("Operaciones bases de datos", "Insertada una fila");
@@ -147,7 +148,7 @@ public class Anadir_recordatorio extends Activity {
 
                         //Alarma
                         AlarmReceiver alarm=new AlarmReceiver();
-                        alarm.SetAlarm(c, nombre, cantidad, intervalo, horaIni, minIni, anioIni, mesIni, diaIni);
+                        alarm.SetAlarm(c);
 
                     } else {
                         Log.d("error", "else");
@@ -216,9 +217,6 @@ public class Anadir_recordatorio extends Activity {
             public void onClick(View v) {
                 DatePickerDialog.OnDateSetListener dpd= new DatePickerDialog.OnDateSetListener(){
                     public void onDateSet (DatePicker fec, int y, int m, int d){
-                        anioIni=y;
-                        mesIni=m;
-                        diaIni=d;
                         cal.set(Calendar.YEAR, y);
                         cal.set(Calendar.MONTH, m);
                         cal.set(Calendar.DAY_OF_MONTH, d);
@@ -234,9 +232,6 @@ public class Anadir_recordatorio extends Activity {
                 if(FECHAINICIO.isFocused()){
                     DatePickerDialog.OnDateSetListener dpd= new DatePickerDialog.OnDateSetListener(){
                         public void onDateSet (DatePicker fec, int y, int m, int d){
-                            anioIni=y;
-                            mesIni=m;
-                            diaIni=d;
                             cal.set(Calendar.YEAR, y);
                             cal.set(Calendar.MONTH, m);
                             cal.set(Calendar.DAY_OF_MONTH, d);

@@ -63,9 +63,6 @@ public class ArrayAdapterRecordatorio extends ArrayAdapter<Recordatorio_medicame
                     Toast.makeText(context, "Recordatorio eliminado correctamente", Toast.LENGTH_LONG).show();
                     recordatorios.remove(pos);
                     ArrayAdapterRecordatorio.this.notifyDataSetChanged();
-
-                    AlarmReceiver alarm=new AlarmReceiver();
-                    alarm.CancelAlarm(context);
                 }
             }
         });
