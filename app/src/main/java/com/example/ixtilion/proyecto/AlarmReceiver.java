@@ -1,6 +1,7 @@
 package com.example.ixtilion.proyecto;
 
 import android.content.BroadcastReceiver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 
@@ -116,6 +117,23 @@ public class AlarmReceiver extends BroadcastReceiver {
                 }while (cursor.moveToNext());
             }
             if(!recordatorios.isEmpty()) {
+                final SQLiteDatabase dbaux = dbOp.getWritableDatabase();
+                for (Recordatorio_medicamento r : recordatorios) {
+                    ContentValues cv = new ContentValues();
+                    int aux = r.getHoraIni() + r.getIntervalo();
+                    while (aux>=24){
+                        aux-=24;
+                    }
+                    cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_HORA, aux);
+
+                    String col = TableData.TableInfoRecordatorio.COLUMN_NAME_ID;
+                    int val = r.getId();
+                    String s = col + "=" + val;
+
+                    dbaux.update(TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO, cv, s, null);
+                }
+                dbaux.close();
+
                 Intent inten = new Intent(context, Alarma.class);
                 inten.putExtra("recors", recordatorios);
                 inten.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

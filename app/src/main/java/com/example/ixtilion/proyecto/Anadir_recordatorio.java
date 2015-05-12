@@ -87,6 +87,7 @@ public class Anadir_recordatorio extends Activity {
         //medicamentos.setSelection (dataAdapter.getPosition ("IBUPROFENO"));
 
         anadir = (Button) findViewById(R.id.btAnadirRec);
+        CANTIDADTOMA = (EditText) findViewById(R.id.tbCantidad);
         FECHAINICIO = (EditText) findViewById(R.id.TbfechaIni);
         FECHAFIN = (EditText) findViewById(R.id.Tbfechafin);
         INTERVALO = (EditText) findViewById(R.id.tbTiempo);
@@ -97,10 +98,9 @@ public class Anadir_recordatorio extends Activity {
             public void onClick(View v) {
                 nombre = medicamentos.getSelectedItem().toString();
 
-                //COMPROBAMOS QUE EXISTE EL MEDICAMENTO
+                //COMPROBAMOS QUE EXISTE EL MEDICAMENTO, falta comprobar que tambien este la hora
                 if ((nombre.compareTo(res.getString(R.string.EligeMedicamento))!=0) && (CANTIDADTOMA.getText().length() != 0) &&
                         (FECHAINICIO.getText().length() != 0) && (FECHAFIN.getText().length() != 0) && (INTERVALO.getText().length() != 0)) {
-
                     cantidad = Float.parseFloat(CANTIDADTOMA.getText().toString());
                     fechaIni = FECHAINICIO.getText().toString();
                     fechaFin = FECHAFIN.getText().toString();
