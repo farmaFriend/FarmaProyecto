@@ -1,11 +1,14 @@
 package com.example.ixtilion.proyecto;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,7 +24,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,7 +35,8 @@ import java.util.StringTokenizer;
 /**
  * Created by USUARIO on 24/04/2015.
  */
-public class Anadir_cita_medica extends Fragment {
+public class Anadir_cita_medica extends Activity {
+    private final Context context = this;
     EditText DESCRIPCION, FECHA, HORA;
     String medico,descripcion,fecha, hora, id;
     Button anadir;
@@ -45,15 +48,15 @@ public class Anadir_cita_medica extends Fragment {
     Calendar cal=Calendar.getInstance();
     DateFormat datfor=DateFormat.getDateInstance();
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        c = container.getContext();
-        View view = inflater.inflate(R.layout.agreagar_cita_mdedico, container, false);
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.agreagar_cita_mdedico);
         final Resources res = getResources();
 
-        medicos = (Spinner) view.findViewById(R.id.spMedico);
+        medicos = (Spinner) findViewById(R.id.spMedico);
         List<String> list = new ArrayList<>();
 
-        dbOp = new DatabaseOperations(c);
+        dbOp = new DatabaseOperations(context);
         cursorMedico = dbOp.cargarCursorMedicos();
         list.add(res.getString(R.string.ElegDoctor));
 
@@ -67,14 +70,14 @@ public class Anadir_cita_medica extends Fragment {
             } while (cursorMedico.moveToNext());
         }
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, list);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         medicos.setAdapter(dataAdapter);
 
-        anadir = (Button) view.findViewById(R.id.btAñadirCita);
-        DESCRIPCION =   (EditText) view.findViewById(R.id.tbDescrpcion);
-        FECHA = (EditText) view.findViewById(R.id.tbFecha);
-        HORA = (EditText) view.findViewById(R.id.tbHora);
+        anadir = (Button) findViewById(R.id.btAñadirCita);
+        DESCRIPCION =   (EditText) findViewById(R.id.tbDescrpcion);
+        FECHA = (EditText) findViewById(R.id.tbFecha);
+        HORA = (EditText)findViewById(R.id.tbHora);
 
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,7 +153,7 @@ public class Anadir_cita_medica extends Fragment {
                             boolean existe=false;
                             while(i<citas.size()&& existe==false) {
                                 if(id.compareTo(citas.get(i).getId())==0){
-                                    Toast.makeText(c, "Ya existe una cita con la misma descripcion, fecha y hora", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(context, "Ya existe una cita con la misma descripcion, fecha y hora", Toast.LENGTH_LONG).show();
                                     existe=true;
                                 }
                                 i++;
@@ -165,15 +168,17 @@ public class Anadir_cita_medica extends Fragment {
 
 
                         //CODIGO QUE MANDA A VISTA LISTA CITAS
-                        FragmentManager fm = getFragmentManager();
+                        /*FragmentManager fm = getFragmentManager();
                         fm.beginTransaction()
                                 .replace(R.id.container, new Lista_citas())
-                                .commit();
+                                .commit();*/
+                                Intent inten = new Intent(context, Lista_citas.class);
+                                startActivity(inten);
 
 
                                 db.insert(TableData.TableCitaMedico.TABLE_NAME_CITEMEDICO,null, cv);
 
-                                Toast.makeText(c, "Cita médico añadida correctamente", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, "Cita médico añadida correctamente", Toast.LENGTH_LONG).show();
 
                                 Log.d("Operaciones bases de datos", "Insertada una fila");
 
@@ -188,7 +193,7 @@ public class Anadir_cita_medica extends Fragment {
                     }
 
                 }else{
-                    Toast.makeText(c, "Error: Algún campo vacío", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Error: Algún campo vacío", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -263,6 +268,5 @@ public class Anadir_cita_medica extends Fragment {
             }
         });
 
-        return view;
     }
 }

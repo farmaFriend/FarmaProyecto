@@ -85,6 +85,7 @@
     <string name="ErrorMed">ErrorMed</string>
     <string name="ErrorRepe">Ya existe un elemento similar</string>
     <string name="ErrorAnt">Fecha anterior</string>
+    <string name="Anadido">Added succesfully!</string>
 
 
 </resources>

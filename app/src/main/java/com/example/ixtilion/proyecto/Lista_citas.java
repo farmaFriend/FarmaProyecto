@@ -1,7 +1,10 @@
 package com.example.ixtilion.proyecto;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,12 +22,15 @@ import java.util.StringTokenizer;
 /**
  * Created by USUARIO on 27/04/2015.
  */
-public class Lista_citas extends Fragment {
+public class Lista_citas extends Activity {
     private DatabaseOperations dbOp;
     Cursor cursor;
+    private final Context context = this;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        dbOp = new DatabaseOperations(container.getContext());
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.lis_citas);
+        dbOp = new DatabaseOperations(context);
         cursor = dbOp.cargarCursorCitasMedico();
 
         final ArrayList<Cita> citas = new ArrayList<Cita>();
@@ -43,8 +49,8 @@ public class Lista_citas extends Fragment {
 
             } while (cursor.moveToNext());
         }
-        View view = inflater.inflate(R.layout.lis_citas, container, false);
-        ListView list = (ListView)view.findViewById(R.id.listCitas);
+
+        ListView list = (ListView)findViewById(R.id.listCitas);
 
 
         //Borrar citas pasadas
@@ -112,26 +118,24 @@ public class Lista_citas extends Fragment {
             }
         }
 
-        final ArrayAdapterCita adapter = new ArrayAdapterCita(view.getContext(),citas);
+        final ArrayAdapterCita adapter = new ArrayAdapterCita(context,citas);
         list.setAdapter(adapter);
-        View imageButton = (ImageButton) view.findViewById(R.id.anadirCita);
+        View imageButton = (ImageButton) findViewById(R.id.anadirCita);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                FragmentManager fm = getFragmentManager();
+                /*FragmentManager fm = getFragmentManager();
                 fm.beginTransaction()
                         .replace(R.id.container, new Anadir_cita_medica() )
-                        .commit();
+                        .commit();*/
+                Intent inten = new Intent(context, Anadir_cita_medica.class);
+                startActivity(inten);
 
             }
-
         });
-
-        return view;
-
 
     }
 

@@ -1,9 +1,11 @@
 package com.example.ixtilion.proyecto;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,14 +23,14 @@ import java.util.ArrayList;
 /**
  * Created by Alumno on 19/03/2015.
  */
-public class Editar_recordatorio extends Fragment {
+public class Editar_recordatorio extends Activity {
     EditText NOMBRE, CANTIDAD, TIEMPO;
     int id;
     String nombre;
     float cantidad;
     String tiempo;
     Button editar;
-    Context c;
+    private final Context c=this;
     private DatabaseOperations dbOp;
     Cursor cursor;
     private String n;
@@ -43,14 +45,13 @@ public class Editar_recordatorio extends Fragment {
         this.id = id;
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        c = container.getContext();
-        View view = inflater.inflate(R.layout.editar_recor_pastilla, container, false);
-
-        editar = (Button) view.findViewById(R.id.btEditar);
-        NOMBRE = (EditText) view.findViewById(R.id.TbnomMedi);
-        CANTIDAD = (EditText) view.findViewById(R.id.tbCantidad);
-        TIEMPO = (EditText) view.findViewById(R.id.tbTiempo);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.editar_recor_pastilla);
+        editar = (Button) findViewById(R.id.btEditar);
+        NOMBRE = (EditText)findViewById(R.id.TbnomMedi);
+        CANTIDAD = (EditText)findViewById(R.id.tbCantidad);
+        TIEMPO = (EditText) findViewById(R.id.tbTiempo);
 
         NOMBRE.setText(this.n);
         CANTIDAD.setText(this.pas);
@@ -90,10 +91,14 @@ public class Editar_recordatorio extends Fragment {
                                 db.close();
 
                                 //CODIGO QUE MANDA A VISTA LISTA recordatorios
-                                FragmentManager fm = getFragmentManager();
+                               /* FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction()
                                         .replace(R.id.container, new Lista_recordatorio("all"))
-                                        .commit();
+                                        .commit();*/
+                            Intent inten = new Intent(c, Lista_recordatorio.class);
+                            startActivity(inten);
+                            Toast.makeText(c, res.getString(R.string.Anadido), Toast.LENGTH_LONG).show();
+
 
                             Toast.makeText(c, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();
                         }
@@ -108,6 +113,6 @@ public class Editar_recordatorio extends Fragment {
                 }
             }
         });
-        return view;
+
     }
 }

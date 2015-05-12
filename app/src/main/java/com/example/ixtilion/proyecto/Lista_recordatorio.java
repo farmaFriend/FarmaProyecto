@@ -1,7 +1,10 @@
 package com.example.ixtilion.proyecto;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,23 +13,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 /**
  * Created by rok on 15/03/2015.
  */
-public class Lista_recordatorio extends Fragment {
+public class Lista_recordatorio extends Activity {
     private DatabaseOperations dbOp;
     Cursor cursor;
     String momento;
-
+    private final Context c = this;
     public Lista_recordatorio(String m){
         this.momento = m;
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        dbOp = new DatabaseOperations(container.getContext());
+    public void onCreate( Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.lis_recordatorio);
+        dbOp = new DatabaseOperations(c);
         cursor = dbOp.cargarCursorRecordatorios();
 
         final ArrayList<Recordatorio_medicamento> recordatorios = new ArrayList<Recordatorio_medicamento>();
@@ -87,27 +93,29 @@ public class Lista_recordatorio extends Fragment {
             } while (cursor.moveToNext());
         }
 
-        View view = inflater.inflate(R.layout.lis_recordatorio, container, false);
-        ListView list = (ListView)view.findViewById(R.id.list_rec);
+        ListView list = (ListView)findViewById(R.id.list_rec);
 
-        final ArrayAdapterRecordatorio adapter = new ArrayAdapterRecordatorio(view.getContext(), recordatorios);
+        final ArrayAdapterRecordatorio adapter = new ArrayAdapterRecordatorio(c, recordatorios);
         list.setAdapter(adapter);
-        View imageButton = (ImageButton) view.findViewById(R.id.anadirRecordatorio);
+        View imageButton = (ImageButton) findViewById(R.id.anadirRecordatorio);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                FragmentManager fm = getFragmentManager();
+                /*FragmentManager fm = getFragmentManager();
                 fm.beginTransaction()
                         .replace(R.id.container, new Anadir_recordatorio() )
-                        .commit();
+                        .commit();*/
+                Intent inten = new Intent(c, Lista_medico.class);
+                startActivity(inten);
+
 
             }
 
         });
 
-        return view;
+
     }
 }

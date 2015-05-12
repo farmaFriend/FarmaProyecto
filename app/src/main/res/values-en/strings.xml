@@ -49,5 +49,6 @@
     <string name="ErrorMed">A doctor with that name and specialization already exists</string>
     <string name="ErrorRepe">A similar element already exists</string>
     <string name="ErrorAnt">Please enter a valid date</string>
->>>>>>> origin/master
+    <string name="Anadido">Added succesfully!</string>
+    >>>>>>> origin/master
 </resources>
