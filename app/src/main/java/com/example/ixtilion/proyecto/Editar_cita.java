@@ -1,13 +1,11 @@
 package com.example.ixtilion.proyecto;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -33,8 +31,8 @@ import java.util.List;
 /**
  * Created by USUARIO on 27/04/2015.
  */
-public class Editar_cita extends Activity{
-    private final Context context = this;
+public class Editar_cita extends Fragment{
+
     private String medico, descripcion, fecha, hora,id, id2;
     Context c;
     EditText  DESCRIPCION, FECHA, HORA;
@@ -55,11 +53,11 @@ public class Editar_cita extends Activity{
         this.id=des+f+h;
     }
 
-    public void onCreate( Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.editar_cita);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        c = container.getContext();
+        View view = inflater.inflate(R.layout.editar_cita, container, false);
 
-        medicos = (Spinner) findViewById(R.id.spMedico);
+        medicos = (Spinner) view.findViewById(R.id.spMedico);
 
         List<String> list = new ArrayList<>();
 
@@ -83,11 +81,11 @@ public class Editar_cita extends Activity{
 
         medicos.setSelection(dataAdapter.getPosition(medico));
 
-        editar = (Button) findViewById(R.id.btEditarCita);
+        editar = (Button) view.findViewById(R.id.btEditarCita);
 
-        DESCRIPCION =(EditText) findViewById(R.id.tbDescrpcion);
-        FECHA = (EditText) findViewById(R.id.tbFecha);
-        HORA = (EditText) findViewById(R.id.tbHora);
+        DESCRIPCION =   (EditText) view.findViewById(R.id.tbDescrpcion);
+        FECHA = (EditText) view.findViewById(R.id.tbFecha);
+        HORA = (EditText) view.findViewById(R.id.tbHora);
 
         DESCRIPCION.setText(this.descripcion);
         FECHA.setText(this.fecha);
@@ -159,15 +157,14 @@ public class Editar_cita extends Activity{
                                 db.close();
 
                                 //CODIGO QUE MANDA A VISTA LISTA CITAS
-                               /* FragmentManager fm = getFragmentManager();
+                                FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction()
                                         .replace(R.id.container, new Lista_citas())
-                                        .commit();*/
-                                Intent inten = new Intent(context, Lista_citas.class);
-                                startActivity(inten);
+                                        .commit();
 
 
-                                Toast.makeText(context, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();
+
+                                Toast.makeText(c, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();
 
                             }
 
@@ -179,7 +176,7 @@ public class Editar_cita extends Activity{
                     }
                 }
                 else{
-                    Toast.makeText(context, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
+                    Toast.makeText(c, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -253,6 +250,7 @@ public class Editar_cita extends Activity{
             }
         });
 
+        return view;
 
     }
 }

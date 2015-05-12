@@ -3,7 +3,6 @@ package com.example.ixtilion.proyecto;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -87,17 +86,10 @@ public class ArrayAdapterCita extends ArrayAdapter<Cita> {
         imageEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* FragmentManager fm = ((Activity)context).getFragmentManager();
+                FragmentManager fm = ((Activity)context).getFragmentManager();
                 fm.beginTransaction()
                         .replace(R.id.container, new Editar_cita(medico, descripcion, fecha, hora))
-                        .commit();*/
-
-                Intent inten = new Intent(context, Editar_cita.class);
-                inten.putExtra("edico", medico);
-                inten.putExtra("descripcion", descripcion);
-                inten.putExtra("fecha", fecha);
-                inten.putExtra("hora", hora);
-                ((Activity)context).startActivity(inten);
+                        .commit();
             }
         });
 

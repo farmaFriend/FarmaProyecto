@@ -1,10 +1,7 @@
 package com.example.ixtilion.proyecto;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,16 +15,12 @@ import java.util.ArrayList;
 /**
  * Created by Alumno on 26/03/2015.
  */
-public class Lista_medico extends Activity {
-    private final Context context = this;
+public class Lista_medico extends Fragment {
     private DatabaseOperations dbOp;
     Cursor cursor;
 
-    public  void onCreate( Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.lis_medico);
-
-        dbOp = new DatabaseOperations(context);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        dbOp = new DatabaseOperations(container.getContext());
         cursor = dbOp.cargarCursorMedicos();
 
         final ArrayList<Medico> medicos = new ArrayList<Medico>();
@@ -44,25 +37,27 @@ public class Lista_medico extends Activity {
             } while (cursor.moveToNext());
         }
 
-        ListView list = (ListView)findViewById(R.id.list_medicos);
-        final ArrayAdapterMedico adapter = new ArrayAdapterMedico(context,medicos);
+        View view = inflater.inflate(R.layout.lis_medico, container, false);
+        ListView list = (ListView)view.findViewById(R.id.list_medicos);
+        final ArrayAdapterMedico adapter = new ArrayAdapterMedico(view.getContext(),medicos);
         list.setAdapter(adapter);
-        View imageButton = (ImageButton) findViewById(R.id.anadirMedico);
+        View imageButton = (ImageButton) view.findViewById(R.id.anadirMedico);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                /*FragmentManager fm = getFragmentManager();
+                FragmentManager fm = getFragmentManager();
                 fm.beginTransaction()
                         .replace(R.id.container, new Anadir_medico() )
-                        .commit();*/
-                Intent inten = new Intent(context, Anadir_medico.class);
-                startActivity(inten);
+                        .commit();
 
             }
 
         });
+
+
+        return view;
     }
 }

@@ -1,11 +1,9 @@
 package com.example.ixtilion.proyecto;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
@@ -24,7 +22,7 @@ import java.util.ArrayList;
 /**
  * Created by rok on 14/03/2015.
  */
-public class Anadir_medicamento extends Activity {
+public class Anadir_medicamento extends Fragment {
     EditText NOMBRE, CANTIDAD;
     String nombre;
     float cantidad;
@@ -32,17 +30,15 @@ public class Anadir_medicamento extends Activity {
     Context c;
     private DatabaseOperations dbOp;
     Cursor cursor;
-    private final Context context = this;
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.agregar_medicamento);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        c = container.getContext();
+        View view = inflater.inflate(R.layout.agregar_medicamento, container, false);
 
-        anadir = (Button) findViewById(R.id.btAnadirMed);
-        NOMBRE = (EditText) findViewById(R.id.tbNomMedic);
-        CANTIDAD = (EditText) findViewById(R.id.tbNumPasti);
+        anadir = (Button) view.findViewById(R.id.btAnadirMed);
+        NOMBRE = (EditText) view.findViewById(R.id.tbNomMedic);
+        CANTIDAD = (EditText) view.findViewById(R.id.tbNumPasti);
         final Resources res = getResources();
-
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,9 +47,9 @@ public class Anadir_medicamento extends Activity {
                     nombre = NOMBRE.getText().toString();
                     cantidad = Float.parseFloat(CANTIDAD.getText().toString());
 
-                    if(context!=null) {
+                    if(c!=null) {
                         Log.d("NO error", "if");
-                        dbOp = new DatabaseOperations(context);
+                        dbOp = new DatabaseOperations(c);
                         SQLiteDatabase db = dbOp.getWritableDatabase();
 
                         if (db != null) {
@@ -78,7 +74,7 @@ public class Anadir_medicamento extends Activity {
                             boolean existe=false;
                             while(i<medicamentos.size()&& existe==false) {
                                 if(nombre.compareTo(medicamentos.get(i).getNombre())==0){
-                                    Toast.makeText(context, res.getString(R.string.ErrorRepe), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(c, res.getString(R.string.ErrorRepe), Toast.LENGTH_LONG).show();
                                     existe=true;
                                 }
                                 i++;
@@ -90,19 +86,17 @@ public class Anadir_medicamento extends Activity {
                                 cv.put(TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD, cantidad);
 
                                 db.insert(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO, null, cv);
-                                Log.d("Operaciones bases datos", "Insertada una fila");
+                                Log.d("Operaciones bases de datos", "Insertada una fila");
 
                                 db.close();
 
                                 //CODIGO QUE MANDA A VISTA LISTA MEDICAMENTOS
-                              /*  FragmentManager fm = getFragmentManager();
+                                FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction()
                                         .replace(R.id.container, new Lista_medicamento())
-                                        .commit();*/
-                                Intent inten = new Intent(context, Lista_medicamento.class);
-                                startActivity(inten);
+                                        .commit();
 
-                                Toast.makeText(context, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
+                                Toast.makeText(c, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
                             }
 
                         }
@@ -112,10 +106,11 @@ public class Anadir_medicamento extends Activity {
                     }
                 }
                 else{
-                    Toast.makeText(context, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
+                    Toast.makeText(c, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
                 }
             }
         });
 
+        return view;
     }
 }

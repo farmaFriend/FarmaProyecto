@@ -3,7 +3,6 @@ package com.example.ixtilion.proyecto;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -69,16 +68,10 @@ public class ArrayAdapterMedico extends ArrayAdapter<Medico> {
         imageEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*FragmentManager fm = ((Activity)context).getFragmentManager();
+                FragmentManager fm = ((Activity)context).getFragmentManager();
                 fm.beginTransaction()
                         .replace(R.id.container, new Edita_medico(nom, espe, direc))
-                        .commit();*/
-
-                Intent inten = new Intent(context, Edita_medico.class);
-                inten.putExtra("nom", nom);
-                inten.putExtra("espe",espe);
-                inten.putExtra("direc",direc);
-                ((Activity)context).startActivity(inten);
+                        .commit();
             }
         });
 

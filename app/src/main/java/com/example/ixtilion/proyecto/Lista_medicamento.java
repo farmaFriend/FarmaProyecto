@@ -1,10 +1,7 @@
 package com.example.ixtilion.proyecto;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,15 +17,12 @@ import java.util.ArrayList;
 /**
  * Created by rok on 15/03/2015.
  */
-public class Lista_medicamento extends Activity {
+public class Lista_medicamento extends Fragment {
     private DatabaseOperations dbOp;
     Cursor cursor;
-    private final Context context=this;
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.lis_medicamento);
-        dbOp = new DatabaseOperations(this);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        dbOp = new DatabaseOperations(container.getContext());
         cursor = dbOp.cargarCursorMedicamentos();
 
         final ArrayList<Medicamento> medicamentos = new ArrayList<Medicamento>();
@@ -43,27 +37,27 @@ public class Lista_medicamento extends Activity {
             } while (cursor.moveToNext());
         }
 
+        View view = inflater.inflate(R.layout.lis_medicamento, container, false);
+        ListView list = (ListView)view.findViewById(R.id.list_medic);
 
-        ListView list = (ListView)findViewById(R.id.list_medic);
-
-        final ArrayAdapterMedicamento adapter = new ArrayAdapterMedicamento(this,medicamentos);
+        final ArrayAdapterMedicamento adapter = new ArrayAdapterMedicamento(view.getContext(),medicamentos);
         list.setAdapter(adapter);
-        View imageButton = (ImageButton) findViewById(R.id.anadirMedicamento);
+        View imageButton = (ImageButton) view.findViewById(R.id.anadirMedicamento);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-              /*  FragmentManager fm = getFragmentManager();
+                FragmentManager fm = getFragmentManager();
                 fm.beginTransaction()
                         .replace(R.id.container, new Anadir_medicamento() )
-                        .commit();*/
-                Intent inten = new Intent(context, Anadir_medicamento.class);
-                startActivity(inten);
+                        .commit();
 
             }
 
         });
+
+        return view;
     }
 }

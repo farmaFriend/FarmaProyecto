@@ -94,7 +94,7 @@ public class Anadir_contacto extends Activity{
 
 
                                 db.insert(TableData.TableInfo.TABLE_NAME_AGENDA, null, cv);
-                                Log.d("Operaciones bases datos", "Insertada una fila");
+                                Log.d("Operaciones bases de datos", "Insertada una fila");
 
                                 db.close();
 

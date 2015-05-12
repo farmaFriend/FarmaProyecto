@@ -1,6 +1,5 @@
 package com.example.ixtilion.proyecto;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 
 import android.app.AlarmManager;
@@ -40,14 +39,14 @@ import java.util.List;
 /**
  * Created by rok on 14/03/2015.
  */
-public class Anadir_recordatorio extends Activity {
+public class Anadir_recordatorio extends Fragment {
     EditText NOMBRE, CANTIDADTOMA, FECHAINICIO, FECHAFIN, INTERVALO, HORA;
     String nombre,fechaIni,fechaFin;
     int intervalo, horaIni, minIni, anioIni, mesIni, diaIni;
     float cantidad;
     Button anadir;
     ImageView config;
-    private final Context c = this;
+    Context c;
     private DatabaseOperations dbOp;
     Cursor cursor;
     private Spinner medicamentos;
@@ -57,11 +56,11 @@ public class Anadir_recordatorio extends Activity {
     DateFormat datfor=DateFormat.getDateInstance();
 
 
-    public void onCreate( Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.agregar_recor_pastilla);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        c = container.getContext();
+        View view = inflater.inflate(R.layout.agregar_recor_pastilla, container, false);
 
-        medicamentos = (Spinner) findViewById(R.id.spMedicamentos);
+        medicamentos = (Spinner) view.findViewById(R.id.spMedicamentos);
         List<String> list = new ArrayList<>();
 
         dbOp = new DatabaseOperations(c);
@@ -86,11 +85,13 @@ public class Anadir_recordatorio extends Activity {
         //ESTO NO VA AQUI VA EN EDITAR RECORDATORIO PARA DEJAR SELECIONADO EL MEDICAMENTO QUE YA ESTABA
         //medicamentos.setSelection (dataAdapter.getPosition ("IBUPROFENO"));
 
-        anadir = (Button) findViewById(R.id.btAnadirRec);
-        FECHAINICIO = (EditText) findViewById(R.id.TbfechaIni);
-        FECHAFIN = (EditText) findViewById(R.id.Tbfechafin);
-        INTERVALO = (EditText) findViewById(R.id.tbTiempo);
-        HORA= (EditText) findViewById(R.id.tbHora);
+        anadir = (Button) view.findViewById(R.id.btAnadirRec);
+        config = (ImageView) view.findViewById(R.id.Config);
+        CANTIDADTOMA =   (EditText) view.findViewById(R.id.tbCantidad);
+        FECHAINICIO = (EditText) view.findViewById(R.id.TbfechaIni);
+        FECHAFIN = (EditText) view.findViewById(R.id.Tbfechafin);
+        INTERVALO = (EditText) view.findViewById(R.id.tbTiempo);
+        HORA= (EditText) view.findViewById(R.id.tbHora);
 
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,14 +135,10 @@ public class Anadir_recordatorio extends Activity {
                         db.close();
 
                         //CODIGO QUE MANDA A VISTA LISTA RECORDATORIOS
-                        /*FragmentManager fm = getFragmentManager();
+                        FragmentManager fm = getFragmentManager();
                         fm.beginTransaction()
                               .replace(R.id.container, new Lista_recordatorio("all"))
-                            .commit();*/
-                        Intent inten = new Intent(c, Lista_recordatorio.class);
-                        startActivity(inten);
-                        Toast.makeText(c, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
-
+                            .commit();
 
                         Toast.makeText(c, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
 
@@ -202,14 +199,14 @@ public class Anadir_recordatorio extends Activity {
                 }
             }
         });
-        /*config.setOnClickListener(new View.OnClickListener() {
+        config.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 config.setVisibility(View.INVISIBLE);
                 EditText textView=new EditText(c); //no se ve
                 textView.setText("Ave yo");
             }
-        });*/
+        });
 
         FECHAINICIO.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -280,5 +277,6 @@ public class Anadir_recordatorio extends Activity {
         });
 
 
+        return view;
     }
 }
