@@ -28,18 +28,12 @@ public class Editar_medicamento extends Activity {
     String nombre;
     float cantidad;
     Button editar;
-    Context c;
+    private final Context c = this;
     private DatabaseOperations dbOp;
     Cursor cursor;
     private String n;
     private String pas;
-    final Resources res = getResources();
     private final Context context = this;
-
-    public Editar_medicamento (String n, String pas){
-        this.n=n;
-        this.pas=pas;
-    }
 
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +42,11 @@ public class Editar_medicamento extends Activity {
         editar = (Button) findViewById(R.id.bEdiMedi);
         NOMBRE = (EditText)findViewById(R.id.tbNomEdiMedi);
         CANTIDAD = (EditText)findViewById(R.id.tbPasEdiMedi);
+
+        this.n=getIntent().getExtras().getString("nom");
+        this.pas=getIntent().getExtras().getString("pas");
+
+        final Resources res = getResources();
 
         NOMBRE.setText(this.n);
         CANTIDAD.setText(this.pas);
@@ -113,7 +112,7 @@ public class Editar_medicamento extends Activity {
                                         .replace(R.id.container, new Lista_medicamento())
                                         .commit();*/
 
-                                Intent inten = new Intent(context, Agenda.class);
+                                Intent inten = new Intent(context, Lista_medicamento.class);
                                 startActivity(inten);
 
                                 Toast.makeText(context, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();

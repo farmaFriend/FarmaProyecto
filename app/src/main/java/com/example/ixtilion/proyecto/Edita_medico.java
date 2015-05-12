@@ -28,22 +28,20 @@ public class Edita_medico extends Activity {
     EditText NOMBRE, ESPECIALIDAD, DIRECCION;
     String nombre, especialidad, direccion, id;
     Button editar;
-    Context c;
+    private final Context c = this;
     private DatabaseOperations dbOp;
     Cursor cursor;
-    final Resources res = getResources();
-
     String nom, esp, dir;
 
-    public Edita_medico (String nom, String esp, String dir){
-        this.nom=nom;
-        this.esp=esp;
-        this.dir=dir;
-    }
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.editar_medico);
+
+        this.nom=getIntent().getExtras().getString("nom");
+        this.esp=getIntent().getExtras().getString("espe");
+        this.dir=getIntent().getExtras().getString("direc");
+
         editar = (Button) findViewById(R.id.EditbtMedico);
         NOMBRE = (EditText) findViewById(R.id.EdittbNombreMedico);
         ESPECIALIDAD = (EditText) findViewById(R.id.EdittbEspecialidad);
@@ -52,6 +50,8 @@ public class Edita_medico extends Activity {
         NOMBRE.setText(this.nom);
         ESPECIALIDAD.setText(this.esp);
         DIRECCION.setText(this.dir);
+
+        final Resources res = getResources();
 
         editar.setOnClickListener(new View.OnClickListener() {
             @Override

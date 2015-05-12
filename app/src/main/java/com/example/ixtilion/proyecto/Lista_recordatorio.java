@@ -25,6 +25,9 @@ public class Lista_recordatorio extends Activity {
     Cursor cursor;
     String momento;
     private final Context c = this;
+    public Lista_recordatorio(){
+        this.momento = "all";
+    }
     public Lista_recordatorio(String m){
         this.momento = m;
     }

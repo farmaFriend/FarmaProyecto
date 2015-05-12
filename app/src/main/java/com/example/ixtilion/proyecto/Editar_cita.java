@@ -36,7 +36,7 @@ import java.util.List;
 public class Editar_cita extends Activity{
     private final Context context = this;
     private String medico, descripcion, fecha, hora,id, id2;
-    Context c;
+    private final Context c = this;
     EditText  DESCRIPCION, FECHA, HORA;
     Button editar;
     private Spinner medicos;
@@ -45,21 +45,20 @@ public class Editar_cita extends Activity{
     Cursor cursor;
     Calendar cal=Calendar.getInstance();
     DateFormat datfor=DateFormat.getDateInstance();
-    final Resources res = getResources();
-
-    public Editar_cita (String med, String des, String f, String h){
-        this.medico=med;
-        this.descripcion=des;
-        this.fecha=f;
-        this.hora=h;
-        this.id=des+f+h;
-    }
 
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.editar_cita);
 
         medicos = (Spinner) findViewById(R.id.spMedico);
+
+        this.medico=getIntent().getExtras().getString("medico");
+        this.descripcion=getIntent().getExtras().getString("descripcion");
+        this.fecha=getIntent().getExtras().getString("fecha");
+        this.hora=getIntent().getExtras().getString("hora");
+        this.id=getIntent().getExtras().getString("id");
+
+        final Resources res = getResources();
 
         List<String> list = new ArrayList<>();
 

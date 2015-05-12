@@ -27,8 +27,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         int hora=calendar.get(Calendar.HOUR_OF_DAY);
         int min=calendar.get(Calendar.MINUTE);
         int anio=calendar.get(Calendar.YEAR);
-        int mes=calendar.get(Calendar.MONTH);
-        Log.d("Datos al", String.valueOf(mes));
+        int mes=calendar.get(Calendar.MONTH)+1;
         int dia=calendar.get(Calendar.DAY_OF_MONTH);
 
         //Sacar de la base de datos

@@ -21,13 +21,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <android:uses-permission
+    <!--<android:uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
+        android:maxSdkVersion="18" />-->
     <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -52,7 +50,7 @@
         <activity  android:name = ".Anadir_recordatorio" ></activity>
         <activity  android:name = ".Lista_recordatorio" ></activity>
         <activity  android:name = ".Lista_comunidad" ></activity>
-
+        <activity  android:name = ".Editar_recordatorio"></activity>
 
 
         <activity

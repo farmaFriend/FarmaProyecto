@@ -28,10 +28,9 @@ public class Anadir_medico extends Activity {
     EditText NOMBRE, ESPECIALIDAD, DIRECCION;
     String nombre, especialidad, direccion,id;
     Button anadir;
-    Context c;
+    private final Context c = this;
     private DatabaseOperations dbOp;
     Cursor cursor;
-    final Resources res = getResources();
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +40,7 @@ public class Anadir_medico extends Activity {
         NOMBRE = (EditText) findViewById(R.id.tbNombreMedico);
         ESPECIALIDAD = (EditText) findViewById(R.id.tbEspecialidad);
         DIRECCION = (EditText) findViewById(R.id.tbDireccion);
+        final Resources res = getResources();
 
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -29,7 +29,6 @@ public class Anadir_medicamento extends Activity {
     String nombre;
     float cantidad;
     Button anadir;
-    Context c;
     private DatabaseOperations dbOp;
     Cursor cursor;
     private final Context context = this;

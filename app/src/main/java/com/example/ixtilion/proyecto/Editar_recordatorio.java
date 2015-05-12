@@ -33,21 +33,19 @@ public class Editar_recordatorio extends Activity {
     private final Context c=this;
     private DatabaseOperations dbOp;
     Cursor cursor;
-    private String n;
-    private String pas;
-    private String tiem;
-    final Resources res = getResources();
-
-    public Editar_recordatorio(String n, String pas, String tiempo, int id){
-        this.n=n;
-        this.pas=pas;
-        this.tiem = tiempo;
-        this.id = id;
-    }
+    private String n, pas, tiem;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.editar_recor_pastilla);
+
+        this.n=getIntent().getExtras().getString("nom");
+        this.pas=getIntent().getExtras().getString("pas");
+        this.tiem=getIntent().getExtras().getString("tiemp");
+        this.id=getIntent().getExtras().getInt("id");
+
+        final Resources res = getResources();
+
         editar = (Button) findViewById(R.id.btEditar);
         NOMBRE = (EditText)findViewById(R.id.TbnomMedi);
         CANTIDAD = (EditText)findViewById(R.id.tbCantidad);

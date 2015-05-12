@@ -40,7 +40,7 @@ public class Anadir_cita_medica extends Activity {
     EditText DESCRIPCION, FECHA, HORA;
     String medico,descripcion,fecha, hora, id;
     Button anadir;
-    Context c;
+    private final Context c = this;
     private DatabaseOperations dbOp;
     Cursor cursorMedico;
     Cursor cursor;

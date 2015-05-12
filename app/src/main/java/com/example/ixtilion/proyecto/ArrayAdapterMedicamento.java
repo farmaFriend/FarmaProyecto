@@ -71,7 +71,7 @@ public class ArrayAdapterMedicamento extends ArrayAdapter<Medicamento> {
                         .replace(R.id.container, new Editar_medicamento(nom, pas))
                         .commit();*/
 
-                Intent inten = new Intent(context, Editar_contacto.class);
+                Intent inten = new Intent(context, Editar_medicamento.class);
                 inten.putExtra("nom", nom);
                 inten.putExtra("pas", pas);
                 ((Activity)context).startActivity(inten);
