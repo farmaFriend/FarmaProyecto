@@ -1,9 +1,11 @@
 package com.example.ixtilion.proyecto;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,7 +23,8 @@ import java.util.ArrayList;
 /**
  * Created by Alumno on 26/03/2015.
  */
-public class Anadir_medico extends Fragment{
+public class Anadir_medico extends Activity {
+    private final Context context = this;
     EditText NOMBRE, ESPECIALIDAD, DIRECCION;
     String nombre, especialidad, direccion,id;
     Button anadir;
@@ -31,14 +34,13 @@ public class Anadir_medico extends Fragment{
     final Resources res = getResources();
 
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        c = container.getContext();
-        View view = inflater.inflate(R.layout.agregar_medico, container, false);
-
-        anadir = (Button) view.findViewById(R.id.btAgregarMedico);
-        NOMBRE = (EditText) view.findViewById(R.id.tbNombreMedico);
-        ESPECIALIDAD = (EditText) view.findViewById(R.id.tbEspecialidad);
-        DIRECCION = (EditText) view.findViewById(R.id.tbDireccion);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.agregar_medico);
+        anadir = (Button) findViewById(R.id.btAgregarMedico);
+        NOMBRE = (EditText) findViewById(R.id.tbNombreMedico);
+        ESPECIALIDAD = (EditText) findViewById(R.id.tbEspecialidad);
+        DIRECCION = (EditText) findViewById(R.id.tbDireccion);
 
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +56,7 @@ public class Anadir_medico extends Fragment{
 
                     if(c!=null) {
                         Log.d("NO error", "if");
-                        dbOp = new DatabaseOperations(c);
+                        dbOp = new DatabaseOperations(context);
                         SQLiteDatabase db = dbOp.getWritableDatabase();
 
                         id=nombre+especialidad;
@@ -84,7 +86,7 @@ public class Anadir_medico extends Fragment{
                             boolean existe=false;
                             while(i<medicos.size()&& existe==false) {
                                 if(id.compareTo(medicos.get(i).getId())==0){
-                                    Toast.makeText(c, res.getString(R.string.ErrorMed), Toast.LENGTH_LONG).show();                                    existe=true;
+                                    Toast.makeText(context, res.getString(R.string.ErrorMed), Toast.LENGTH_LONG).show();                                    existe=true;
                                 }
                                 i++;
                             }
@@ -103,12 +105,13 @@ public class Anadir_medico extends Fragment{
                                 db.close();
 
                                 //CODIGO QUE MANDA A VISTA LISTA MEDICOS
-                                FragmentManager fm = getFragmentManager();
+                                /*FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction()
                                         .replace(R.id.container, new Lista_medico())
-                                        .commit();
-
-                                Toast.makeText(c, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();                                    existe=true;
+                                        .commit();*/
+                                Intent inten = new Intent(context, Lista_medico.class);
+                                startActivity(inten);
+                                Toast.makeText(context, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();                                    existe=true;
 
                             }
 
@@ -119,10 +122,9 @@ public class Anadir_medico extends Fragment{
                     }
                 }
                 else{
-                    Toast.makeText(c, res.getString(R.string.Error), Toast.LENGTH_LONG).show();                                                 }
+                    Toast.makeText(context, res.getString(R.string.Error), Toast.LENGTH_LONG).show();                                                 }
             }
         });
 
-        return view;
     }
 }

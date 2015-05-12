@@ -56,8 +56,8 @@ public class MyActivity extends ActionBarActivity
 
         switch (position){
             case 0:
-                fragmento = new Principal();
-
+                inten = new Intent(this, Principal.class);
+                startActivity(inten);
                 break;
 
             case 1:
@@ -68,18 +68,21 @@ public class MyActivity extends ActionBarActivity
                 break;
 
             case 2:
-                fragmento = new Lista_medicamento();
+                //fragmento = new Lista_medicamento();
+                inten = new Intent(this, Lista_medicamento.class);
+                startActivity(inten);
                 break;
 
             case 3:
-                fragmento = new Lista_medico();
-                break;
+                inten = new Intent(this, Lista_medico.class);
+                startActivity(inten);                break;
 
             case 4:
                 fragmento = new Lista_comunidad();
                 break;
             case 5:
-                fragmento = new Lista_citas();
+                inten = new Intent(this, Lista_citas.class);
+                startActivity(inten);
                 break;
             case 6:
                 //a = new MapaFar();

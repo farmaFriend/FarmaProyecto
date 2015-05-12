@@ -1,9 +1,11 @@
 package com.example.ixtilion.proyecto;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,7 +23,7 @@ import java.util.ArrayList;
 /**
  * Created by Alumno on 19/03/2015.
  */
-public class Editar_medicamento extends Fragment {
+public class Editar_medicamento extends Activity {
     EditText NOMBRE, CANTIDAD;
     String nombre;
     float cantidad;
@@ -32,19 +34,20 @@ public class Editar_medicamento extends Fragment {
     private String n;
     private String pas;
     final Resources res = getResources();
+    private final Context context = this;
 
     public Editar_medicamento (String n, String pas){
         this.n=n;
         this.pas=pas;
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        c = container.getContext();
-        View view = inflater.inflate(R.layout.editar_medicamento, container, false);
+    public void onCreate( Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.editar_medicamento);
 
-        editar = (Button) view.findViewById(R.id.bEdiMedi);
-        NOMBRE = (EditText) view.findViewById(R.id.tbNomEdiMedi);
-        CANTIDAD = (EditText) view.findViewById(R.id.tbPasEdiMedi);
+        editar = (Button) findViewById(R.id.bEdiMedi);
+        NOMBRE = (EditText)findViewById(R.id.tbNomEdiMedi);
+        CANTIDAD = (EditText)findViewById(R.id.tbPasEdiMedi);
 
         NOMBRE.setText(this.n);
         CANTIDAD.setText(this.pas);
@@ -83,7 +86,7 @@ public class Editar_medicamento extends Fragment {
                             if(n.compareTo(nombre)!=0) {
                                 while (i < medicamentos.size() && existe == false) {
                                     if (nombre.compareTo(medicamentos.get(i).getNombre()) == 0) {
-                                        Toast.makeText(c, res.getString(R.string.ErrorRepe), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(context, res.getString(R.string.ErrorRepe), Toast.LENGTH_LONG).show();
                                         existe = true;
                                     }
                                     i++;
@@ -105,12 +108,15 @@ public class Editar_medicamento extends Fragment {
                                 db.close();
 
                                 //CODIGO QUE MANDA A VISTA LISTA MEDICAMENTOS
-                                FragmentManager fm = getFragmentManager();
+                                /*FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction()
                                         .replace(R.id.container, new Lista_medicamento())
-                                        .commit();
+                                        .commit();*/
 
-                                Toast.makeText(c, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();
+                                Intent inten = new Intent(context, Agenda.class);
+                                startActivity(inten);
+
+                                Toast.makeText(context, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();
                             }
                         }
                     }
@@ -119,10 +125,10 @@ public class Editar_medicamento extends Fragment {
                     }
                 }
                 else{
-                    Toast.makeText(c, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
                 }
             }
         });
-        return view;
+
     }
 }
