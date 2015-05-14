@@ -1,11 +1,14 @@
 package com.example.ixtilion.proyecto;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -30,10 +33,10 @@ import java.util.List;
 /**
  * Created by USUARIO on 27/04/2015.
  */
-public class Editar_cita extends Fragment{
-
+public class Editar_cita extends Activity{
+    private final Context context = this;
     private String medico, descripcion, fecha, hora,id, id2;
-    Context c;
+    private final Context c = this;
     EditText  DESCRIPCION, FECHA, HORA;
     Button editar;
     private Spinner medicos;
@@ -43,19 +46,19 @@ public class Editar_cita extends Fragment{
     Calendar cal=Calendar.getInstance();
     DateFormat datfor=DateFormat.getDateInstance();
 
-    public Editar_cita (String med, String des, String f, String h){
-        this.medico=med;
-        this.descripcion=des;
-        this.fecha=f;
-        this.hora=h;
-        this.id=des+f+h;
-    }
+    public void onCreate( Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.editar_cita);
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        c = container.getContext();
-        View view = inflater.inflate(R.layout.editar_cita, container, false);
+        medicos = (Spinner) findViewById(R.id.spMedico);
 
-        medicos = (Spinner) view.findViewById(R.id.spMedico);
+        this.medico=getIntent().getExtras().getString("medico");
+        this.descripcion=getIntent().getExtras().getString("descripcion");
+        this.fecha=getIntent().getExtras().getString("fecha");
+        this.hora=getIntent().getExtras().getString("hora");
+        this.id=getIntent().getExtras().getString("id");
+
+        final Resources res = getResources();
 
         List<String> list = new ArrayList<>();
 
@@ -79,11 +82,11 @@ public class Editar_cita extends Fragment{
 
         medicos.setSelection(dataAdapter.getPosition(medico));
 
-        editar = (Button) view.findViewById(R.id.btEditarCita);
+        editar = (Button) findViewById(R.id.btEditarCita);
 
-        DESCRIPCION =   (EditText) view.findViewById(R.id.tbDescrpcion);
-        FECHA = (EditText) view.findViewById(R.id.tbFecha);
-        HORA = (EditText) view.findViewById(R.id.tbHora);
+        DESCRIPCION =(EditText) findViewById(R.id.tbDescrpcion);
+        FECHA = (EditText) findViewById(R.id.tbFecha);
+        HORA = (EditText) findViewById(R.id.tbHora);
 
         DESCRIPCION.setText(this.descripcion);
         FECHA.setText(this.fecha);
@@ -129,7 +132,7 @@ public class Editar_cita extends Fragment{
                             boolean existe=false;
                             while(i<citas.size()&& existe==false) {
                                 if(id2.compareTo(citas.get(i).getId())==0){
-                                    Toast.makeText(c, "Ya existe una cita con la misma descripcion, fecha y hora", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(c, res.getString(R.string.ErrorRepe), Toast.LENGTH_LONG).show();
                                     existe=true;
                                 }
                                 i++;
@@ -155,14 +158,15 @@ public class Editar_cita extends Fragment{
                                 db.close();
 
                                 //CODIGO QUE MANDA A VISTA LISTA CITAS
-                                FragmentManager fm = getFragmentManager();
+                               /* FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction()
                                         .replace(R.id.container, new Lista_citas())
-                                        .commit();
+                                        .commit();*/
+                                Intent inten = new Intent(context, Lista_citas.class);
+                                startActivity(inten);
 
 
-
-                                Toast.makeText(c, "Cita editada correctamente", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();
 
                             }
 
@@ -174,7 +178,7 @@ public class Editar_cita extends Fragment{
                     }
                 }
                 else{
-                    Toast.makeText(c,"Error: Algún campo vacío", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -248,7 +252,6 @@ public class Editar_cita extends Fragment{
             }
         });
 
-        return view;
 
     }
 }

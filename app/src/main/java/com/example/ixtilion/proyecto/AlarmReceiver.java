@@ -1,62 +1,154 @@
 package com.example.ixtilion.proyecto;
 
 import android.content.BroadcastReceiver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.os.PowerManager;
-import android.os.Vibrator;
-import android.util.Log;
-import android.widget.Toast;
-import java.text.Format;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.StringTokenizer;
 
 /**
  * Created by Alumno on 21/04/2015.
  */
 public class AlarmReceiver extends BroadcastReceiver {
-    final public static String ONE_TIME = "onetime";
-    public static String medicamento = "caca";
     @Override
     public void onReceive(Context context, Intent intent) {
+        //comprobar fecha y hora
+        Calendar calendar = Calendar.getInstance();
+        int hora=calendar.get(Calendar.HOUR_OF_DAY);
+        int min=calendar.get(Calendar.MINUTE);
+        int anio=calendar.get(Calendar.YEAR);
+        int mes=calendar.get(Calendar.MONTH)+1;
+        int dia=calendar.get(Calendar.DAY_OF_MONTH);
 
-        Intent inten = new Intent(context, Alarma.class);
-        inten.putExtra("medicam", medicamento);
-        context.startActivity(inten);
+        //Sacar de la base de datos
+        DatabaseOperations dbOp= new DatabaseOperations(context);
+        int tam=0;
+        final SQLiteDatabase db = dbOp.getWritableDatabase();
+        if (db != null) {
+            Cursor cursor = dbOp.cargarCursorRecordatoriosCount();
+            if (cursor.moveToFirst()) {
+                tam = cursor.getInt(0);
+            }
+        }
+        //Si no hay recordatorios cancelo la alarma
+        if(tam==0){
+            CancelAlarm(context);
+        }
+        else {
+            Cursor cursor = dbOp.cargarCursorRecordatorios();
 
-        /*PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "YOUR TAG");
-        //Acquire the lock
-        wl.acquire();
+            ArrayList<Recordatorio_medicamento> recordatorios = new ArrayList<Recordatorio_medicamento>();
 
-        //You can do the processing here update the widget/remote views.
-        Bundle extras = intent.getExtras();
-        StringBuilder msgStr = new StringBuilder();
+            if (cursor.moveToFirst()) {
+                do {
+                    int id = cursor.getInt(0);
+                    String nombre = cursor.getString(8);
+                    float cantidad = cursor.getFloat(4);
+                    String fechaIni = cursor.getString(2);
+                    String fechaFin = cursor.getString(3);
+                    int intervalo = cursor.getInt(5);
+                    int horaIni = cursor.getInt(9);
+                    int minIni = cursor.getInt(10);
+                    recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id, horaIni, minIni));
+                }while (cursor.moveToNext());
+            }
 
-        Format formatter = new SimpleDateFormat("hh:mm:ss a");
-        msgStr.append(formatter.format(new Date()));
+            //Si la fecha fin ya es la correspondiente borro el recordatorio
+            int diaux, mesaux, anioaux;
+            StringTokenizer st;
+            int auxil=0;
+            for(int i=0; i<recordatorios.size();i++){
+                String f = recordatorios.get(auxil).getFecha_fin();
+                st=new StringTokenizer(f, "/");
 
-        Toast.makeText(context, msgStr+medicamento, Toast.LENGTH_LONG).show();
-        Vibrator vibrator= (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(2000);
+                diaux=Integer.parseInt(st.nextToken());
+                mesaux=Integer.parseInt(st.nextToken());
+                anioaux=Integer.parseInt(st.nextToken());
 
-        //Release the lock
-        wl.release();*/
+                if(anioaux<anio){
+                    borrar(dbOp, context, recordatorios.get(auxil).getId());
+                    recordatorios.remove(auxil);
+                    auxil--;
+                }
+                else if(anioaux==anio){
+                    if(mesaux<mes){
+                        borrar(dbOp, context, recordatorios.get(auxil).getId());
+                        recordatorios.remove(auxil);
+                        auxil--;
+                    }
+                    else  if(mesaux==mes){
+                        if(diaux<=dia){
+                            borrar(dbOp, context, recordatorios.get(auxil).getId());
+                            recordatorios.remove(auxil);
+                            auxil--;
+                        }
+                    }
+                }
+                auxil++;
+            }
+            //Ahora sí saco los recordatorios correspondientes
+            cursor = dbOp.cargarCursorRecordatorios();
+            recordatorios = new ArrayList<Recordatorio_medicamento>();
 
+            if (cursor.moveToFirst()) {
+                do {
+                    int id = cursor.getInt(0);
+                    String nombre = cursor.getString(8);
+                    float cantidad = cursor.getFloat(4);
+                    String fechaIni = cursor.getString(2);
+                    String fechaFin = cursor.getString(3);
+                    int intervalo = cursor.getInt(5);
+                    int horaIni = cursor.getInt(9);
+                    int minIni = cursor.getInt(10);
+                    if((hora==horaIni)&&(min==minIni)){
+                        recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id, horaIni, minIni));
+                    }
+                }while (cursor.moveToNext());
+            }
+            if(!recordatorios.isEmpty()) {
+                final SQLiteDatabase dbaux = dbOp.getWritableDatabase();
+                for (Recordatorio_medicamento r : recordatorios) {
+                    ContentValues cv = new ContentValues();
+                    int aux = r.getHoraIni() + r.getIntervalo();
+                    while (aux>=24){
+                        aux-=24;
+                    }
+                    cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_HORA, aux);
+
+                    String col = TableData.TableInfoRecordatorio.COLUMN_NAME_ID;
+                    int val = r.getId();
+                    String s = col + "=" + val;
+
+                    dbaux.update(TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO, cv, s, null);
+                }
+                dbaux.close();
+
+                Intent inten = new Intent(context, Alarma.class);
+                inten.putExtra("recors", recordatorios);
+                inten.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(inten);
+            }
+        }
     }
-    public void SetAlarm(Context context, String nomMed)
+
+    public void SetAlarm(Context context)
     {
         AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        medicamento=nomMed;
         Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.putExtra(ONE_TIME, Boolean.FALSE);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
-        //After after 30 seconds
-        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 30, pi);
+
+        am.setRepeating(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis(), 1000 * 60, pi);
     }
 
     public void CancelAlarm(Context context)
@@ -66,12 +158,17 @@ public class AlarmReceiver extends BroadcastReceiver {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(sender);
     }
-    public void setOnetimeTimer(Context context){
-        AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.putExtra(ONE_TIME, Boolean.TRUE);
-        PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
-        am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pi);
+    public void borrar(DatabaseOperations dbHelper, Context context, int id){
+        dbHelper = new DatabaseOperations(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        if (db != null) {
+            String col=TableData.TableInfoRecordatorio.COLUMN_NAME_ID;
+            String aux=col+"='"+id+"'";
+            db.delete(TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO,aux,null);
+            Log.d("Operaciones bases de datos", "Eliminada una fila");
+            db.close();
+        }
     }
 }
 

@@ -3,6 +3,7 @@ package com.example.ixtilion.proyecto;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,8 +48,8 @@ public class ArrayAdapterCita extends ArrayAdapter<Cita> {
 
         ImageView imageQuit = (ImageView) rowView.findViewById(R.id.ImQuitarMedico);
         ImageView imageEdit = (ImageView) rowView.findViewById(R.id.ImModificarCita);
-
-        if(medico.compareTo("---Elige un médico---")==0){
+        //Mirar si es en ingles
+        if(medico.compareTo("--Elige un médico--")==0){
             linea1.setText(descripcion);
             linea4.setText(fecha);
             linea2.setText(hora);
@@ -69,8 +70,8 @@ public class ArrayAdapterCita extends ArrayAdapter<Cita> {
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
 
                 if (db != null) {
-                    String col=TableData.TableCitaMedico.COLUMN_NAME_DESCRIPCION;
-                    String val=citas.get(pos).getDescripcion();
+                    String col=TableData.TableCitaMedico.COLUMN_NAME_ID;
+                    String val=citas.get(pos).getId();
                     String aux=col+"='"+val+"'";
                     db.delete(TableData.TableCitaMedico.TABLE_NAME_CITEMEDICO,aux,null);
                     Log.d("Operaciones bases de datos", "Eliminada una fila");
@@ -86,10 +87,18 @@ public class ArrayAdapterCita extends ArrayAdapter<Cita> {
         imageEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = ((Activity)context).getFragmentManager();
+               /* FragmentManager fm = ((Activity)context).getFragmentManager();
                 fm.beginTransaction()
                         .replace(R.id.container, new Editar_cita(medico, descripcion, fecha, hora))
-                        .commit();
+                        .commit();*/
+
+                Intent inten = new Intent(context, Editar_cita.class);
+                inten.putExtra("medico", medico);
+                inten.putExtra("descripcion", descripcion);
+                inten.putExtra("fecha", fecha);
+                inten.putExtra("hora", hora);
+                inten.putExtra("id", id);
+                ((Activity)context).startActivity(inten);
             }
         });
 

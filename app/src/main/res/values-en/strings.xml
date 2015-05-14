@@ -39,4 +39,16 @@
     <string name="EditMedicamento">Edit medicine</string>
     <string name="EditMedico">Edit doctor</string>
     <string name="Citas">Appointments</string>
+
+    <string name="farmacias">Pharmacies</string>
+
+    <string name="Añadido">Added succesfully!</string>
+    <string name="Borrado">Deleted succesfully!</string>
+    <string name="Editado">Edited succesfully!</string>
+    <string name="Error">Error: There is an empty field</string>
+    <string name="ErrorMed">A doctor with that name and specialization already exists</string>
+    <string name="ErrorRepe">A similar element already exists</string>
+    <string name="ErrorAnt">Please enter a valid date</string>
+    <string name="Anadido">Added succesfully!</string>
+    >>>>>>> origin/master
 </resources>

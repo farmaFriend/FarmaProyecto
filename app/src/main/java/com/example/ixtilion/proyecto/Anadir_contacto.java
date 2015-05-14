@@ -5,6 +5,8 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -23,27 +25,24 @@ import java.util.ArrayList;
 /**
  * Created by USUARIO on 12/03/2015.
  */
-public class Anadir_contacto extends Fragment {
+public class Anadir_contacto extends Activity{
     EditText ID, NOMBRE, TELF;
     String id, nombre, telf;
     Button anadir;
-    Context c;
+    private final Context context = this;
     private DatabaseOperations dbOp;
     Cursor cursor;
 
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.agregar_contacto);
 
-        c = container.getContext();
+        anadir = (Button)findViewById(R.id.buttonAñadir);
 
-        View view = inflater.inflate(R.layout.agregar_contacto, container, false);
-
-
-        anadir = (Button) view.findViewById(R.id.buttonAñadir);
-
-        NOMBRE = (EditText) view.findViewById(R.id.editTextNombre);
-        TELF = (EditText) view.findViewById(R.id.editTextTelf);
-
+        NOMBRE = (EditText)findViewById(R.id.editTextNombre);
+        TELF = (EditText)findViewById(R.id.editTextTelf);
+        final Resources res = getResources();
 
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,15 +50,13 @@ public class Anadir_contacto extends Fragment {
 
                 if((NOMBRE.getText().length()!=0) && (TELF.getText().length()!=0)){
 
-
                     nombre = NOMBRE.getText().toString();
                     telf = TELF.getText().toString();
 
-
-                    if(c!=null) {
+                    if(context!=null) {
 
                         Log.d("NO error","if");
-                        dbOp = new DatabaseOperations(c);
+                        dbOp = new DatabaseOperations(context);
                         SQLiteDatabase db = dbOp.getWritableDatabase();
 
 
@@ -84,7 +81,7 @@ public class Anadir_contacto extends Fragment {
                             boolean existe=false;
                             while(i<cont.size()&& existe==false) {
                                 if(telf.compareTo(cont.get(i).getPhone())==0){
-                                    Toast.makeText(c, "Yaexiste un contacto con ese número de teléfono", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(context, res.getString(R.string.ErrorRepe), Toast.LENGTH_LONG).show();
                                     existe=true;
                                 }
                                 i++;
@@ -97,33 +94,31 @@ public class Anadir_contacto extends Fragment {
 
 
                                 db.insert(TableData.TableInfo.TABLE_NAME_AGENDA, null, cv);
-                                Log.d("Operaciones bases de datos", "Insertada una fila");
+                                Log.d("Operaciones bases datos", "Insertada una fila");
 
                                 db.close();
 
                                 //CODIGO QUE MANDA A VISTA AGENDA
+                                /*
                                 FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction()
                                         .replace(R.id.container, new Agenda() )
                                         .commit();
+                                */
+                                Intent inten = new Intent(context, Agenda.class);
+                                startActivity(inten);
 
-                                Toast.makeText(c, "Se ha añadido el contacto correctamente", Toast.LENGTH_LONG).show();
-
-
+                                Toast.makeText(context, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
                             }
 
                         }
                     }
-                    NOMBRE.setText("");
-                    TELF.setText("");
                 }
                 else{
-                    Toast.makeText(c,"Error: Algún campo vacío", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
                 }
             }
         });
-
-        return view;
     }
 
 

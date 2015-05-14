@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 
 import android.support.v4.app.FragmentActivity;
@@ -78,10 +79,14 @@ public class CustomArrayAdapter extends ArrayAdapter<Contacto> {
             @Override
             public void onClick(View v) {
 
-                FragmentManager fm = ((Activity)context).getFragmentManager();
+                /*FragmentManager fm = ((Activity)context).getFragmentManager();
                 fm.beginTransaction()
                         .replace(R.id.container, new Editar_contacto(nom,tfno) )
-                        .commit();
+                        .commit();*/
+                Intent inten = new Intent(context, Editar_contacto.class);
+                inten.putExtra("nom", nom);
+                inten.putExtra("tlfn", tfno);
+                ((Activity)context).startActivity(inten);
             }
         });
 

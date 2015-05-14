@@ -1,9 +1,12 @@
 package com.example.ixtilion.proyecto;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -20,33 +23,35 @@ import java.util.ArrayList;
 /**
  * Created by rok on 28/03/2015.
  */
-public class Edita_medico extends Fragment {
+public class Edita_medico extends Activity {
+    private final Context context = this;
     EditText NOMBRE, ESPECIALIDAD, DIRECCION;
     String nombre, especialidad, direccion, id;
     Button editar;
-    Context c;
+    private final Context c = this;
     private DatabaseOperations dbOp;
     Cursor cursor;
-
     String nom, esp, dir;
 
-    public Edita_medico (String nom, String esp, String dir){
-        this.nom=nom;
-        this.esp=esp;
-        this.dir=dir;
-    }
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        c = container.getContext();
-        View view = inflater.inflate(R.layout.editar_medico, container, false);
+    public void onCreate(Bundle savedInstanceState) {
 
-        editar = (Button) view.findViewById(R.id.EditbtMedico);
-        NOMBRE = (EditText) view.findViewById(R.id.EdittbNombreMedico);
-        ESPECIALIDAD = (EditText) view.findViewById(R.id.EdittbEspecialidad);
-        DIRECCION = (EditText) view.findViewById(R.id.EdittbDireccion);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.editar_medico);
+
+        this.nom=getIntent().getExtras().getString("nom");
+        this.esp=getIntent().getExtras().getString("espe");
+        this.dir=getIntent().getExtras().getString("direc");
+
+        editar = (Button) findViewById(R.id.EditbtMedico);
+        NOMBRE = (EditText) findViewById(R.id.EdittbNombreMedico);
+        ESPECIALIDAD = (EditText) findViewById(R.id.EdittbEspecialidad);
+        DIRECCION = (EditText) findViewById(R.id.EdittbDireccion);
 
         NOMBRE.setText(this.nom);
         ESPECIALIDAD.setText(this.esp);
         DIRECCION.setText(this.dir);
+
+        final Resources res = getResources();
 
         editar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +95,7 @@ public class Edita_medico extends Fragment {
                             if(idAnt.compareTo(id)!=0) {
                                 while (i < medicos.size() && existe == false) {
                                     if (id.compareTo(medicos.get(i).getId()) == 0) {
-                                        Toast.makeText(c, "Ya existe un médico con ese nombre y especialidad", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(context, res.getString(R.string.ErrorRepe), Toast.LENGTH_LONG).show();                                    existe=true;
                                         existe = true;
                                     }
                                     i++;
@@ -113,12 +118,14 @@ public class Edita_medico extends Fragment {
                                 db.close();
 
                                 //CODIGO QUE MANDA A VISTA LISTA MEDICOS
-                                FragmentManager fm = getFragmentManager();
+                                /*FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction()
                                         .replace(R.id.container, new Lista_medico())
-                                        .commit();
+                                        .commit();*/
+                                Intent inten = new Intent(context, Lista_medico.class);
+                                startActivity(inten);
 
-                                Toast.makeText(c, "Medico editado correctamente", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();                                    existe=true;
                             }
                         }
                     }
@@ -127,10 +134,10 @@ public class Edita_medico extends Fragment {
                     }
                 }
                 else{
-                    Toast.makeText(c,"Error: El campo nombre o especialidad esta vacío", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
                 }
             }
         });
-        return view;
+
     }
 }

@@ -1,9 +1,12 @@
 package com.example.ixtilion.proyecto;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -20,29 +23,29 @@ import java.util.ArrayList;
 /**
  * Created by Alumno on 19/03/2015.
  */
-public class Editar_contacto extends Fragment{
+public class Editar_contacto extends Activity {
     EditText NOMBRE,TELEFONO;
     String nombre;
     String telefono;
     Button editar;
-    Context c;
+    private final Context context=this;
     private DatabaseOperations dbOp;
     Cursor cursor;
     private String n;
     private String pas;
 
-    public Editar_contacto (String nombre, String telefono){
-        this.n=nombre;
-        this.pas=telefono;
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.editar_contacto);
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        c = container.getContext();
-        View view = inflater.inflate(R.layout.editar_contacto, container, false);
+        this.n=getIntent().getExtras().getString("nom");
+        this.pas=getIntent().getExtras().getString("tlfn");
 
-        editar = (Button) view.findViewById(R.id.buttonAñadir);
-        NOMBRE = (EditText) view.findViewById(R.id.editTextNombre);
-        TELEFONO = (EditText) view.findViewById(R.id.editTextTelf);
+        final Resources res = getResources();
+
+        editar = (Button) findViewById(R.id.buttonAñadir);
+        NOMBRE = (EditText) findViewById(R.id.editTextNombre);
+        TELEFONO = (EditText) findViewById(R.id.editTextTelf);
 
         NOMBRE.setText(this.n);
         TELEFONO.setText(this.pas);
@@ -55,8 +58,8 @@ public class Editar_contacto extends Fragment{
                     nombre = NOMBRE.getText().toString();
                     telefono = TELEFONO.getText().toString();
 
-                    if(c!=null) {
-                        dbOp= new DatabaseOperations(c);
+                    if(context!=null) {
+                        dbOp= new DatabaseOperations(context);
                         final SQLiteDatabase db = dbOp.getWritableDatabase();
 
                         if (db != null) {
@@ -81,7 +84,7 @@ public class Editar_contacto extends Fragment{
                             if(pas.compareTo(telefono)!=0) {
                                 while (i < contactos.size() && existe == false) {
                                     if (telefono.compareTo(contactos.get(i).getPhone()) == 0) {
-                                        Toast.makeText(c, "Ya existe un contacto con ese telefono", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(context, res.getString(R.string.ErrorRepe), Toast.LENGTH_LONG).show();
                                         existe = true;
                                     }
                                     i++;
@@ -103,12 +106,16 @@ public class Editar_contacto extends Fragment{
                                 db.close();
 
                                 //CODIGO QUE MANDA A VISTA LISTA CONTACTOS
+                                /*
                                 FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction()
                                         .replace(R.id.container, new Agenda())
                                         .commit();
+                                */
+                                Intent inten = new Intent(context, Agenda.class);
+                                startActivity(inten);
 
-                                Toast.makeText(c, "Contacto editado correctamente", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();
                             }
                         }
                     }
@@ -117,10 +124,9 @@ public class Editar_contacto extends Fragment{
                     }
                 }
                 else{
-                    Toast.makeText(c,"Error: Algún campo vacío", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
                 }
             }
         });
-        return view;
     }
 }

@@ -1,9 +1,12 @@
 package com.example.ixtilion.proyecto;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,22 +24,23 @@ import java.util.ArrayList;
 /**
  * Created by rok on 14/03/2015.
  */
-public class Anadir_medicamento extends Fragment {
+public class Anadir_medicamento extends Activity {
     EditText NOMBRE, CANTIDAD;
     String nombre;
     float cantidad;
     Button anadir;
-    Context c;
     private DatabaseOperations dbOp;
     Cursor cursor;
+    private final Context context = this;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        c = container.getContext();
-        View view = inflater.inflate(R.layout.agregar_medicamento, container, false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.agregar_medicamento);
 
-        anadir = (Button) view.findViewById(R.id.btAnadirMed);
-        NOMBRE = (EditText) view.findViewById(R.id.tbNomMedic);
-        CANTIDAD = (EditText) view.findViewById(R.id.tbNumPasti);
+        anadir = (Button) findViewById(R.id.btAnadirMed);
+        NOMBRE = (EditText) findViewById(R.id.tbNomMedic);
+        CANTIDAD = (EditText) findViewById(R.id.tbNumPasti);
+        final Resources res = getResources();
 
         anadir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,9 +50,9 @@ public class Anadir_medicamento extends Fragment {
                     nombre = NOMBRE.getText().toString();
                     cantidad = Float.parseFloat(CANTIDAD.getText().toString());
 
-                    if(c!=null) {
+                    if(context!=null) {
                         Log.d("NO error", "if");
-                        dbOp = new DatabaseOperations(c);
+                        dbOp = new DatabaseOperations(context);
                         SQLiteDatabase db = dbOp.getWritableDatabase();
 
                         if (db != null) {
@@ -73,7 +77,7 @@ public class Anadir_medicamento extends Fragment {
                             boolean existe=false;
                             while(i<medicamentos.size()&& existe==false) {
                                 if(nombre.compareTo(medicamentos.get(i).getNombre())==0){
-                                    Toast.makeText(c, "Ya existe un medicamento con ese nombre", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(context, res.getString(R.string.ErrorRepe), Toast.LENGTH_LONG).show();
                                     existe=true;
                                 }
                                 i++;
@@ -85,18 +89,19 @@ public class Anadir_medicamento extends Fragment {
                                 cv.put(TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD, cantidad);
 
                                 db.insert(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO, null, cv);
-                                Log.d("Operaciones bases de datos", "Insertada una fila");
+                                Log.d("Operaciones bases datos", "Insertada una fila");
 
                                 db.close();
 
                                 //CODIGO QUE MANDA A VISTA LISTA MEDICAMENTOS
-                                FragmentManager fm = getFragmentManager();
+                              /*  FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction()
                                         .replace(R.id.container, new Lista_medicamento())
-                                        .commit();
+                                        .commit();*/
+                                Intent inten = new Intent(context, Lista_medicamento.class);
+                                startActivity(inten);
 
-                                Toast.makeText(c, "Medicamento añadido correctamente", Toast.LENGTH_LONG).show();
-
+                                Toast.makeText(context, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
                             }
 
                         }
@@ -106,11 +111,10 @@ public class Anadir_medicamento extends Fragment {
                     }
                 }
                 else{
-                    Toast.makeText(c,"Error: Algún campo vacío", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, res.getString(R.string.Error), Toast.LENGTH_LONG).show();
                 }
             }
         });
 
-        return view;
     }
 }

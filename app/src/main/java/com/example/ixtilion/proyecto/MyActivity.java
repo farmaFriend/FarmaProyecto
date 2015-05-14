@@ -51,38 +51,46 @@ public class MyActivity extends ActionBarActivity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         Fragment fragmento = null;
+        Intent inten=null;
         Activity a = null;
 
         switch (position){
             case 0:
                 fragmento = new Principal();
-
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, fragmento)
+                        .commit();
                 break;
 
             case 1:
-                fragmento = new Agenda();
+                //fragmento = new Agenda();
+                inten = new Intent(this, Agenda.class);
+                startActivity(inten);
 
                 break;
 
             case 2:
-                fragmento = new Lista_medicamento();
+                //fragmento = new Lista_medicamento();
+                inten = new Intent(this, Lista_medicamento.class);
+                startActivity(inten);
                 break;
 
             case 3:
-                fragmento = new Lista_medico();
-                break;
+                inten = new Intent(this, Lista_medico.class);
+                startActivity(inten);                break;
 
             case 4:
-                fragmento = new Lista_comunidad();
-                break;
+                inten = new Intent(this, Lista_comunidad.class);
+                startActivity(inten);                         break;
             case 5:
-                fragmento = new Lista_citas();
+                inten = new Intent(this, Lista_citas.class);
+                startActivity(inten);
                 break;
             case 6:
                 //a = new MapaFar();
                 //break;
-            Intent inten = new Intent(this, MapaFar.class);
-            startActivity(inten);
+                inten = new Intent(this, MapaFar.class);
+                startActivity(inten);
         }
         if(fragmento!=null) {
             fragmentManager.beginTransaction()
