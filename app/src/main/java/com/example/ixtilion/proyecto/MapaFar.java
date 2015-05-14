@@ -33,14 +33,12 @@ public class MapaFar extends FragmentActivity {
     public static final LatLng Farmacia_Logroño_10 = new LatLng(42.460927, -2.440632);
     public static final LatLng Farmacia_Logroño_11 = new LatLng(42.464180, -2.449621);
     public static final LatLng Farmacia_Logroño_12 = new LatLng(42.458756, -2.446651);
-
     public static final LatLng Farmacia_Logroño_13 = new LatLng(42.463747, -2.432461);
-
-    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
-    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
-    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
-    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
-    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
+    public static final LatLng Farmacia_Logroño_14 = new LatLng(42.463576, -2.461850);
+    public static final LatLng Farmacia_Logroño_15 = new LatLng(42.464766, -2.453613);
+    public static final LatLng Farmacia_Logroño_16 = new LatLng(42.455651, -2.438306);
+    public static final LatLng Farmacia_Logroño_17 = new LatLng(42.465939, -2.447594);
+    public static final LatLng Farmacia_Logroño_18 = new LatLng(42.467209, -2.461623);
     //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
     //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
     //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
@@ -131,14 +129,25 @@ public class MapaFar extends FragmentActivity {
                 "Logroño\n" +
                 "941 23 44 55");
 
+        setMarker(Farmacia_Logroño_14,"Farmacia - Hierro Alonso","Calle Marques de Murrieta, 78\n" +
+                "Logroño\n" +
+                "941 22 08 01");
 
+        setMarker(Farmacia_Logroño_15,"Farmacia - Ldo. Jose Antonio Gonzalez","Av de la Gran Vía Rey Juan Carlos I, 67\n" +
+                "Logroño\n" +
+                "941 22 03 32");
 
+        setMarker(Farmacia_Logroño_16,"Farmacia - Mercedes","Calle Estambrera, 22\n" +
+                "Logroño\n" +
+                "941 50 09 16");
 
+        setMarker(Farmacia_Logroño_17,"Farmacia - Rodriguez Maimon Torrijo","Calle Capitan Gallarza, 4\n" +
+                "Logroño\n" +
+                "941 25 19 14");
 
-
-
-
-
+        setMarker(Farmacia_Logroño_18,"Farmacia - Ruiz de Clavijo Ballugera","Calle Gonzalo de Berceo, 54\n" +
+                "Logroño\n" +
+                "941 21 31 76");
 
 
 
