@@ -82,6 +82,7 @@ public class Alarma extends Activity {
                     float cant=0;
                     if (db != null) {
                         cursor = dbOp.getNumPastillas(r.getMedicamento());
+                        //Toast.makeText(context, String.valueOf(cursor.getFloat(0)), Toast.LENGTH_LONG).show();
                         if (cursor.moveToFirst()) {
                             cant = cursor.getFloat(0);
                         }
