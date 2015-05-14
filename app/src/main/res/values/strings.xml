@@ -86,6 +86,9 @@
     <string name="ErrorRepe">Ya existe un elemento similar</string>
     <string name="ErrorAnt">Fecha anterior</string>
     <string name="Anadido">Added succesfully!</string>
+    <string name="Tomar">Take</string>
+    <string name="Parar">Stop</string>
+    <string name="Menosde3">You have less than 3 pills remaining!</string>
 
 
 </resources>

@@ -50,5 +50,8 @@
     <string name="ErrorRepe">A similar element already exists</string>
     <string name="ErrorAnt">Please enter a valid date</string>
     <string name="Anadido">Added succesfully!</string>
+    <string name="Parar">Stop</string>
+    <string name="Tomar">Take:</string>
+    <string name="Menosde3">You have less than 3 pills remaining:</string>
     >>>>>>> origin/master
 </resources>

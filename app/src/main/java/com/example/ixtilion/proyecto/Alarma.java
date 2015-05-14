@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.AudioManager;
@@ -44,6 +45,7 @@ public class Alarma extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        final Resources res = getResources();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarma);
         recordatorios = (ArrayList<Recordatorio_medicamento>)getIntent().getExtras().get("recors");
@@ -85,7 +87,7 @@ public class Alarma extends Activity {
                         }
                     }
                     if(cant<3){
-                        Toast.makeText(context,"Te quedan menos de 3 pastillas de "+ r.getMedicamento(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,res.getString(R.string.Menosde3)+ r.getMedicamento(), Toast.LENGTH_LONG).show();
                     }
                     if(cant>=r.getCantidadToma()) {
                         float caNue=cant - r.getCantidadToma();

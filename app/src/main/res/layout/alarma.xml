@@ -13,7 +13,7 @@
     <Button
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:text="PARAR"
+        android:text="@string/Parar"
         android:id="@+id/btAcepAla"
         android:layout_below="@+id/ImAlarm"
         android:layout_centerHorizontal="true"/>
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="TOMAR:"
+        android:text="@string/Tomar"
         android:id="@+id/tvToma"
         android:layout_alignRight="@+id/spRecorMed"
         android:layout_marginRight="180dp"

@@ -200,14 +200,7 @@ public class Anadir_recordatorio extends Activity {
                 }
             }
         });
-        /*config.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                config.setVisibility(View.INVISIBLE);
-                EditText textView=new EditText(c); //no se ve
-                textView.setText("Ave yo");
-            }
-        });*/
+
 
         FECHAINICIO.setOnClickListener(new View.OnClickListener() {
             @Override

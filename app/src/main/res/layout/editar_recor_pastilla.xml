@@ -73,20 +73,6 @@
         android:ems="10"
         android:id="@+id/tbTiempo" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ConfigAvanzada"
-        android:textColorLink="@color/highlighted_text_material_dark"
-        android:id="@+id/textView4"
-        android:textSize="40px" />
-
-    <ImageView
-        android:layout_width="78dp"
-        android:layout_height="57dp"
-        android:id="@+id/Config"
-        android:src="@drawable/config"/>
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
