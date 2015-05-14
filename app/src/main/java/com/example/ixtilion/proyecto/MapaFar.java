@@ -33,7 +33,7 @@ public class MapaFar extends FragmentActivity {
     public static final LatLng Farmacia_Logroño_10 = new LatLng(42.460927, -2.440632);
     public static final LatLng Farmacia_Logroño_11 = new LatLng(42.464180, -2.449621);
     public static final LatLng Farmacia_Logroño_12 = new LatLng(42.458756, -2.446651);
-    public static final LatLng Farmacia_Logroño_13 = new LatLng();
+    public static final LatLng Farmacia_Logroño_13 = new LatLng(42.463747, -2.432461);
     //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
     //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
     //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
@@ -124,6 +124,10 @@ public class MapaFar extends FragmentActivity {
         setMarker(Farmacia_Logroño_12,"Farmacia - Adan Martinez","Calle General Vara del Rey, 58\n" +
                 "Logroño\n" +
                 "941 23 66 91");
+
+        setMarker(Farmacia_Logroño_13,"Farmacia - Fraile Gallo","Av. de la Paz, 88\n" +
+                "Logroño\n" +
+                "941 23 44 55");
 
 
 
