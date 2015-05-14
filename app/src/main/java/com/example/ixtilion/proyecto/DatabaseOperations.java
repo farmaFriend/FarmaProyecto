@@ -44,13 +44,10 @@ public class DatabaseOperations extends SQLiteOpenHelper{
     private static final String SQL_CREATE_ENTRIES_RECORDATORIO =
             "CREATE TABLE " + TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO + " ( " +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_ID + INT_TYPE + " primary key " + COMMA_SEP +
-                    TableData.TableInfoRecordatorio.COLUMN_NAME_DESCRIPCION + TEXT_TYPE + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAINICIO + TEXT_TYPE + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAFIN + TEXT_TYPE + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_CANTIDADTOMA  + REAL_TYPE + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_INTERVALO + INT_TYPE + COMMA_SEP +
-                    TableData.TableInfoRecordatorio.COLUMN_NAME_DIASTOMASMES + INT_TYPE + COMMA_SEP +
-                    TableData.TableInfoRecordatorio.COLUMN_NAME_DIASDESCANSOMES + INT_TYPE + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_HORA + INT_TYPE + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_MIN + INT_TYPE + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO + TEXT_TYPE + COMMA_SEP +
@@ -144,10 +141,9 @@ public class DatabaseOperations extends SQLiteOpenHelper{
 
     public Cursor cargarCursorRecordatorios(){
         SQLiteDatabase db = this.getWritableDatabase();
-        String s = "select "+ TableData.TableInfoRecordatorio.COLUMN_NAME_ID +" , " + TableData.TableInfoRecordatorio.COLUMN_NAME_DESCRIPCION +
-                " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAINICIO + " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAFIN +
+        String s = "select "+ TableData.TableInfoRecordatorio.COLUMN_NAME_ID +" , " + TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAINICIO +
+                " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAFIN +
                 " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_CANTIDADTOMA + " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_INTERVALO +
-                " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_DIASTOMASMES + " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_DIASDESCANSOMES +
                 " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO +  " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_HORA+
                 " , " + TableData.TableInfoRecordatorio.COLUMN_NAME_MIN + " FROM " + TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO;
         Cursor cu= db.rawQuery( s, null);

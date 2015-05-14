@@ -119,9 +119,6 @@ public class Anadir_recordatorio extends Activity {
                         ContentValues cv = new ContentValues();
                         cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_ID, id);
                         cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_MEDICAMENTO, nombre);
-                        cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_DESCRIPCION,"");
-                        cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_DIASTOMASMES,30);
-                        cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_DIASDESCANSOMES,0);
                         cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_CANTIDADTOMA, cantidad);
                         cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAINICIO, fechaIni);
                         cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAFIN, fechaFin);

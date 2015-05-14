@@ -14,9 +14,6 @@ public class Recordatorio_medicamento implements Serializable {
     private int horaInic, minIni;
     private float cantidadToma;
     private int id;
-    private String descripcion; //opcional
-    private int diasTomaMes; //opcional, solo con configuracion avanzada
-    private int diasDescansoMes; //opcional, solo con configuracion avanzada
 
     public Recordatorio_medicamento(String medicamento, String fecha_ini, String fecha_fin, int intervalo, float cantidadToma, int id, int horaIni, int minIni){
         this.medicamento=medicamento;
@@ -27,21 +24,6 @@ public class Recordatorio_medicamento implements Serializable {
         this.minIni=minIni;
         this.cantidadToma=cantidadToma;
         this.id=id;
-        this.descripcion="";
-        this.diasTomaMes=30;//Si es 0 es que se repite el mes entero
-        this.diasDescansoMes=0;
-    }
-    public Recordatorio_medicamento(String medicamento, String fecha_ini, String fecha_fin, int intervalo, float cantidadToma, int id, String descripcion, int diasTomaMes, int diasDescansoMes, int horaIni){
-        this.medicamento=medicamento;
-        this.fecha_ini=fecha_ini;
-        this.fecha_fin=fecha_fin;
-        this.intervalo=intervalo;
-        this.cantidadToma=cantidadToma;
-        this.id=id;
-        this.descripcion=descripcion;
-        this.diasTomaMes=diasTomaMes;
-        this.diasDescansoMes=diasDescansoMes;
-        this.horaInic = horaIni;
     }
     public String getMedicamento() {
         return medicamento;
@@ -66,14 +48,5 @@ public class Recordatorio_medicamento implements Serializable {
     }
     public int getId() {
         return id;
-    }
-    public String getDescripcion() {
-        return descripcion;
-    }
-    public int getDiasTomaMes() {
-        return diasTomaMes;
-    }
-    public int getDiasDescansoMes() {
-        return diasDescansoMes;
     }
 }

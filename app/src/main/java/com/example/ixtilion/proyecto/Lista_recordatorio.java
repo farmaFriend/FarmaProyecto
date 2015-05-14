@@ -43,13 +43,13 @@ public class Lista_recordatorio extends Activity {
         if (cursor.moveToFirst()) {
             do {
                 int id = cursor.getInt(0);
-                String nombre = cursor.getString(8);
-                float cantidad = cursor.getFloat(4);
-                String fechaIni = cursor.getString(2);
-                String fechaFin = cursor.getString(3);
-                int intervalo = cursor.getInt(5);
-                int horaIni = cursor.getInt(9);
-                int minIni =cursor.getInt(10);
+                String nombre = cursor.getString(5);
+                float cantidad = cursor.getFloat(3);
+                String fechaIni = cursor.getString(1);
+                String fechaFin = cursor.getString(2);
+                int intervalo = cursor.getInt(4);
+                int horaIni = cursor.getInt(6);
+                int minIni =cursor.getInt(7);
 
                 if(this.momento =="m") {
                     if(((horaIni + intervalo)%24) >0 &&((horaIni + intervalo)%24) <8){recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,horaIni, minIni));}
