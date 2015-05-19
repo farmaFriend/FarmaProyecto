@@ -112,7 +112,7 @@ public class Anadir_medico extends Activity {
                                 Intent inten = new Intent(context, Lista_medico.class);
                                 startActivity(inten);
                                 Toast.makeText(context, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();                                    existe=true;
-
+                                finish();
                             }
 
                         }

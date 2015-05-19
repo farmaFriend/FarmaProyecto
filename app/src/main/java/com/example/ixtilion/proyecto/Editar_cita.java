@@ -167,7 +167,7 @@ public class Editar_cita extends Activity{
 
 
                                 Toast.makeText(context, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();
-
+                                finish();
                             }
 
 

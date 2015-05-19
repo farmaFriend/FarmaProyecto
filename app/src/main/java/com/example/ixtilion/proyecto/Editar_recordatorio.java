@@ -88,10 +88,9 @@ public class Editar_recordatorio extends Activity {
 
                             Intent inten = new Intent(c, Lista_recordatorio.class);
                             startActivity(inten);
-                            Toast.makeText(c, res.getString(R.string.Anadido), Toast.LENGTH_LONG).show();
-
-
                             Toast.makeText(c, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();
+                            finish();
+
                         }
 
                     }

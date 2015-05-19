@@ -109,6 +109,7 @@ public class Lista_recordatorio extends Activity {
             public void onClick(View v) {
                 Intent inten = new Intent(c, Anadir_recordatorio.class);
                 startActivity(inten);
+                finish();
 
             }
 

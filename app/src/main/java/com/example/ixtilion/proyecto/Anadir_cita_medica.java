@@ -175,7 +175,6 @@ public class Anadir_cita_medica extends Activity {
                                 Intent inten = new Intent(context, Lista_citas.class);
                                 startActivity(inten);
 
-
                                 db.insert(TableData.TableCitaMedico.TABLE_NAME_CITEMEDICO,null, cv);
 
                                 Toast.makeText(context, "Cita médico añadida correctamente", Toast.LENGTH_LONG).show();
@@ -183,6 +182,7 @@ public class Anadir_cita_medica extends Activity {
                                 Log.d("Operaciones bases de datos", "Insertada una fila");
 
                                 db.close();
+                                finish();
 
                             }
 

@@ -136,14 +136,10 @@ public class Anadir_recordatorio extends Activity {
                         Intent inten = new Intent(c, Lista_recordatorio.class);
                         startActivity(inten);
                         Toast.makeText(c, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
-
-
-                        Toast.makeText(c, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
-
                         //Alarma
                         AlarmReceiver alarm=new AlarmReceiver();
                         alarm.SetAlarm(c);
-
+                        finish();
                     } else {
                         Log.d("error", "else");
                     }
