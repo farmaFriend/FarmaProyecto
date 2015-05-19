@@ -46,7 +46,6 @@ public class Anadir_recordatorio extends Activity {
     int intervalo, horaIni, minIni;
     float cantidad;
     Button anadir;
-    ImageView config;
     private final Context c = this;
     private DatabaseOperations dbOp;
     Cursor cursor;

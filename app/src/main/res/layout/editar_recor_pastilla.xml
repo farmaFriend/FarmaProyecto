@@ -13,9 +13,9 @@
         android:textSize="40px" />
 
     <EditText
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/TbnomMedi" />
+        android:id="@+id/TbnomMedi"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,6 +44,20 @@
         android:inputType="date"
         android:ems="10"
         android:id="@+id/Tbfechafin" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hORAiNI"
+        android:id="@+id/texthorec"
+        android:textSize="40px" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/tbHorarec"/>
 
     <TextView
         android:layout_width="wrap_content"

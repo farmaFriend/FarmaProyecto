@@ -35,16 +35,22 @@ public class ArrayAdapterRecordatorio extends ArrayAdapter<Recordatorio_medicame
         final String nom=recordatorios.get(position).getMedicamento();
         final String pas=String.valueOf(recordatorios.get(position).getCantidadToma());
         final String tiemp = String.valueOf(recordatorios.get(position).getIntervalo());
+        final String fichIni=recordatorios.get(position).getFecha_ini();
+        final String fichFin=recordatorios.get(position).getFecha_fin();
         final String id = recordatorios.get(position).getId();
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.linea_recordatorio, parent, false);
         TextView linea1 = (TextView) rowView.findViewById(R.id.fLRec);
         TextView linea2 = (TextView) rowView.findViewById(R.id.sLRec);
+        TextView linea3 = (TextView) rowView.findViewById(R.id.recorFecha);
+        TextView linea4 = (TextView) rowView.findViewById(R.id.recInter);
         ImageView imageQuit = (ImageView) rowView.findViewById(R.id.ImQuitarRec);
         ImageView imageEdit = (ImageView) rowView.findViewById(R.id.ImModificarRec);
         linea1.setText(nom);
-        linea2.setText(pas);
+        linea2.setText("Tomar: "+pas);
+        linea3.setText(fichIni+" - "+fichFin);
+        linea4.setText("Cada: "+tiemp +"h");
 
         imageQuit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +81,10 @@ public class ArrayAdapterRecordatorio extends ArrayAdapter<Recordatorio_medicame
                 inten.putExtra("pas", pas);
                 inten.putExtra("tiemp", tiemp);
                 inten.putExtra("id", id);
-
+                inten.putExtra("fecIn",fichIni);
+                inten.putExtra("fecFi",fichFin);
+                inten.putExtra("horI",recordatorios.get(pos).getHoraIni());
+                inten.putExtra("minI",recordatorios.get(pos).getMinIniIni());
                 ((Activity)context).startActivity(inten);
             }
         });

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:layout_height="85dip"
     android:padding="6dip" >
 
     <ImageView
@@ -17,23 +17,36 @@
     <TextView
         android:id="@+id/sLRec"
         android:layout_width="fill_parent"
-        android:layout_height="26dip"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_height="20dip"
         android:layout_toRightOf="@id/ImMed"
+        android:layout_marginTop="20dip"
+        android:text="Description"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/recorFecha"
+        android:layout_width="fill_parent"
+        android:layout_height="20dip"
+        android:layout_toRightOf="@id/ImMed"
+        android:layout_marginTop="35dip"
+        android:text="Fecha"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/recInter"
+        android:layout_width="fill_parent"
+        android:layout_height="26dip"
+        android:layout_toRightOf="@id/ImMed"
+        android:layout_marginTop="50dip"
         android:ellipsize="marquee"
         android:singleLine="true"
-        android:text="Description"
+        android:text="Intervalo"
         android:textSize="12sp" />
 
     <TextView
         android:id="@+id/fLRec"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/sLRec"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignWithParentIfMissing="true"
         android:layout_toRightOf="@id/ImMed"
         android:gravity="center_vertical"
         android:text="Example application"
