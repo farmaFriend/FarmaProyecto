@@ -54,14 +54,9 @@ public class Lista_medicamento extends Activity {
 
             @Override
             public void onClick(View v) {
-
-              /*  FragmentManager fm = getFragmentManager();
-                fm.beginTransaction()
-                        .replace(R.id.container, new Anadir_medicamento() )
-                        .commit();*/
                 Intent inten = new Intent(context, Anadir_medicamento.class);
                 startActivity(inten);
-
+                finish();
             }
 
         });

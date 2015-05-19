@@ -42,7 +42,7 @@ public class Lista_recordatorio extends Activity {
 
         if (cursor.moveToFirst()) {
             do {
-                int id = cursor.getInt(0);
+                String id = cursor.getString(0);
                 String nombre = cursor.getString(5);
                 float cantidad = cursor.getFloat(3);
                 String fechaIni = cursor.getString(1);
@@ -107,12 +107,7 @@ public class Lista_recordatorio extends Activity {
 
             @Override
             public void onClick(View v) {
-
-                /*FragmentManager fm = getFragmentManager();
-                fm.beginTransaction()
-                        .replace(R.id.container, new Anadir_recordatorio() )
-                        .commit();*/
-                Intent inten = new Intent(c, Lista_medico.class);
+                Intent inten = new Intent(c, Anadir_recordatorio.class);
                 startActivity(inten);
 
             }

@@ -111,10 +111,7 @@ public class Anadir_recordatorio extends Activity {
 
                         dbOp = new DatabaseOperations(c);
                         SQLiteDatabase db = dbOp.getWritableDatabase();
-
-                        int id=0; //Id temporal
-
-                        id = nombre.length()+intervalo;
+                        String id=String.valueOf(Calendar.getInstance().getTimeInMillis());
 
                         ContentValues cv = new ContentValues();
                         cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_ID, id);

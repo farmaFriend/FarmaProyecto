@@ -35,7 +35,7 @@ public class ArrayAdapterRecordatorio extends ArrayAdapter<Recordatorio_medicame
         final String nom=recordatorios.get(position).getMedicamento();
         final String pas=String.valueOf(recordatorios.get(position).getCantidadToma());
         final String tiemp = String.valueOf(recordatorios.get(position).getIntervalo());
-        final int id = recordatorios.get(position).getId();
+        final String id = recordatorios.get(position).getId();
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.linea_recordatorio, parent, false);
@@ -54,7 +54,7 @@ public class ArrayAdapterRecordatorio extends ArrayAdapter<Recordatorio_medicame
 
                 if (db != null) {
                     String col=TableData.TableInfoRecordatorio.COLUMN_NAME_ID;
-                    int val=recordatorios.get(pos).getId();
+                    String val=recordatorios.get(pos).getId();
                     String aux=col+"='"+val+"'";
                     db.delete(TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO,aux,null);
                     Log.d("Operaciones bases de datos", "Eliminada una fila");
@@ -70,10 +70,6 @@ public class ArrayAdapterRecordatorio extends ArrayAdapter<Recordatorio_medicame
         imageEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*FragmentManager fm = ((Activity)context).getFragmentManager();
-                fm.beginTransaction()
-                        .replace(R.id.container, new Editar_recordatorio(nom, pas, tiemp, id))
-                        .commit();*/
                 Intent inten = new Intent(context, Editar_recordatorio.class);
                 inten.putExtra("nom", nom);
                 inten.putExtra("pas", pas);
@@ -83,16 +79,6 @@ public class ArrayAdapterRecordatorio extends ArrayAdapter<Recordatorio_medicame
                 ((Activity)context).startActivity(inten);
             }
         });
-
-        //imageEdit.setOnClickListener(new View.OnClickListener() {
-            //@Override
-           // public void onClick(View v) {
-          //      FragmentManager fm = ((Activity)context).getFragmentManager();
-            //    fm.beginTransaction()
-              //          .replace(R.id.container, new Editar_medicamento(nom, pas))
-                //        .commit();
-           // }
-        //});
         return rowView;
     }
 }

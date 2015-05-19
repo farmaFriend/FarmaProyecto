@@ -93,15 +93,11 @@ public class Anadir_medicamento extends Activity {
 
                                 db.close();
 
-                                //CODIGO QUE MANDA A VISTA LISTA MEDICAMENTOS
-                              /*  FragmentManager fm = getFragmentManager();
-                                fm.beginTransaction()
-                                        .replace(R.id.container, new Lista_medicamento())
-                                        .commit();*/
                                 Intent inten = new Intent(context, Lista_medicamento.class);
                                 startActivity(inten);
 
                                 Toast.makeText(context, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
+                                finish();
                             }
 
                         }

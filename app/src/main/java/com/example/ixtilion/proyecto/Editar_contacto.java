@@ -116,6 +116,7 @@ public class Editar_contacto extends Activity {
                                 startActivity(inten);
 
                                 Toast.makeText(context, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();
+                                finish();
                             }
                         }
                     }

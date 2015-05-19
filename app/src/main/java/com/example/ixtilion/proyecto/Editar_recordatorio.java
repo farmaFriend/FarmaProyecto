@@ -25,7 +25,6 @@ import java.util.ArrayList;
  */
 public class Editar_recordatorio extends Activity {
     EditText NOMBRE, CANTIDAD, TIEMPO;
-    int id;
     String nombre;
     float cantidad;
     String tiempo;
@@ -33,7 +32,7 @@ public class Editar_recordatorio extends Activity {
     private final Context c=this;
     private DatabaseOperations dbOp;
     Cursor cursor;
-    private String n, pas, tiem;
+    private String n, pas, tiem, id;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +41,7 @@ public class Editar_recordatorio extends Activity {
         this.n=getIntent().getExtras().getString("nom");
         this.pas=getIntent().getExtras().getString("pas");
         this.tiem=getIntent().getExtras().getString("tiemp");
-        this.id=getIntent().getExtras().getInt("id");
+        this.id=getIntent().getExtras().getString("id");
 
         final Resources res = getResources();
 
@@ -80,19 +79,13 @@ public class Editar_recordatorio extends Activity {
                                 cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_INTERVALO, tiempo);
 
                                 String col=TableData.TableInfoRecordatorio.COLUMN_NAME_ID;
-                                String val=String.valueOf(id);
-                                String aux=col+"='"+val+"'";
+                                String aux=col+"='"+id+"'";
 
                                 db.update(TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO, cv, aux, null);
                                 Log.d("Operaciones bases de datos", "Actualizada una fila");
 
                                 db.close();
 
-                                //CODIGO QUE MANDA A VISTA LISTA recordatorios
-                               /* FragmentManager fm = getFragmentManager();
-                                fm.beginTransaction()
-                                        .replace(R.id.container, new Lista_recordatorio("all"))
-                                        .commit();*/
                             Intent inten = new Intent(c, Lista_recordatorio.class);
                             startActivity(inten);
                             Toast.makeText(c, res.getString(R.string.Anadido), Toast.LENGTH_LONG).show();

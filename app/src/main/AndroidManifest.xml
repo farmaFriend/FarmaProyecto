@@ -35,12 +35,14 @@
 
 
         <activity  android:name = ".Alarma" ></activity>
-        <activity  android:name = ".Agenda" ></activity>
+        <activity  android:name = ".Agenda"
+            android:parentActivityName=".MyActivity"></activity>
         <activity  android:name = ".Anadir_contacto" ></activity>
         <activity  android:name = ".Editar_contacto" ></activity>
         <activity  android:name = ".Editar_medicamento" ></activity>
         <activity  android:name = ".Anadir_medicamento" ></activity>
-        <activity  android:name = ".Lista_medicamento" ></activity>
+        <activity  android:name = ".Lista_medicamento"
+            android:parentActivityName=".MyActivity"></activity>
         <activity  android:name = ".Editar_cita" ></activity>
         <activity  android:name = ".Anadir_cita_medica" ></activity>
         <activity  android:name = ".Lista_citas" ></activity>
