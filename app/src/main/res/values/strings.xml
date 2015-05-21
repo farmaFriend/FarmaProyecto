@@ -89,6 +89,7 @@
     <string name="Tomar">Take</string>
     <string name="Parar">Stop</string>
     <string name="Menosde3">You have less than 3 pills remaining!</string>
+    <string name="Cada">Every</string>
 
 
 </resources>

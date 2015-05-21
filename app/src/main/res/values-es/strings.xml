@@ -53,5 +53,6 @@
     <string name="Parar">Parar</string>
     <string name="Tomar">Tomar:</string>
     <string name="Menosde3">Te quedan menos de 3 pastillas:</string>
+    <string name="Cada">Every</string>
     >>>>>>> origin/master
 </resources>
