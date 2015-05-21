@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +24,8 @@ import java.util.ArrayList;
 public class ArrayAdapterRecordatorio extends ArrayAdapter<Recordatorio_medicamento> {
     private final Context context;
     private final ArrayList<Recordatorio_medicamento> recordatorios;
+
+    final Resources res = this.getContext().getResources();
 
     public ArrayAdapterRecordatorio(Context context, ArrayList<Recordatorio_medicamento>recordatorios) {
         super(context, R.layout.linea_recordatorio, recordatorios);
@@ -48,9 +51,9 @@ public class ArrayAdapterRecordatorio extends ArrayAdapter<Recordatorio_medicame
         ImageView imageQuit = (ImageView) rowView.findViewById(R.id.ImQuitarRec);
         ImageView imageEdit = (ImageView) rowView.findViewById(R.id.ImModificarRec);
         linea1.setText(nom);
-        linea2.setText("Tomar: "+pas);
+        linea2.setText(res.getString(R.string.Tomar)+":"+pas+"h");
         linea3.setText(fichIni+" - "+fichFin);
-        linea4.setText("Cada: "+tiemp +"h");
+        linea4.setText(res.getString(R.string.Cada)+":"+tiemp +"h");
 
         imageQuit.setOnClickListener(new View.OnClickListener() {
             @Override
