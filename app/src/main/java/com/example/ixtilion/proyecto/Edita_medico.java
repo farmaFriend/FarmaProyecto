@@ -125,7 +125,8 @@ public class Edita_medico extends Activity {
                                 Intent inten = new Intent(context, Lista_medico.class);
                                 startActivity(inten);
 
-                                Toast.makeText(context, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();                                    existe=true;
+                                Toast.makeText(context, res.getString(R.string.Editado), Toast.LENGTH_LONG).show();
+                                finish();
                             }
                         }
                     }

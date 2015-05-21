@@ -133,7 +133,7 @@ public class Lista_citas extends Activity {
                         .commit();*/
                 Intent inten = new Intent(context, Anadir_cita_medica.class);
                 startActivity(inten);
-
+                finish();
             }
         });
 

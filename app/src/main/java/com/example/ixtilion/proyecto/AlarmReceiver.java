@@ -52,7 +52,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
             if (cursor.moveToFirst()) {
                 do {
-                    int id = cursor.getInt(0);
+                    String id = cursor.getString(0);
                     String nombre = cursor.getString(5);
                     float cantidad = cursor.getFloat(3);
                     String fechaIni = cursor.getString(1);
@@ -103,7 +103,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
             if (cursor.moveToFirst()) {
                 do {
-                    int id = cursor.getInt(0);
+                    String id = cursor.getString(0);
                     String nombre = cursor.getString(5);
                     float cantidad = cursor.getFloat(3);
                     String fechaIni = cursor.getString(1);
@@ -127,8 +127,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                     cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_HORA, aux);
 
                     String col = TableData.TableInfoRecordatorio.COLUMN_NAME_ID;
-                    int val = r.getId();
-                    String s = col + "=" + val;
+                    String s = col +"='"+r.getId()+"'";
 
                     dbaux.update(TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO, cv, s, null);
                 }
@@ -158,7 +157,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(sender);
     }
-    public void borrar(DatabaseOperations dbHelper, Context context, int id){
+    public void borrar(DatabaseOperations dbHelper, Context context, String id){
         dbHelper = new DatabaseOperations(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 

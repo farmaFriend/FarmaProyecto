@@ -97,18 +97,11 @@ public class Anadir_contacto extends Activity{
                                 Log.d("Operaciones bases datos", "Insertada una fila");
 
                                 db.close();
-
-                                //CODIGO QUE MANDA A VISTA AGENDA
-                                /*
-                                FragmentManager fm = getFragmentManager();
-                                fm.beginTransaction()
-                                        .replace(R.id.container, new Agenda() )
-                                        .commit();
-                                */
                                 Intent inten = new Intent(context, Agenda.class);
                                 startActivity(inten);
 
                                 Toast.makeText(context, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
+                                finish();
                             }
 
                         }

@@ -13,9 +13,9 @@ public class Recordatorio_medicamento implements Serializable {
     private int intervalo; //cada cuantas horas quiere que recuerde
     private int horaInic, minIni;
     private float cantidadToma;
-    private int id;
+    private String id;
 
-    public Recordatorio_medicamento(String medicamento, String fecha_ini, String fecha_fin, int intervalo, float cantidadToma, int id, int horaIni, int minIni){
+    public Recordatorio_medicamento(String medicamento, String fecha_ini, String fecha_fin, int intervalo, float cantidadToma, String id, int horaIni, int minIni){
         this.medicamento=medicamento;
         this.fecha_ini=fecha_ini;
         this.fecha_fin=fecha_fin;
@@ -46,7 +46,7 @@ public class Recordatorio_medicamento implements Serializable {
     public int getMinIniIni() {
         return minIni;
     }
-    public int getId() {
+    public String getId() {
         return id;
     }
 }

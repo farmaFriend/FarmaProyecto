@@ -60,6 +60,7 @@ public class Lista_medico extends Activity {
                         .commit();*/
                 Intent inten = new Intent(context, Anadir_medico.class);
                 startActivity(inten);
+                finish();
 
             }
 

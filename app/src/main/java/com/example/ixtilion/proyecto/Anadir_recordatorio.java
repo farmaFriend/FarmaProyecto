@@ -46,7 +46,6 @@ public class Anadir_recordatorio extends Activity {
     int intervalo, horaIni, minIni;
     float cantidad;
     Button anadir;
-    ImageView config;
     private final Context c = this;
     private DatabaseOperations dbOp;
     Cursor cursor;
@@ -111,10 +110,7 @@ public class Anadir_recordatorio extends Activity {
 
                         dbOp = new DatabaseOperations(c);
                         SQLiteDatabase db = dbOp.getWritableDatabase();
-
-                        int id=0; //Id temporal
-
-                        id = nombre.length()+intervalo;
+                        String id=String.valueOf(Calendar.getInstance().getTimeInMillis());
 
                         ContentValues cv = new ContentValues();
                         cv.put(TableData.TableInfoRecordatorio.COLUMN_NAME_ID, id);
@@ -139,14 +135,10 @@ public class Anadir_recordatorio extends Activity {
                         Intent inten = new Intent(c, Lista_recordatorio.class);
                         startActivity(inten);
                         Toast.makeText(c, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
-
-
-                        Toast.makeText(c, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
-
                         //Alarma
                         AlarmReceiver alarm=new AlarmReceiver();
                         alarm.SetAlarm(c);
-
+                        finish();
                     } else {
                         Log.d("error", "else");
                     }

@@ -43,7 +43,7 @@ public class DatabaseOperations extends SQLiteOpenHelper{
 
     private static final String SQL_CREATE_ENTRIES_RECORDATORIO =
             "CREATE TABLE " + TableData.TableInfoRecordatorio.TABLE_NAME_RECORDATORIO + " ( " +
-                    TableData.TableInfoRecordatorio.COLUMN_NAME_ID + INT_TYPE + " primary key " + COMMA_SEP +
+                    TableData.TableInfoRecordatorio.COLUMN_NAME_ID + TEXT_TYPE + " primary key " + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAINICIO + TEXT_TYPE + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_FECHAFIN + TEXT_TYPE + COMMA_SEP +
                     TableData.TableInfoRecordatorio.COLUMN_NAME_CANTIDADTOMA  + REAL_TYPE + COMMA_SEP +

@@ -62,13 +62,9 @@ public class Agenda extends Activity{
 
             @Override
             public void onClick(View v) {
-
-                /*FragmentManager fm = getFragmentManager();
-                fm.beginTransaction()
-                        .replace(R.id.container, new Anadir_contacto() )
-                        .commit();*/
                 Intent inten = new Intent(context, Anadir_contacto.class);
                 startActivity(inten);
+                finish();
 
             }
 
