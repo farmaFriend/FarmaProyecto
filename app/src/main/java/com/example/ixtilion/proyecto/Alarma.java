@@ -77,29 +77,25 @@ public class Alarma extends Activity {
                 for (Recordatorio_medicamento r : recordatorios) {
                     ContentValues cv = new ContentValues();
 
-                    cv.put(TableData.TableInfoMedic.COLUMN_NAME_NOMBRE, r.getMedicamento());
-
                     float cant=0;
+                    String no=r.getMedicamento().toLowerCase();
                     if (db != null) {
-                        cursor = dbOp.getNumPastillas(r.getMedicamento());
-                        //Toast.makeText(context, String.valueOf(cursor.getFloat(0)), Toast.LENGTH_LONG).show();
+                        cursor = dbOp.getNumPastillas(no);
                         if (cursor.moveToFirst()) {
                             cant = cursor.getFloat(0);
                         }
                     }
-                    if(cant<3){
+                    float caNue=cant - r.getCantidadToma();
+                    if(cant>=r.getCantidadToma()) {
+                        cv.put(TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD, caNue);
+                        String col = TableData.TableInfoMedic.COLUMN_NAME_NOMBRE;
+                        String aux = col + "='" + no + "'";
+
+                        db.update(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO, cv, aux, null);
+                    }
+                    if(caNue<3){
                         Toast.makeText(context,res.getString(R.string.Menosde3)+ r.getMedicamento(), Toast.LENGTH_LONG).show();
                     }
-                    if(cant>=r.getCantidadToma()) {
-                        float caNue=cant - r.getCantidadToma();
-                        cv.put(TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD, caNue);
-                    }
-
-                    String col = TableData.TableInfoMedic.COLUMN_NAME_NOMBRE;
-                    String val = r.getMedicamento();
-                    String aux = col + "='" + val + "'";
-
-                    db.update(TableData.TableInfoMedic.TABLE_NAME_MEDICAMENTO, cv, aux, null);
                 }
                 db.close();
                 finish();
@@ -112,7 +108,7 @@ public class Alarma extends Activity {
         //Acquire the lock
         wl.acquire();
 
-        vibra.vibrate(60000);//vibra durante un minuto
+        vibra.vibrate(600000);//vibra durante 10 minutos
 
         //Release the lock
         wl.release();

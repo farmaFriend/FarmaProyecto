@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/anadirRecordatorio"
         android:layout_gravity="right"
-        android:background="@drawable/mas" />
+        android:background="@drawable/alarmmore" />
 
     <ListView
         android:layout_width="match_parent"

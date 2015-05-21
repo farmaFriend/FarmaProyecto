@@ -10,12 +10,28 @@
         android:layout_height="wrap_content"
         android:text="@string/NombreMedicamento"
         android:id="@+id/LnomMedi"
-        android:textSize="40px" />
+        android:textSize="40px"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:id="@+id/spMedicamentos" />
+        android:id="@+id/spMedicamentos"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hORAiNI"
+        android:id="@+id/textView5"
+        android:textSize="40px" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/tbHora"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,22 +60,6 @@
         android:inputType="date"
         android:ems="10"
         android:id="@+id/Tbfechafin" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hORAiNI"
-        android:id="@+id/textView5"
-        android:textSize="40px" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
-        android:id="@+id/tbHora"
-        android:linksClickable="false"
-        android:nestedScrollingEnabled="false" />
 
     <TextView
         android:layout_width="wrap_content"

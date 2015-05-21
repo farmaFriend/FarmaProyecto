@@ -94,7 +94,7 @@ public class Editar_medicamento extends Activity {
                             if(!existe){
                                 ContentValues cv = new ContentValues();
 
-                                cv.put(TableData.TableInfoMedic.COLUMN_NAME_NOMBRE, nombre);
+                                cv.put(TableData.TableInfoMedic.COLUMN_NAME_NOMBRE, nombre.toLowerCase());
                                 cv.put(TableData.TableInfoMedic.COLUMN_NAME_CANTIDAD, cantidad);
 
                                 String col=TableData.TableInfoMedic.COLUMN_NAME_NOMBRE;
