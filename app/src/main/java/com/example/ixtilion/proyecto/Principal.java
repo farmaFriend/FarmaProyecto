@@ -30,7 +30,7 @@ public class Principal extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent inten = new Intent(c, Lista_recordatorio.class);
-                inten.putExtra("m","m");
+                inten.putExtra("momen","m");
                 startActivity(inten);
             }
         });
@@ -39,7 +39,7 @@ public class Principal extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent inten = new Intent(c, Lista_recordatorio.class);
-                inten.putExtra("t","t");
+                inten.putExtra("momen","t");
                 startActivity(inten);
             }
         });
@@ -48,7 +48,7 @@ public class Principal extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent inten = new Intent(c, Lista_recordatorio.class);
-                inten.putExtra("n","n");
+                inten.putExtra("momen","n");
                 startActivity(inten);
             }
         });

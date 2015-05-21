@@ -28,13 +28,11 @@ public class Lista_recordatorio extends Activity {
     public Lista_recordatorio(){
         this.momento = "all";
     }
-    public Lista_recordatorio(String m){
-        this.momento = m;
-    }
 
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lis_recordatorio);
+        this.momento = getIntent().getExtras().getString("momen");
         dbOp = new DatabaseOperations(c);
         cursor = dbOp.cargarCursorRecordatorios();
 
@@ -51,44 +49,28 @@ public class Lista_recordatorio extends Activity {
                 int horaIni = cursor.getInt(6);
                 int minIni =cursor.getInt(7);
 
-                if(this.momento =="m") {
-                    if(((horaIni + intervalo)%24) >0 &&((horaIni + intervalo)%24) <8){recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,horaIni, minIni));}
-                   if(intervalo <=8) {
-                       if (((horaIni + intervalo * 2) % 24) > 0 && ((horaIni + intervalo * 2) % 24) < 8) {
-                           recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id, horaIni, minIni));
-                       }
+                if(this.momento.compareTo("m")==0) {
+                    if((((horaIni + intervalo)%24) >8) &&(((horaIni + intervalo)%24) <16)){
+                        recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,horaIni, minIni));
+                    }
 
-                       if (((horaIni + intervalo * 3) % 24) > 0 && ((horaIni + intervalo * 3) % 24) < 8) {
-                           recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id, horaIni, minIni));
-                       }
-                   }
                 }
 
-                if(this.momento =="t") {
-                    if(((horaIni + intervalo)%24) >8 &&((horaIni + intervalo)%24) <16){recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,horaIni, minIni));}
-                    if(intervalo <=8) {
-                        if (((horaIni + intervalo * 2) % 24) > 8 && ((horaIni + intervalo * 2) % 24) < 16) {
-                            recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id, horaIni, minIni));
-                        }
+                if(this.momento.compareTo("t")==0) {
+                    if(((horaIni + intervalo)%24) >16 &&((horaIni + intervalo)%24) <24){
+                        recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,horaIni, minIni));
+                    }
 
-                        if (((horaIni + intervalo * 3) % 24) > 8 && ((horaIni + intervalo * 3) % 24) < 16) {
-                            recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id, horaIni, minIni));
-                        }
+                }
+
+                if(this.momento.compareTo("n")==0){
+                    Toast.makeText(c,String.valueOf((horaIni + intervalo)%24), Toast.LENGTH_LONG).show();
+                    if(((horaIni + intervalo)%24) >0 &&((horaIni + intervalo)%24) <8){
+                        recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,horaIni, minIni));
+
                     }
                 }
 
-                if(this.momento =="n"){
-                    if(((horaIni + intervalo)%24) >16 &&((horaIni + intervalo)%24) <24){recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,horaIni, minIni));}
-                }
-                if(intervalo <=8) {
-                    if (((horaIni + intervalo * 2) % 24) > 16 && ((horaIni + intervalo * 2) % 24) < 8) {
-                        recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id, horaIni, minIni));
-                    }
-
-                    if (((horaIni + intervalo * 3) % 24) > 16 && ((horaIni + intervalo * 3) % 24) < 8) {
-                        recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id, horaIni, minIni));
-                    }
-                }
 
                 if(this.momento =="all") {
                     recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,horaIni, minIni));

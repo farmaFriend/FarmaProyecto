@@ -39,20 +39,6 @@ public class MapaFar extends FragmentActivity {
     public static final LatLng Farmacia_Logroño_16 = new LatLng(42.455651, -2.438306);
     public static final LatLng Farmacia_Logroño_17 = new LatLng(42.465939, -2.447594);
     public static final LatLng Farmacia_Logroño_18 = new LatLng(42.467209, -2.461623);
-    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
-    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
-    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
-    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
-    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
-    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
-    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
-    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
-    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
-    //public static final LatLng Farmacia_Logroño_3 = new LatLng(42.436800, -2.455254);
-
-
-
-
 
 
 
