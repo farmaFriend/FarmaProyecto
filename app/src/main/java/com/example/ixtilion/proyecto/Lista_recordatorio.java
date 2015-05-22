@@ -72,7 +72,7 @@ public class Lista_recordatorio extends Activity {
                 }
 
 
-                if(this.momento =="all") {
+                if(this.momento.compareTo("all")==0) {
                     recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,horaIni, minIni));
                 }
 

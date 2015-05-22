@@ -51,9 +51,9 @@ public class ArrayAdapterRecordatorio extends ArrayAdapter<Recordatorio_medicame
         ImageView imageQuit = (ImageView) rowView.findViewById(R.id.ImQuitarRec);
         ImageView imageEdit = (ImageView) rowView.findViewById(R.id.ImModificarRec);
         linea1.setText(nom);
-        linea2.setText(res.getString(R.string.Tomar)+":"+pas+"h");
+        linea2.setText(res.getString(R.string.Tomar)+": "+pas);
         linea3.setText(fichIni+" - "+fichFin);
-        linea4.setText(res.getString(R.string.Cada)+":"+tiemp +"h");
+        linea4.setText(res.getString(R.string.Cada)+": "+tiemp +"h");
 
         imageQuit.setOnClickListener(new View.OnClickListener() {
             @Override

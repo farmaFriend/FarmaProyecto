@@ -133,6 +133,7 @@ public class Anadir_recordatorio extends Activity {
                               .replace(R.id.container, new Lista_recordatorio("all"))
                             .commit();*/
                         Intent inten = new Intent(c, Lista_recordatorio.class);
+                        inten.putExtra("momen","all");
                         startActivity(inten);
                         Toast.makeText(c, res.getString(R.string.Añadido), Toast.LENGTH_LONG).show();
                         //Alarma
