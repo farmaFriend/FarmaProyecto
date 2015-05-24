@@ -40,7 +40,43 @@ public class MapaFar extends FragmentActivity {
     public static final LatLng Farmacia_Logroño_17 = new LatLng(42.465939, -2.447594);
     public static final LatLng Farmacia_Logroño_18 = new LatLng(42.467209, -2.461623);
 
+    //CALAHORRA
+    public static final LatLng Farmacia_Calahorra_1 = new LatLng(42.309187, -1.970870);
+    public static final LatLng Farmacia_Calahorra_2 = new LatLng(42.302871, -1.973574);
+    public static final LatLng Farmacia_Calahorra_3 = new LatLng(42.307441, -1.969283);
+    public static final LatLng Farmacia_Calahorra_4 = new LatLng(42.303188, -1.966064);
+    public static final LatLng Farmacia_Calahorra_5 = new LatLng(42.303760, -1.963832);
+    public static final LatLng Farmacia_Calahorra_6 = new LatLng(42.301665, -1.960957);
+    public static final LatLng Farmacia_Calahorra_7 = new LatLng(42.308241, -1.966020);
+    public static final LatLng Farmacia_Calahorra_8 = new LatLng(42.305147, -1.968273);
 
+    //SAN ADRIAN
+    public static final LatLng Farmacia_SanAdrian_1 = new LatLng(42.337621, -1.935516);
+    public static final LatLng Farmacia_SanAdrian_2 = new LatLng(42.334749, -1.935879);
+    public static final LatLng Farmacia_SanAdrian_3 = new LatLng(42.336970, -1.939248);
+    public static final LatLng Farmacia_SanAdrian_4 = new LatLng(42.334955, -1.931996);
+    public static final LatLng Farmacia_SanAdrian_5 = new LatLng(42.332846, -1.932983);
+    public static final LatLng Farmacia_SanAdrian_6 = new LatLng(42.333861, -1.934463);
+
+    //ALFARO
+    public static final LatLng Farmacia_Alfaro_1 = new LatLng(42.179128, -1.749449);
+    public static final LatLng Farmacia_Alfaro_2 = new LatLng(42.177454, -1.750254);
+    public static final LatLng Farmacia_Alfaro_3 = new LatLng(42.175633, -1.750898);
+
+    //LUGO
+    public static final LatLng Farmacia_Lugo_1 = new LatLng(43.024050, -7.566285);
+    public static final LatLng Farmacia_Lugo_2 = new LatLng(43.002461, -7.545342);
+    public static final LatLng Farmacia_Lugo_3 = new LatLng(43.010432, -7.557273);
+
+    //CORUÑA
+    public static final LatLng Farmacia_Corunia_1 = new LatLng(43.350502, -8.404030);
+    public static final LatLng Farmacia_Corunia_2 = new LatLng(43.363420, -8.407291);
+    public static final LatLng Farmacia_Corunia_3 = new LatLng(43.362328, -8.422741);
+
+    public static final LatLng Farmacia_Ourense_1 = new LatLng(42.340772, -7.873009);
+    public static final LatLng Farmacia_Ourense_2 = new LatLng(42.345428, -7.861733);
+
+    public static final LatLng Farmacia_Asturias_1 = new LatLng(43.516926, -5.677284);
 
 
     @Override
@@ -135,6 +171,95 @@ public class MapaFar extends FragmentActivity {
                 "Logroño\n" +
                 "941 21 31 76");
 
+        //CALAHORRA
+        setMarker(Farmacia_Calahorra_1,"Farmacia - José María Domingo Pérez Caballero","Calle de los Doctores Castroviejo, 19\n" +
+                "Calahorra\n" +
+                "941 14 69 58");
+        setMarker(Farmacia_Calahorra_2,"Farmacia - Pagola Sáenz","Av de Numancia, 80\n" +
+                "Calahorra\n" +
+                "941 13 03 38");
+        setMarker(Farmacia_Calahorra_3,"Farmacia - M. A. Seminario","Calle de Julio Longinos, 25\n" +
+                "Calahorra\n" +
+                "941 13 01 48");
+        setMarker(Farmacia_Calahorra_4,"Farmacia -  Mercedes Peña Hurtado","Avenida Numancia, 6\n" +
+                "Calahorra\n" +
+                "941 13 24 29");
+        setMarker(Farmacia_Calahorra_5,"Farmacia - Diego Ameyugo González","Paseo del Mercadal, 12\n" +
+                "Calahorra\n" +
+                "941 13 00 99");
+        setMarker(Farmacia_Calahorra_6,"Farmacia - Marta Lázaro","Plaza el Raso, 2\n" +
+                "Calahorra\n" +
+                "941 14 54 50");
+        setMarker(Farmacia_Calahorra_7,"Farmacia - Dr. Vázquez Lasa","Av. Ntra. Sra. de Valvanera, 54\n" +
+                "Calahorra\n" +
+                "941 13 11 90");
+        setMarker(Farmacia_Calahorra_8,"Farmacia - Santiago Piñeiro Marín","Calle del Bebricio, 53\n" +
+                "Calahorra\n" +
+                "941 13 16 36");
+
+        //S.A.
+        setMarker(Farmacia_SanAdrian_1,"Farmacia - Olga Gimeno","Ctra. Estella, 77\n" +
+                "San Adrián\n" +
+                "948 69 62 85");
+        setMarker(Farmacia_SanAdrian_2,"Farmacia - Moreno Sola","Calle de Sta Gema, 30\n" +
+                "San Adrián\n" +
+                "948 67 01 11");
+        setMarker(Farmacia_SanAdrian_3,"Farmacia - Miguel Sola Manero","Grupo San José Obrero, 71\n" +
+                "San Adrián\n" +
+                "948 69 66 67");
+        setMarker(Farmacia_SanAdrian_4,"Farmacia - Ldo Javier Arce","Calle Pelayo Sola, 10\n" +
+                "San Adrián\n" +
+                "948 67 00 98");
+        setMarker(Farmacia_SanAdrian_5,"Farmacia - Milian Grao","Plaza Vera Magallón, 8\n" +
+                "San Adrián\n" +
+                "948 67 00 42");
+        setMarker(Farmacia_SanAdrian_6,"Farmacia - María Rosario Manero Sánchez","Ctra. Estella, 18\n" +
+                "San Adrián\n" +
+                "948 67 00 99");
+
+        //ALFARO
+        setMarker(Farmacia_Alfaro_1,"Farmacia - Twose Navajas","Calle de las Pozas, 3\n" +
+                "Alfaro\n" +
+                "941 18 01 12");
+        setMarker(Farmacia_Alfaro_2,"Farmacia - Boyra Navea","Calle Mayor, 5\n" +
+                "Alfaro\n" +
+                "941 18 09 88");
+        setMarker(Farmacia_Alfaro_3,"Farmacia - María Carmen Bretón Espinosa","Calle Trasmuro, 11\n" +
+                "Alfaro\n" +
+                "941 18 33 25");
+
+        //LUGO
+        setMarker(Farmacia_Lugo_1,"Farmacia - Labandeira","Av de La Coruña, 299\n" +
+                "Lugo\n" +
+                "982 21 54 00");
+        setMarker(Farmacia_Lugo_2,"Farmacia - Pintos","Ronda das Fontiñas, 302\n" +
+                "Lugo\n" +
+                "982 22 45 18");
+        setMarker(Farmacia_Lugo_3,"Farmacia - da Cruz","Rúa Conde Pallares, 6\n" +
+                "Lugo\n" +
+                "982 23 11 60");
+
+        //CORUÑA
+        setMarker(Farmacia_Corunia_1,"Farmacia - Fra Carracedo","Av del Alcalde Pérez Arda, 51\n" +
+                "A Coruña\n" +
+                "981 29 60 61");
+        setMarker(Farmacia_Corunia_2,"Farmacia - Gato Luaces","Calle de Emilia Pardo Bazán, 12\n" +
+                "A Coruña\n" +
+                "981 12 15 80");
+        setMarker(Farmacia_Corunia_3,"Farmacia - Pérez Jares","Ronda de Outeiro, 261\n" +
+                "A Coruña\n" +
+                "981 25 20 29");
+
+        setMarker(Farmacia_Ourense_1,"Farmacia - López Domínguez","Calle de Ervedelo, 82\n" +
+                "Ourense\n" +
+                "988 22 21 13");
+        setMarker(Farmacia_Ourense_2,"Farmacia - Piña González","Calle de Curros Enríquez, 10\n" +
+                "Ourense\n" +
+                "988 23 30 21");
+
+        setMarker(Farmacia_Asturias_1,"Farmacia - de Roces","Av. Salvador Allende, 69\n" +
+                "Asturias\n" +
+                "985 38 63 67");
 
 
 
