@@ -78,6 +78,11 @@ public class MapaFar extends FragmentActivity {
 
     public static final LatLng Farmacia_Asturias_1 = new LatLng(43.516926, -5.677284);
 
+    //MADRID
+    public static final LatLng Farmacia_Madrid_1 = new LatLng(40.421372, -3.676545);
+    public static final LatLng Farmacia_Madrid_2 = new LatLng(40.421220, -3.677365);
+    public static final LatLng Farmacia_Madrid_3 = new LatLng(40.423518, -3.67189);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -262,6 +267,18 @@ public class MapaFar extends FragmentActivity {
                 "985 38 63 67");
 
 
+         //MADRID
+        setMarker(Farmacia_Madrid_1,"Farmacia - de Bobadilla","Calle Bobadilla, 81\n" +
+                "Madrid\n" +
+                "917 10 89 94");
+
+        setMarker(Farmacia_Madrid_2,"Farmacia - Muriel","Muriel Romano, 363\n" +
+                "Asturias\n" +
+                "917 23 87 63");
+
+        setMarker(Farmacia_Asturias_1,"Farmacia - Optica Online","Madrid Velez, 19\n" +
+                "Madrid\n" +
+                "917 83 77 21");
 
     }
 
