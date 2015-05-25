@@ -84,11 +84,30 @@ public class MapaFar extends FragmentActivity {
     public static final LatLng Farmacia_Madrid_3 = new LatLng(40.423518, -3.67189);
 
 
+    //BARCELONA
+    public static final LatLng Farmacia_Bcna_1 = new LatLng(41.395869, 2.155594);
+    public static final LatLng Farmacia_Bcna_2 = new LatLng(41.393294, 2.143149);
+    public static final LatLng Farmacia_Bcna_3 = new LatLng(41.371784, 2.181731);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapa_far);
         setUpMapIfNeeded();
+
+        //BARCELONA
+        setMarker(Farmacia_Bcna_1,"Farmacia -Sierra Mandri, ","Avinguda Diagonal, 478\n" +
+                "Barcelona\n" +
+                "934 16 12 70");
+
+        setMarker(Farmacia_Bcna_2,"Farmacia - De la Iglesia Martinez, Mº Jose","Calle del Mestre Nicolau, 6\n" +
+                "Barcelona\n" +
+                "932 01 44 95");
+
+        setMarker(Farmacia_Bcna_3,"Farmacia - Vanesa Fernanez Leon","Edificio World Trade Center\n" +
+                "Barcelona\n" +
+                "935 08 80 32");
+
 
         //LARDERO
         setMarker(Farmacia_Lardero_1,"Farmacia - Martínez Tutor, M Jesús","Calle Nocedillo, 22\n" +
