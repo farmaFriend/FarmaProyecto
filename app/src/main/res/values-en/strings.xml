@@ -10,6 +10,7 @@
     <string name="IntrComun">Search by region</string>
     <string name="SelecComunidad">Choose your region</string>
     <string name="Doctor">Doctor (*)</string>
+    <string name="DoctorCit">Doctor</string>
     <string name="Descripcion">Description (*)</string>
     <string name="Fecha">Date (*)</string>
     <string name="AñCit">Add appointment</string>

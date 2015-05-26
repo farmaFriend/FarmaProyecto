@@ -31,7 +31,7 @@ public class Lista_comunidad extends Activity {
 
         final ArrayList<Comunidad> comunidades = new ArrayList<Comunidad>();
         comunidades.add(new Comunidad("La Rioja","https://www.riojasalud.es/ciudadanos/informacion-general-a-ciudadanos/3756-pedir-cita-previa" ,"larioja"));
-        comunidades.add(new Comunidad("Navarra","http://www.navarra.es/home_es/Servicios/ficha/3345/cita-previa-en-el-centro-de-salud","navarra"));
+        comunidades.add(new Comunidad("Navarra","http://www.navarra.es/home_es/Servicios/ficha/3345/cita-previa-en-el-centro-de-salud","navara"));
         comunidades.add(new Comunidad("Cataluña","http://www.gencat.cat/ics/usuaris/visites.htm","catalunya"));
         comunidades.add(new Comunidad("Castilla León","https://cita.saludcastillayleon.es/CitaPreviaWeb/start2.htm","castillaleon"));
         comunidades.add(new Comunidad("Asturias","https://www28.asturias.es/solicitudCitaPrevia/action/inicio?method=solicitudCita","asturias"));
