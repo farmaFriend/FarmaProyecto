@@ -89,6 +89,35 @@ public class MapaFar extends FragmentActivity {
     public static final LatLng Farmacia_Bcna_2 = new LatLng(41.393294, 2.143149);
     public static final LatLng Farmacia_Bcna_3 = new LatLng(41.371784, 2.181731);
 
+    public static final LatLng Farmacia_Santand_1 = new LatLng(43.466543, -3.796944);
+    public static final LatLng Farmacia_Santand_2 = new LatLng(43.458693, -3.826985);
+
+    public static final LatLng Farmacia_Bilbo_1 = new LatLng(43.261136, -2.935453);
+    public static final LatLng Farmacia_Bilbo_2 = new LatLng(43.259011, -2.902665);
+
+    public static final LatLng Farmacia_Sanse_1 = new LatLng(43.323342, -1.977488);
+
+    public static final LatLng Farmacia_Victo_1 = new LatLng(42.860920, -2.669825);
+    public static final LatLng Farmacia_Zarag_1 = new LatLng(41.644866, -0.883543);
+    public static final LatLng Farmacia_Teruel_1 = new LatLng(40.344265, -1.107123);
+    public static final LatLng Farmacia_Huesca_1 = new LatLng(42.134013, -0.409196);
+
+    public static final LatLng Farmacia_Girona_1 = new LatLng(41.976665, 2.817869);
+    public static final LatLng Farmacia_Lleida_1 = new LatLng(41.621286, 0.624420);
+
+    public static final LatLng Farmacia_Valen_1 = new LatLng(39.468174, -0.379493);
+    public static final LatLng Farmacia_Caste_1 = new LatLng(39.980817, -0.035060);
+    public static final LatLng Farmacia_Alic_1 = new LatLng(38.355956, -0.488231);
+
+    public static final LatLng Farmacia_Murcia_1 = new LatLng(37.987045, -1.128860);
+    public static final LatLng Farmacia_Malaga_1 = new LatLng(36.714346, -4.433759);
+    public static final LatLng Farmacia_Sevi_1 = new LatLng(37.387272, -5.974370);
+    public static final LatLng Farmacia_Grana_1 = new LatLng(37.179767, -3.602696);
+    public static final LatLng Farmacia_Cacer_1 = new LatLng(39.475322, -6.375131);
+    public static final LatLng Farmacia_Bada_1 = new LatLng(38.865832, -6.972702);
+    public static final LatLng Farmacia_Salam_1 = new LatLng(40.969369, -5.669148);
+    public static final LatLng Farmacia_Toledo_1 = new LatLng(39.870368, -4.034234);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -290,15 +319,84 @@ public class MapaFar extends FragmentActivity {
         setMarker(Farmacia_Madrid_1,"Farmacia - de Bobadilla","Calle Bobadilla, 81\n" +
                 "Madrid\n" +
                 "917 10 89 94");
-
         setMarker(Farmacia_Madrid_2,"Farmacia - Muriel","Muriel Romano, 363\n" +
-                "Asturias\n" +
+                "Madrid\n" +
                 "917 23 87 63");
-
-        setMarker(Farmacia_Asturias_1,"Farmacia - Optica Online","Madrid Velez, 19\n" +
+        setMarker(Farmacia_Madrid_3,"Farmacia - Optica Online","Madrid Velez, 19\n" +
                 "Madrid\n" +
                 "917 83 77 21");
 
+        setMarker(Farmacia_Santand_1,"Farmacia - Iraola López","Paseo de Menéndez Pelayo, 47\n" +
+                "Santander\n" +
+                "942 36 01 00");
+        setMarker(Farmacia_Santand_2,"Farmacia - Luis Cabero Díaz","Av de Pedro San Martín, 0\n" +
+                "Santander\n" +
+                "942 32 42 17");
+
+        setMarker(Farmacia_Bilbo_1,"Farmacia - Ugarte Arana","Alameda Recalde, 37\n" +
+                "Bilbao\n" +
+                "944 70 07 57");
+        setMarker(Farmacia_Bilbo_2,"Farmacia - Ruiz Golvano","Casals Pau Hiribidea, 1\n" +
+                "Bilbao\n" +
+                "944 12 40 32");
+
+        setMarker(Farmacia_Sanse_1,"Farmacia - Beitia Fernández","Peña y Goñi Kalea, 9\n" +
+                "Donostia\n" +
+                "943 27 14 15");
+        setMarker(Farmacia_Victo_1,"Farmacia - Monteagudo","Calle Reyes de Navarra, 45\n" +
+                "Vitoria\n" +
+                "945 12 08 06");
+
+        setMarker(Farmacia_Zarag_1,"Farmacia - Basaldua Ezquerra","Paseo de las Damas, 19\n" +
+                "Zaragoza\n" +
+                "976 21 19 45");
+        setMarker(Farmacia_Teruel_1,"Farmacia - Giménez Zuriaga","Calle de San Juan, 10\n" +
+                "Teruel\n" +
+                "978 61 04 78");
+        setMarker(Farmacia_Huesca_1,"Farmacia - Sapiña","Calle Zaragoza, 16\n" +
+                "Huesca\n" +
+                "974 24 01 02");
+
+        setMarker(Farmacia_Girona_1,"Farmacia - Vila Surribas","Carrer de Francesc de Ciurana, 25\n" +
+                "Girona\n" +
+                "972 20 89 31");
+        setMarker(Farmacia_Lleida_1,"Farmacia - Esther Garrós","Av. Prat de la Riba, 53\n" +
+                "Lleida\n" +
+                "973 23 21 12");
+        setMarker(Farmacia_Valen_1,"Farmacia - Boix","Carrer de Xàtiva, 2\n" +
+                "Valencia\n" +
+                "963 52 89 85");
+        setMarker(Farmacia_Caste_1,"Farmacia - Villanueva Godes","Calle Manuel Segarra Ribes, 4\n" +
+                "Castellón de la Plana\n" +
+                "964 22 12 83");
+        setMarker(Farmacia_Alic_1,"Farmacia - San Juan Vidal","Av. de Alcoy, 8\n" +
+                "Alicante\n" +
+                "965 25 25 68");
+
+        setMarker(Farmacia_Murcia_1,"Farmacia - Santo Domingo","Plaza Santo Domingo, 14\n" +
+                "Murcia\n" +
+                "968 21 94 01");
+        setMarker(Farmacia_Malaga_1,"Farmacia - Santos Alguacil","Av. de las Américas, 7\n" +
+                "Málaga\n" +
+                "952 36 91 11");
+        setMarker(Farmacia_Sevi_1,"Farmacia - Pancho","Calle de Luis Montoto, 85\n" +
+                "Sevilla\n" +
+                "954 58 07 98");
+        setMarker(Farmacia_Grana_1,"Farmacia - Perpetuo Socorro","San Jeronimo, 52\n" +
+                "Granada\n" +
+                "958 20 22 22");
+        setMarker(Farmacia_Cacer_1,"Farmacia - Gómez Delgado","Calle de los Ceres, 4\n" +
+                "Cáceres\n" +
+                "927 22 31 48");
+        setMarker(Farmacia_Bada_1,"Farmacia - García Arias García Doncel","Av de Damián Téllez Lafuente, 13\n" +
+                "Badajoz\n" +
+                "924 23 02 38");
+        setMarker(Farmacia_Salam_1,"Farmacia - Buitrago Pérez","Av. de Villamayor, 28\n" +
+                "Salamanca\n" +
+                "923 26 13 16");
+        setMarker(Farmacia_Toledo_1,"Farmacia - Elena Castro Sierra","Calle de Barcelona, 1\n" +
+                "Toledo\n" +
+                "925 22 88 09");
     }
 
     @Override

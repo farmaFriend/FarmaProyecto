@@ -50,22 +50,21 @@ public class Lista_recordatorio extends Activity {
                 int minIni =cursor.getInt(7);
 
                 if(this.momento.compareTo("m")==0) {
-                    if((((horaIni + intervalo)%24) >8) &&(((horaIni + intervalo)%24) <16)){
+                    if((((horaIni + intervalo)%24) >=8) &&(((horaIni + intervalo)%24) <16)){
                         recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,horaIni, minIni));
                     }
 
                 }
 
                 if(this.momento.compareTo("t")==0) {
-                    if(((horaIni + intervalo)%24) >16 &&((horaIni + intervalo)%24) <24){
+                    if(((horaIni + intervalo)%24) >=16 &&((horaIni + intervalo)%24) <24){
                         recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,horaIni, minIni));
                     }
 
                 }
 
                 if(this.momento.compareTo("n")==0){
-                    Toast.makeText(c,String.valueOf((horaIni + intervalo)%24), Toast.LENGTH_LONG).show();
-                    if(((horaIni + intervalo)%24) >0 &&((horaIni + intervalo)%24) <8){
+                    if(((horaIni + intervalo)%24) >=0 &&((horaIni + intervalo)%24) <8){
                         recordatorios.add(new Recordatorio_medicamento(nombre, fechaIni, fechaFin, intervalo, cantidad, id,horaIni, minIni));
 
                     }
